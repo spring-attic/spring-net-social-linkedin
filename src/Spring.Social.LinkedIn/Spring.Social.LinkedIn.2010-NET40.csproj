@@ -107,6 +107,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\LinkedTemplate.cs" />
+    <Compile Include="Social\LinkedIn\Api\ILinkedIn.cs" />
+    <Compile Include="Social\LinkedIn\Connect\LinkedInServiceProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
