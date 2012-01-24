@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="overview" version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:ns52="http://www.w3.org/2000/svg"
+         xmlns:ns5="http://www.w3.org/1999/xlink"
+         xmlns:ns4="http://www.w3.org/1998/Math/MathML"
+         xmlns:ns3="http://www.w3.org/1999/xhtml"
+         xmlns:ns="http://docbook.org/ns/docbook">
+  <title>Overview</title>
+
+  <para>
+    The Spring.NET Social LinkedIn project is an extension to <ulink url="http://www.springframework.net/social/">Spring.NET Social</ulink>
+    that enables integration with LinkedIn.
+    <sbr/>The <ulink url="http://www.springframework.net/rest/">Spring.NET REST Client Framework</ulink>
+    is used to consume <ulink url="https://developer.linkedin.com/rest">LinkedIn REST API</ulink>.
+  </para>
+  
+  <para>
+    <ulink url="http://www.linkedin.com">LinkedIn</ulink> is a social networking site geared toward professionals. 
+    It enables its users to maintain and correspond with a network of contacts they have are professionally linked to.
+  </para>
+
+  <para>Spring.NET Social LinkedIn supports the following .NET Frameworks : <itemizedlist>
+    <listitem>
+      <para>.NET 2.0</para>
+    </listitem>
+
+    <listitem>
+      <para>.NET Client Profile 3.5 and 4.0</para>
+    </listitem>
+
+    <listitem>
+      <para>Windows Phone 7.0 and 7.1</para>
+    </listitem>
+  </itemizedlist></para>
+  
+  <para>
+    As an extension, Spring.NET Social LinkedIn depends on Spring.NET Social. 
+    <sbr/>
+    Note that Spring.NET Social LinkedIn may release on a different schedule than Spring.NET Social. 
+    Consequently, Spring.NET Social's version may differ from that of Spring.NET Social LinkedIn.
+  </para>
+
+</chapter>
