@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring.ConsoleQuickStart.2008-NET20", "src\Spring.ConsoleQuickStart\Spring.ConsoleQuickStart.2008-NET20.csproj", "{1A7DB6A8-5DBF-2FDC-85AE-FAD4F27D6179}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring.Social.LinkedIn.2008-NET20", "..\..\src\Spring.Social.LinkedIn\Spring.Social.LinkedIn.2008-NET20.csproj", "{09B31C6A-237D-4A16-8A59-B723ABBCE73D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spring.Social.LinkedIn.Tests.2008-NET20", "..\..\test\Spring.Social.LinkedIn.Tests\Spring.Social.LinkedIn.Tests.2008-NET20.csproj", "{F0453418-2597-C3B9-31BF-CEE747594B21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A7DB6A8-5DBF-2FDC-85AE-FAD4F27D6179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A7DB6A8-5DBF-2FDC-85AE-FAD4F27D6179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A7DB6A8-5DBF-2FDC-85AE-FAD4F27D6179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A7DB6A8-5DBF-2FDC-85AE-FAD4F27D6179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09B31C6A-237D-4A16-8A59-B723ABBCE73D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09B31C6A-237D-4A16-8A59-B723ABBCE73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B31C6A-237D-4A16-8A59-B723ABBCE73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09B31C6A-237D-4A16-8A59-B723ABBCE73D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0453418-2597-C3B9-31BF-CEE747594B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0453418-2597-C3B9-31BF-CEE747594B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0453418-2597-C3B9-31BF-CEE747594B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0453418-2597-C3B9-31BF-CEE747594B21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
