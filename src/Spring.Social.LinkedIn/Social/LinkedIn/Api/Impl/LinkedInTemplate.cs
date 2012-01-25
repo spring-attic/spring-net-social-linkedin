@@ -27,6 +27,8 @@ using Spring.Social.OAuth1;
 using Spring.Http.Converters;
 using Spring.Http.Converters.Json;
 
+using Spring.Social.LinkedIn.Api.Impl.Json;
+
 namespace Spring.Social.LinkedIn.Api.Impl
 {
     /// <summary>
@@ -36,6 +38,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
     public class LinkedInTemplate : AbstractOAuth1ApiBinding, ILinkedIn 
     {
         private static readonly Uri API_URI_BASE = new Uri("https://api.linkedin.com/v1/");
+
+        private IProfileOperations profileOperations;
 
         /// <summary>
         /// Create a new instance of <see cref="LinkedInTemplate"/>.
@@ -51,6 +55,14 @@ namespace Spring.Social.LinkedIn.Api.Impl
 	    }
 
         #region ILinkedIn Members
+
+        /// <summary>
+        /// Gets the portion of the LinkedIn API retrieving and performing operations on profiles.
+        /// </summary>
+        public IProfileOperations ProfileOperations 
+        {
+            get { return this.profileOperations; }
+        }
 
         /// <summary>
         /// Gets the underlying <see cref="IRestOperations"/> object allowing for consumption of LinkedIn endpoints 
@@ -77,6 +89,9 @@ namespace Spring.Social.LinkedIn.Api.Impl
         protected override void ConfigureRestTemplate(RestTemplate restTemplate)
         {
             restTemplate.BaseAddress = API_URI_BASE;
+#if !WINDOWS_PHONE
+            restTemplate.RequestInterceptors.Add(new LinkedInRequestFactoryInterceptor());
+#endif
         }
 
         /// <summary>
@@ -105,12 +120,14 @@ namespace Spring.Social.LinkedIn.Api.Impl
         protected virtual SpringJsonHttpMessageConverter GetJsonMessageConverter()
         {
             JsonMapper jsonMapper = new JsonMapper();
+            jsonMapper.RegisterDeserializer(typeof(LinkedInProfile), new LinkedInProfileDeserializer());
 
             return new SpringJsonHttpMessageConverter(jsonMapper);
         }
 
         private void InitSubApis()
         {
+            this.profileOperations = new ProfileTemplate(this.RestTemplate);
         }
     }
 }

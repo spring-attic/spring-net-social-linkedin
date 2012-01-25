@@ -58,9 +58,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Social\LinkedIn\Api\ILinkedIn.cs" />
-    <Compile Include="Social\LinkedIn\Api\Impl\LinkedTemplate.cs" />
-    <Compile Include="Social\LinkedIn\Connect\LinkedInServiceProvider.cs" />
+    <Compile Include="Social\LinkedIn\Api\ILinkedIn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfileDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\LinkedInRequestFactoryInterceptor.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplate.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplate.cs" />
+    <Compile Include="Social\LinkedIn\Api\IProfileOperations.cs" />
+    <Compile Include="Social\LinkedIn\Api\LinkedInApiError.cs" />
+    <Compile Include="Social\LinkedIn\Api\LinkedInApiException.cs" />
+    <Compile Include="Social\LinkedIn\Api\LinkedInProfile.cs" />
+    <Compile Include="Social\LinkedIn\Connect\LinkedInServiceProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

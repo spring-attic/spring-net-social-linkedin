@@ -33,6 +33,11 @@ namespace Spring.Social.LinkedIn.Api
     public interface ILinkedIn : IApiBinding
     {
         /// <summary>
+        /// Gets the portion of the LinkedIn API retrieving and performing operations on profiles.
+        /// </summary>
+        IProfileOperations ProfileOperations { get; }
+
+        /// <summary>
         /// Gets the underlying <see cref="IRestOperations"/> object allowing for consumption of LinkedIn endpoints 
         /// that may not be otherwise covered by the API binding. 
         /// </summary>
