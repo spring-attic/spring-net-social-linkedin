@@ -98,6 +98,8 @@
     <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplateTests.cs" />
+    <Compile Include="Social\LinkedIn\Api\LinkedInApiExceptionTests.cs" />
+    <Compile Include="Util\SerializationTestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Profile.json" />

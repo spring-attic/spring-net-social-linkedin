@@ -27,6 +27,9 @@ namespace Spring.Social.LinkedIn.Api
     /// </summary>
     /// <author>Craig Walls</author>
     /// <author>Bruno Baia (.NET)</author>
+#if !SILVERLIGHT
+    [Serializable]
+#endif
     public class LinkedInProfile 
     {
         /// <summary>

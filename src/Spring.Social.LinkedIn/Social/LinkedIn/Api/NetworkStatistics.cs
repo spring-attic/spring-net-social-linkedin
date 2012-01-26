@@ -27,6 +27,9 @@ namespace Spring.Social.LinkedIn.Api
     /// </summary>
     /// <author>Robert Drysdale</author>
     /// <author>Bruno Baia (.NET)</author>
+#if !SILVERLIGHT
+    [Serializable]
+#endif
     public class NetworkStatistics 
     {
         /// <summary>
