@@ -39,6 +39,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
     {
         private static readonly Uri API_URI_BASE = new Uri("https://api.linkedin.com/v1/");
 
+        private IConnectionOperations connectionOperations;
         private IProfileOperations profileOperations;
 
         /// <summary>
@@ -55,6 +56,14 @@ namespace Spring.Social.LinkedIn.Api.Impl
 	    }
 
         #region ILinkedIn Members
+
+        /// <summary>
+        /// Gets the portion of the LinkedIn API retrieving connections.
+        /// </summary>
+        public IConnectionOperations ConnectionOperations 
+        { 
+            get { return this.connectionOperations; }
+        }
 
         /// <summary>
         /// Gets the portion of the LinkedIn API retrieving and performing operations on profiles.
@@ -121,12 +130,15 @@ namespace Spring.Social.LinkedIn.Api.Impl
         {
             JsonMapper jsonMapper = new JsonMapper();
             jsonMapper.RegisterDeserializer(typeof(LinkedInProfile), new LinkedInProfileDeserializer());
+            jsonMapper.RegisterDeserializer(typeof(IList<LinkedInProfile>), new LinkedInProfileListDeserializer());
+            jsonMapper.RegisterDeserializer(typeof(NetworkStatistics), new NetworkStatisticsDeserializer());
 
             return new SpringJsonHttpMessageConverter(jsonMapper);
         }
 
         private void InitSubApis()
         {
+            this.connectionOperations = new ConnectionTemplate(this.RestTemplate);
             this.profileOperations = new ProfileTemplate(this.RestTemplate);
         }
     }

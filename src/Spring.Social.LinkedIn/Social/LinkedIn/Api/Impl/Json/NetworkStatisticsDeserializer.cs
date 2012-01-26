@@ -26,25 +26,18 @@ using Spring.Json;
 namespace Spring.Social.LinkedIn.Api.Impl.Json
 {
     /// <summary>
-    /// JSON deserializer for LinkedIn user's profile.
+    /// JSON deserializer for network statistics.
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileDeserializer : IJsonDeserializer
+    class NetworkStatisticsDeserializer : IJsonDeserializer
     {
         public object Deserialize(JsonValue json, JsonMapper mapper)
         {
-            return new LinkedInProfile()
+            JsonValue values = json.GetValue("values");
+            return new NetworkStatistics()
             {
-                ID = json.GetValue<string>("id"),
-                FirstName = json.GetValue<string>("firstName"),
-                LastName = json.GetValue<string>("lastName"),
-                Headline = json.ContainsName("headline") ? json.GetValue<string>("headline") : "",
-                Industry = json.ContainsName("industry") ? json.GetValue<string>("industry") : "",
-                PictureUrl = json.ContainsName("pictureUrl") ? json.GetValue<string>("pictureUrl") : null,
-                Summary = json.ContainsName("summary") ? json.GetValue<string>("summary") : "",
-                PublicProfileUrl = json.ContainsName("publicProfileUrl") ? json.GetValue<string>("publicProfileUrl") : null
-                // SiteStandardProfileRequest
-                // ApiStandardProfileRequest
+                FirstDegreeCount = values.GetValue<int>(0),
+                SecondDegreeCount = values.GetValue<int>(1),
             };
         }
     }

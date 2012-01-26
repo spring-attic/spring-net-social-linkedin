@@ -95,11 +95,14 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperationsTests.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplateTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Profile.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Connections.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Statistics.json" />
     <None Include="Spring.Social.LinkedIn.Tests.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

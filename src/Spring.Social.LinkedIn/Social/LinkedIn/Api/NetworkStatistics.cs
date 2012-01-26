@@ -20,35 +20,23 @@
 
 using System;
 
-using Spring.Rest.Client;
-
 namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// Interface specifying a basic set of operations for interacting with LinkedIn.
+    /// Represents network statistics of a user.
     /// </summary>
-    /// <author>Craig Walls</author>
     /// <author>Robert Drysdale</author>
     /// <author>Bruno Baia (.NET)</author>
-    public interface ILinkedIn : IApiBinding
+    public class NetworkStatistics 
     {
         /// <summary>
-        /// Gets the portion of the LinkedIn API retrieving connections.
+        /// Gets or sets the count of first degree connections.
         /// </summary>
-        IConnectionOperations ConnectionOperations { get; }
+        public int FirstDegreeCount { get; set; }
 
         /// <summary>
-        /// Gets the portion of the LinkedIn API retrieving and performing operations on profiles.
+        /// Gets or sets the count of second degree connections.
         /// </summary>
-        IProfileOperations ProfileOperations { get; }
-
-        /// <summary>
-        /// Gets the underlying <see cref="IRestOperations"/> object allowing for consumption of LinkedIn endpoints 
-        /// that may not be otherwise covered by the API binding. 
-        /// </summary>
-        /// <remarks>
-        /// The <see cref="IRestOperations"/> object returned is configured to include an OAuth "Authorization" header on all requests.
-        /// </remarks>
-        IRestOperations RestOperations { get; }
+        public int SecondDegreeCount { get; set; }
     }
 }
