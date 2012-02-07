@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="api" version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:ns52="http://www.w3.org/2000/svg"
+         xmlns:ns5="http://www.w3.org/1999/xlink"
+         xmlns:ns4="http://www.w3.org/1998/Math/MathML"
+         xmlns:ns3="http://www.w3.org/1999/xhtml"
+         xmlns:ns="http://docbook.org/ns/docbook">
+	<title>LinkedIn API Binding</title>
+  
+	<para>
+    Spring.NET Social LinkedIn offers integration with LinkedIn's REST API through the <interfacename>ILinkedIn</interfacename> interface 
+    and its implementation, <classname>LinkedInTemplate</classname>.			
+	</para>
+
+	<para>
+		Creating an instance of <classname>LinkedInTemplate</classname> involves invoking its constructor, 
+    passing in the application's OAuth credentials, an access token/secret pair authorizing the application to act on a user's behalf 
+    and the type of access level configured with the application.
+		<sbr/>For example:
+	</para>
+	
+	<programlisting language="csharp"><![CDATA[string consumerKey = "..."; // The application's consumer key
+string consumerSecret = "..."; // The application's consumer secret
+string accessToken = "..."; // The access token granted after OAuth authorization
+string accessTokenSecret = "..."; // The access token secret granted after OAuth authorization
+ILinkedIn linkedIn = new LinkedInTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);]]></programlisting>
+	
+	<para>
+		You can also get an instance of <interfacename>ILinkedIn</interfacename> from the <classname>LinkedInServiceProvider</classname> class.
+		<sbr/>The example code below shows use of the <classname>LinkedInServiceProvider</classname> to retrieve an instance of <interfacename>ILinkedIn</interfacename> 
+    after authenticating through OAuth1 server-side flow:
+    <programlisting language="csharp"><![CDATA[
+LinkedInServiceProvider serviceProvider = new LinkedInServiceProvider("consumerKey", "consumerSecret");
+OAuth1Operations oauthOperations = serviceProvider.AuthOperations;
+OAuthToken requestToken = oauthOperations.FetchRequestToken("http://my-callback-url/", null);
+string authorizeUrl = oauthOperations.BuildAuthorizeUrl(requestToken, null);
+Response.Redirect(authorizeUrl);
+
+// upon receiving the callback from the provider:
+OAuthToken accessToken = oauthOperations.ExchangeForAccessToken(new AuthorizedRequestToken(requestToken, oauthVerifier), null);
+ILinkedIn linkedInApi = serviceProvider.GetApi(accessToken.Value, accessToken.Secret);]]></programlisting>
+  </para>
+	
+	<para>
+		Once you have a <interfacename>ILinkedIn</interfacename>, you can perform a several operations against LinkedIn.
+  </para>
+
+  <para>
+    There are 3 ways to call a method depending on the target Framework:
+    <itemizedlist>
+      <listitem>
+        <emphasis role="bold">Synchronuous methods</emphasis>
+        <para>Available on .NET 2.0 and .NET 3.5</para>
+        <programlisting language="csharp"><![CDATA[LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfile();
+Console.WriteLine("Hi " + profile.DisplayName + "!");]]></programlisting>
+      </listitem>
+
+      <listitem>
+        <emphasis role="bold">Asynchronuous methods</emphasis>
+        <para>Available on .NET 2.0, .NET 3.5 and Windows Phone</para>
+        <programlisting language="csharp"><![CDATA[LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileAsync(
+  r =>
+  {
+    Console.WriteLine("Hi " + r.Response.DisplayName + "!");
+  });]]>
+        </programlisting>
+      </listitem>
+
+      <listitem>
+        <emphasis role="bold">Task-based asynchronuous methods (Task Parallel Library)</emphasis>
+        <para>Available on .NET 4.0</para>
+        <programlisting language="csharp"><![CDATA[LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileAsync()
+  .ContinueWith(task =>
+  {
+    Console.WriteLine("Hi " + task.Result.DisplayName + "!");
+  });]]>
+        </programlisting>
+      </listitem>
+    </itemizedlist>
+  </para>
+
+  <para/>
+  
+	<para>
+    For complete details on the Spring.NET Social's entire LinkedIn API binding,
+    refer to the API documentation from the "doc/api" directory of the distribution
+    and to the <ulink url="https://developer.linkedin.com/rest">LinkedIn REST API documentation</ulink>.
+    <sbr/>Samples are provided in the 'examples' directory of the distribution.
+  </para>
+</chapter>
