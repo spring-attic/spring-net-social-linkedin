@@ -35,7 +35,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
     /// <author>Bruno Baia</author>
     class ProfileTemplate : IProfileOperations
     {
-        private const string ProfileUrl = "people/{id}:(id,first-name,last-name,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json";
+        private const string ProfileUrl = "people/{id}:(id,first-name,last-name,headline,industry,public-profile-url,picture-url,summary,site-standard-profile-request,api-standard-profile-request)?format=json";
 
         private RestTemplate restTemplate;
 

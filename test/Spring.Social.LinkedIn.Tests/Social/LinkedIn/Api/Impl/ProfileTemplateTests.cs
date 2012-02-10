@@ -50,8 +50,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
             LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfile();
 #endif
             AssertProfile(profile, "xO3SEJSVZN", "Architecte en informatique spécialisé sur les technologies Microsoft .NET",
-                "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl", 
-                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia");
+                "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl",
+                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia", "http://www.linkedin.com/profile", null);
 	    }
 
         [Test]
@@ -69,7 +69,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
 #endif
             AssertProfile(profile, "xO3SEJSVZN", "Architecte en informatique spécialisé sur les technologies Microsoft .NET",
                 "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl",
-                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia");
+                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia", "http://www.linkedin.com/profile", null);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
 #endif
             AssertProfile(profile, "xO3SEJSVZN", "Architecte en informatique spécialisé sur les technologies Microsoft .NET",
                 "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl",
-                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia");
+                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia", "http://www.linkedin.com/profile", null);
         }
     }
 }

@@ -76,19 +76,17 @@ namespace Spring.Social.LinkedIn.Api
         /// </summary>
         public string PublicProfileUrl { get; set; }
 
-        // TODO: ApiStandardProfileRequest & SiteStandardProfileRequest
-/*
         /// <summary>
-        /// Gets or sets the auth information required for connecting to user.
+        /// Gets or sets a URL to the user's authenticated profile.
+        /// <para/>
+        /// Requires a login to be viewed, unlike public profile url and 
+        /// the content shown at this profile will depend upon what the requesting user is allowed to see.
         /// </summary>
-        public ApiStandardProfileRequest ApiStandardProfileRequest { get; set; }
+        public string StandardProfileUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets a URL to the user's standard profile. 
-        /// <para/>
-        /// The content shown at this profile will depend upon what the requesting user is allowed to see.
+        /// Gets or sets an authentication token required by some API calls.
         /// </summary>
-        public UrlResource SiteStandardProfileRequest { get; set; }
-*/
+        public string AuthToken { get; set; }
     }
 }

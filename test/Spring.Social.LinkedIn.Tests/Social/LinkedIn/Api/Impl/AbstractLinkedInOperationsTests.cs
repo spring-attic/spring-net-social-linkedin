@@ -71,7 +71,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
         }
 
         protected void AssertProfile(LinkedInProfile profile,
-            string id, string headline, string firstName, string lastName, string industry, string pictureUrl, string summary, string publicProfileUrl)
+            string id, string headline, string firstName, string lastName, string industry, string pictureUrl,
+            string summary, string publicProfileUrl, string standardProfileUrl, string authToken)
         {
             Assert.AreEqual(id, profile.ID);
             Assert.AreEqual(headline, profile.Headline);
@@ -81,8 +82,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
             Assert.AreEqual(pictureUrl, profile.PictureUrl);
             Assert.AreEqual(summary, profile.Summary);
             Assert.AreEqual(publicProfileUrl, profile.PublicProfileUrl);
-            //Assert.AreEqual(null, profile.ApiStandardProfileRequest);
-            //Assert.AreEqual(null, profile.SiteStandardProfileRequest);
+            Assert.AreEqual(authToken, profile.AuthToken);
+            Assert.AreEqual(standardProfileUrl, profile.StandardProfileUrl);
         }
 
 #if NET_4_0 || SILVERLIGHT_5

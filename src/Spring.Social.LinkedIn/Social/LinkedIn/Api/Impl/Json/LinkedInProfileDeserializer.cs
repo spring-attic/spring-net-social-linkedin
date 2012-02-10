@@ -31,6 +31,8 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
     /// <author>Bruno Baia</author>
     class LinkedInProfileDeserializer : IJsonDeserializer
     {
+        private const string AuthTokenHeaderName = "x-li-auth-token";
+
         public object Deserialize(JsonValue json, JsonMapper mapper)
         {
             return new LinkedInProfile()
@@ -42,10 +44,36 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
                 Industry = json.ContainsName("industry") ? json.GetValue<string>("industry") : "",
                 PictureUrl = json.ContainsName("pictureUrl") ? json.GetValue<string>("pictureUrl") : null,
                 Summary = json.ContainsName("summary") ? json.GetValue<string>("summary") : "",
-                PublicProfileUrl = json.ContainsName("publicProfileUrl") ? json.GetValue<string>("publicProfileUrl") : null
-                // SiteStandardProfileRequest
-                // ApiStandardProfileRequest
+                PublicProfileUrl = json.ContainsName("publicProfileUrl") ? json.GetValue<string>("publicProfileUrl") : null,
+                StandardProfileUrl = GetSiteStandardProfileUrl(json),
+                AuthToken = GetAuthToken(json)
             };
+        }
+
+        private string GetSiteStandardProfileUrl(JsonValue json)
+        {
+            JsonValue siteStandardProfileJson = json.GetValue("siteStandardProfileRequest");
+            return siteStandardProfileJson != null ? siteStandardProfileJson.GetValue<string>("url") : null;
+        }
+
+        private string GetAuthToken(JsonValue json)
+        {
+            JsonValue apiStandardProfileJson = json.GetValue("apiStandardProfileRequest");
+            if (apiStandardProfileJson != null)
+            {
+                JsonValue headerValues = apiStandardProfileJson.ContainsName("headers") ? apiStandardProfileJson.GetValue("headers").GetValue("values") : null;
+                if (headerValues != null)
+                {
+                    foreach (JsonValue headerJson in headerValues.GetValues())
+                    {
+                        if (headerJson.GetValue<string>("name").Equals(AuthTokenHeaderName))
+                        {
+                            return headerJson.GetValue<string>("value");
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }
