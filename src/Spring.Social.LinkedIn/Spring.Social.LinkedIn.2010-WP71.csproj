@@ -58,20 +58,26 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Social\LinkedIn\Api\ICommunicationOperations .cs" />
     <Compile Include="Social\LinkedIn\Api\IConnectionOperations.cs" />
     <Compile Include="Social\LinkedIn\Api\ILinkedIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\Impl\CommunicationTemplate.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplate.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Invitation.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\InvitationSerializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfileDeserializer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfileListDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\MessageSerializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\NetworkStatisticsDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInRequestFactoryInterceptor.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplate.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\Impl\Message.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplate.cs">
       <SubType>Code</SubType>
     </Compile>

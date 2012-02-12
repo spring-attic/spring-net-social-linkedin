@@ -33,6 +33,11 @@ namespace Spring.Social.LinkedIn.Api
     public interface ILinkedIn : IApiBinding
     {
         /// <summary>
+        /// Gets the portion of the LinkedIn API sending messages and connection requests.
+        /// </summary>
+        ICommunicationOperations CommunicationOperations { get; }
+
+        /// <summary>
         /// Gets the portion of the LinkedIn API retrieving connections.
         /// </summary>
         IConnectionOperations ConnectionOperations { get; }
