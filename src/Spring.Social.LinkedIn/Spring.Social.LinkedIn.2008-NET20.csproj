@@ -54,6 +54,7 @@
     <Compile Include="Social\LinkedIn\Api\ILinkedIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperations.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\CommunicationTemplate.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplate.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Invitation.cs" />
@@ -62,8 +63,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfileListDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfilesDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\MessageSerializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\NetworkStatisticsDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\PaginatedResultDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInRequestFactoryInterceptor.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,7 +89,11 @@
     <Compile Include="Social\LinkedIn\Api\LinkedInProfile.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\LinkedInProfiles.cs" />
     <Compile Include="Social\LinkedIn\Api\NetworkStatistics.cs" />
+    <Compile Include="Social\LinkedIn\Api\PaginatedResult.cs" />
+    <Compile Include="Social\LinkedIn\Api\ProfileSort.cs" />
+    <Compile Include="Social\LinkedIn\Api\SearchParameters.cs" />
     <Compile Include="Social\LinkedIn\Connect\LinkedInServiceProvider.cs">
       <SubType>Code</SubType>
     </Compile>

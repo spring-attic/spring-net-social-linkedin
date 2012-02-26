@@ -89,5 +89,33 @@ namespace Spring.Social.LinkedIn.Api.Impl
                 "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl",
                 "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia", "http://www.linkedin.com/profile", null);
         }
+
+        [Test]
+	    public void Search() 
+        {
+		    mockServer.ExpectNewRequest()
+                .AndExpectUri("https://api.linkedin.com/v1/people-search:(people:(id,first-name,last-name,headline,industry,public-profile-url,picture-url,summary,site-standard-profile-request,api-standard-profile-request))?format=json&keywords=SpringSource")
+				.AndExpectMethod(HttpMethod.GET)
+		        .AndRespondWith(JsonResource("Search"), responseHeaders);
+
+		    SearchParameters parameters = new SearchParameters();
+		    parameters.Keywords = "SpringSource";
+
+#if NET_4_0 || SILVERLIGHT_5
+            LinkedInProfiles result = linkedIn.ProfileOperations.SearchAsync(parameters).Result;
+#else
+            LinkedInProfiles result = linkedIn.ProfileOperations.Search(parameters);
+#endif
+
+            AssertProfile(result.Profiles[0],
+                   "lNJuCn-ejG", "Principal Software Engineer at SpringSource", "Mark", "Pollack", "Computer Software",
+                   null, "", "http://www.linkedin.com/pub/mark-pollack/7/17a/b77", 
+                   "http://www.linkedin.com/profile?viewProfile=&key=21314827&authToken=Vl4x&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*", "OUT_OF_NETWORK:Vl4x");
+
+            Assert.AreEqual(0, result.Start);
+            Assert.AreEqual(10, result.Count);
+            Assert.AreEqual(110, result.Total);
+            Assert.AreEqual(10, result.Profiles.Count);
+	    }
     }
 }

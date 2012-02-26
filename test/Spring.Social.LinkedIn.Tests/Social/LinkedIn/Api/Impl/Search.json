@@ -1,0 +1,192 @@
+{"people": {
+  "_count": 10,
+  "_start": 0,
+  "_total": 110,
+  "values": [
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:Vl4x"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/lNJuCn-ejG"
+      },
+      "firstName": "Mark",
+      "headline": "Principal Software Engineer at SpringSource",
+      "id": "lNJuCn-ejG",
+      "industry": "Computer Software",
+      "lastName": "Pollack",
+      "publicProfileUrl": "http://www.linkedin.com/pub/mark-pollack/7/17a/b77",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=21314827&authToken=Vl4x&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"}
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:uqrd"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/nMKBp9g-vQ"
+      },
+      "firstName": "Erich",
+      "headline": "Senior Consultant and Principal Developer at Open Credo Ltd",
+      "id": "nMKBp9g-vQ",
+      "industry": "Computer Software",
+      "lastName": "Eichinger",
+      "publicProfileUrl": "http://www.linkedin.com/in/ericheichinger",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=37992591&authToken=uqrd&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"}
+    },
+    {
+      "firstName": "private",
+      "id": "private",
+      "lastName": "private"
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:VpSJ"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/ErdBAw2me7"
+      },
+      "firstName": "Oliver",
+      "headline": "Project lead Spring Data Commons, JPA and MongoDB",
+      "id": "ErdBAw2me7",
+      "industry": "Information Technology and Services",
+      "lastName": "Gierke",
+      "pictureUrl": "http://media.linkedin.com/mpr/mprx/0_hC1YLgpKYwFMqzwqGQTSLOytY2rRq1UqC5F3L0ShTdXIIBuNukitwxJaKCKXBqs43TA8oZPDv_w9",
+      "publicProfileUrl": "http://www.linkedin.com/in/olivergierke",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=37980809&authToken=VpSJ&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"}
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:eNU9"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/RbKf2wTV0h"
+      },
+      "firstName": "Jennifer",
+      "headline": "Senior Software Engineer at SpringSource",
+      "id": "RbKf2wTV0h",
+      "industry": "Information Technology and Services",
+      "lastName": "Hickey",
+      "publicProfileUrl": "http://www.linkedin.com/in/jenniferhickey",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=22441844&authToken=eNU9&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"}
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:sB0R"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/5OLqQDkIC_"
+      },
+      "firstName": "Nancie",
+      "headline": "Senior Programme Manager at SpringSource",
+      "id": "5OLqQDkIC_",
+      "industry": "Program Development",
+      "lastName": "Hill",
+      "pictureUrl": "http://media.linkedin.com/mpr/mprx/0_Pk_hA9m--n5O9lCgPQL1Av0-rN8AqqigA6BxANg2flN3IKqj0CP2xqdGOVhaB1GltbTOO1_ZDVMB",
+      "publicProfileUrl": "http://www.linkedin.com/pub/nancie-hill/0/675/292",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=1647182&authToken=sB0R&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"},
+      "summary": "Proven ability in building and leading multi-disciplined, mult-cultural teams in multiple locations and time zones.\n\nExperienced in Front End, New Product Introduction, Risk, Ship Acceptance, Programme/Product/Release and Quality Management.\n\nExperienced in both Programme Managment and Customer Relationship Management Skills.\n\nMajor lead on ISO, SEI, CMM, CMMI & Change Management Initiatives."
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:UYqF"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/1H_-Bu4Emq"
+      },
+      "firstName": "Peter",
+      "headline": "SVP Engineering at SpringSource and Partner, CE Maple LLC, Owner Hidden Springs Maple LLC",
+      "id": "1H_-Bu4Emq",
+      "industry": "Computer Software",
+      "lastName": "Cooper-Ellis",
+      "pictureUrl": "http://media.linkedin.com/mpr/mprx/0_TOAnqxr4f3ks_M4K3MP5qpGN7Q-ZipHKi0LdqpTkK_6epZ0rD43ssyzETHtb8Rdy8j1eRU1Li5rc",
+      "publicProfileUrl": "http://www.linkedin.com/pub/peter-cooper-ellis/0/b1/767",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=230911&authToken=UYqF&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"},
+      "summary": ""
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:ApM8"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/oo7bbTkFVR"
+      },
+      "firstName": "Adam",
+      "headline": "Director, Developer Relations - SpringSource, a division of VMware",
+      "id": "oo7bbTkFVR",
+      "industry": "Internet",
+      "lastName": "FitzGerald",
+      "publicProfileUrl": "http://www.linkedin.com/pub/adam-fitzgerald/1/143/528",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=3323696&authToken=ApM8&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"},
+      "summary": "Experienced technologist and marketing manager with demonstrated expertise in understanding advanced enterprise technologies and aligning them with business strategies. Proven ability to identify critical market segments, develop and deliver lead generating marketing programs, and improve external corporate image in technical communities."
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:CXty"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/6iXPf2Sllo"
+      },
+      "firstName": "Rod",
+      "headline": "GM, SpringSource and SVP, Middleware at VMware",
+      "id": "6iXPf2Sllo",
+      "industry": "Computer Software",
+      "lastName": "Johnson",
+      "publicProfileUrl": "http://www.linkedin.com/pub/rod-johnson/0/a1/68b",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=210059&authToken=CXty&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"},
+      "summary": "Founder and CEO of SpringSource, the international software company behind the Spring Framework, which provides enterprise-grade production and development support for Spring, and comprehensive training and professional services.\n\nSpecialist in J2EE architecture. Author of best-selling \"Expert One-on-One J2EE Design and Development\" and \"J2EE without EJB.\" Founder of the Spring Framework open source project."
+    },
+    {
+      "apiStandardProfileRequest": {
+        "headers": {
+          "_total": 1,
+          "values": [{
+            "name": "x-li-auth-token",
+            "value": "OUT_OF_NETWORK:h6BO"
+          }]
+        },
+        "url": "http://api.linkedin.com/v1/people/xCKijtxbW-"
+      },
+      "firstName": "Chris",
+      "headline": "Software craftsman, author and entrepreneur",
+      "id": "xCKijtxbW-",
+      "industry": "Information Technology and Services",
+      "lastName": "Richardson",
+      "pictureUrl": "http://media.linkedin.com/mpr/mprx/0_0hOv4tWjW_FhneW8lXyQ4Ae1wLN29DW8gCoo4AdiNh8pdWYhP6aMnlgD5wq1voeuOipwcnRtOhpW",
+      "publicProfileUrl": "http://www.linkedin.com/in/pojos",
+      "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile?viewProfile=&key=169967&authToken=h6BO&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*"},
+      "summary": "I am an experienced software architect and entrepreneur. My startup CloudFoundry.com was acquired by SpringSource and I now work on Java Cloud technology at SpringSource a division of VMware.\n\nI am a Java champion and the author of POJOs in Action, which is published by Manning (www.manning.com).\n\nI run a couple of Java-related user groups:\n* East Bay Java SIG - http://bit.ly/ebjava\n* SF Bay Grails and Groovy meetup - http://java.meetup.com/161\n\nI speak regularly at conferences including JavaOne, SD West, Colorado Software Summit, SpringOne and the Spring Experience.\n\nI work primarily with the following frameworks and technologies:\n\nCloud technologies including Amazon Elastic Computing Cloud (EC2)\nJava, Scala and Groovy\nPOJOs (Plain Old Java Objects) \nObject-oriented/Domain-driven design techniques\nLightweight technologies including Spring, Hibernate and JDO \nAgile techniques such as test-driven development\n\nI'm the owner of various open-source projects (http://www.chrisrichardson.net/articles.html#opensource) including Cloud Tools for deploying applications on Amazon EC2."
+    }
+  ]
+}}

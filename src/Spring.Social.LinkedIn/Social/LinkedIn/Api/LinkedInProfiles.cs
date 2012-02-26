@@ -18,30 +18,23 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
-using Spring.Json;
-
-namespace Spring.Social.LinkedIn.Api.Impl.Json
+namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// JSON deserializer for list of LinkedIn user's profiles. 
+    /// Represents the results of a LinkedIn profile search.
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer : IJsonDeserializer
+#if !SILVERLIGHT
+    [Serializable]
+#endif
+    public class LinkedInProfiles : PaginatedResult 
     {
-        public object Deserialize(JsonValue json, JsonMapper mapper)
-        {
-            IList<LinkedInProfile> linkedInProfiles = new List<LinkedInProfile>();
-            JsonValue usersJson = json.IsObject ? json.GetValue("values") : json;
-            if (usersJson != null)
-            {
-                foreach (JsonValue itemValue in usersJson.GetValues())
-                {
-                    linkedInProfiles.Add(mapper.Deserialize<LinkedInProfile>(itemValue));
-                }
-            }
-            return linkedInProfiles;
-        }
+        /// <summary>
+        /// Gets or sets the list of matching <see cref="LinkedInProfile"/>s.
+        /// </summary>
+        public IList<LinkedInProfile> Profiles { get; set; }
     }
 }

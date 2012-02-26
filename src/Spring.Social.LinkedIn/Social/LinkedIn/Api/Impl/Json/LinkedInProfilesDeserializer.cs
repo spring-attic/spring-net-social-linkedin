@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
 using Spring.Json;
@@ -25,23 +26,23 @@ using Spring.Json;
 namespace Spring.Social.LinkedIn.Api.Impl.Json
 {
     /// <summary>
-    /// JSON deserializer for list of LinkedIn user's profiles. 
+    /// JSON deserializer for LinkedIn user's profile.
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer : IJsonDeserializer
+    class LinkedInProfilesDeserializer : PaginatedResultDeserializer
     {
-        public object Deserialize(JsonValue json, JsonMapper mapper)
+        public override object Deserialize(JsonValue json, JsonMapper mapper)
         {
-            IList<LinkedInProfile> linkedInProfiles = new List<LinkedInProfile>();
-            JsonValue usersJson = json.IsObject ? json.GetValue("values") : json;
-            if (usersJson != null)
-            {
-                foreach (JsonValue itemValue in usersJson.GetValues())
-                {
-                    linkedInProfiles.Add(mapper.Deserialize<LinkedInProfile>(itemValue));
-                }
-            }
-            return linkedInProfiles;
+            JsonValue peopleJson = json.GetValue("people");
+
+            LinkedInProfiles profiles = (LinkedInProfiles)base.Deserialize(peopleJson, mapper);
+            profiles.Profiles = mapper.Deserialize<IList<LinkedInProfile>>(peopleJson);
+            return profiles;
+        }
+
+        protected override PaginatedResult CreatePaginatedResult()
+        {
+            return new LinkedInProfiles();
         }
     }
 }

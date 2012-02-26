@@ -143,6 +143,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             jsonMapper.RegisterDeserializer(typeof(NetworkStatistics), new NetworkStatisticsDeserializer());
             jsonMapper.RegisterSerializer(typeof(Message), new MessageSerializer());
             jsonMapper.RegisterSerializer(typeof(Invitation), new InvitationSerializer());
+            jsonMapper.RegisterDeserializer(typeof(LinkedInProfiles), new LinkedInProfilesDeserializer());
 
             return new SpringJsonHttpMessageConverter(jsonMapper);
         }

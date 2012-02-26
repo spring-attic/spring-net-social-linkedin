@@ -43,7 +43,7 @@ namespace Spring.Social.LinkedIn.Api
 	    /// </summary>
         /// <returns>
         /// A <code>Task</code> that represents the asynchronous operation that can return 
-        /// a <see cref="LinkedInProfile"/>object representing the user's profile.
+        /// a <see cref="LinkedInProfile"/> object representing the user's profile.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
 	    Task<LinkedInProfile> GetUserProfileAsync();
@@ -54,7 +54,7 @@ namespace Spring.Social.LinkedIn.Api
         /// <param name="id">The user ID for the user whose details are to be retrieved.</param>
         /// <returns>
         /// A <code>Task</code> that represents the asynchronous operation that can return 
-        /// a <see cref="LinkedInProfile"/>object representing the user's profile.
+        /// a <see cref="LinkedInProfile"/> object representing the user's profile.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
         Task<LinkedInProfile> GetUserProfileByIdAsync(string id);
@@ -65,10 +65,21 @@ namespace Spring.Social.LinkedIn.Api
         /// <param name="url">The user public url for the user whose details are to be retrieved.</param>
         /// <returns>
         /// A <code>Task</code> that represents the asynchronous operation that can return 
-        /// a <see cref="LinkedInProfile"/>object representing the user's profile.
+        /// a <see cref="LinkedInProfile"/> object representing the user's profile.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
         Task<LinkedInProfile> GetUserProfileByPublicUrlAsync(string url);
+
+        /// <summary>
+        /// Asynchronously searches for LinkedIn profiles based on provided parameters.
+        /// </summary>
+        /// <param name="parameters">The profile search parameters.</param>
+        /// <returns>
+        /// A <code>Task</code> that represents the asynchronous operation that can return 
+        /// an object containing the search results metadata and a list of matching <see cref="LinkedInProfile"/>s.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        Task<LinkedInProfiles> SearchAsync(SearchParameters parameters);
 #else
 #if !SILVERLIGHT
         /// <summary>
@@ -99,6 +110,16 @@ namespace Spring.Social.LinkedIn.Api
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
         LinkedInProfile GetUserProfileByPublicUrl(string url);
+
+        /// <summary>
+        /// Searches for LinkedIn profiles based on provided parameters.
+        /// </summary>
+        /// <param name="parameters">The profile search parameters.</param>
+        /// <returns>
+        /// An object containing the search results metadata and a list of matching <see cref="LinkedInProfile"/>s.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        LinkedInProfiles Search(SearchParameters parameters);
 #endif
 
         /// <summary>
@@ -143,6 +164,20 @@ namespace Spring.Social.LinkedIn.Api
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
         RestOperationCanceler GetUserProfileByPublicUrlAsync(string url, Action<RestOperationCompletedEventArgs<LinkedInProfile>> operationCompleted);
 #endif
+
+        /// <summary>
+        /// Asynchronously searches for LinkedIn profiles based on provided parameters.
+        /// </summary>
+        /// <param name="parameters">The profile search parameters.</param>
+        /// <param name="operationCompleted">
+        /// The <code>Action&lt;&gt;</code> to perform when the asynchronous request completes. 
+        /// Provides an object containing the search results metadata and a list of matching <see cref="LinkedInProfile"/>s.
+        /// </param>
+        /// <returns>
+        /// A <see cref="RestOperationCanceler"/> instance that allows to cancel the asynchronous operation.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        RestOperationCanceler SearchAsync(SearchParameters parameters, Action<RestOperationCompletedEventArgs<LinkedInProfiles>> operationCompleted);
 #endif
     }
 }

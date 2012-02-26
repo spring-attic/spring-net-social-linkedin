@@ -107,6 +107,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperations.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfilesDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\PaginatedResultDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\LinkedInProfiles.cs" />
+    <Compile Include="Social\LinkedIn\Api\PaginatedResult.cs" />
+    <Compile Include="Social\LinkedIn\Api\ProfileSort.cs" />
+    <Compile Include="Social\LinkedIn\Api\SearchParameters.cs" />
     <Compile Include="Social\LinkedIn\Api\ICommunicationOperations .cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\MessageSerializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Message.cs" />
