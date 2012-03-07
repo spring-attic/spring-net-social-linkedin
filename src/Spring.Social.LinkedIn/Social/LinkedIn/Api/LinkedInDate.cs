@@ -18,27 +18,34 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
-using Spring.Json;
-
-namespace Spring.Social.LinkedIn.Api.Impl.Json
+namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// JSON deserializer for list of LinkedIn user's profiles. 
+    /// Represents a LinkedIn Date which just contains year, month and day.
     /// </summary>
+    /// <author>Robert Drysdale</author>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer<T> : IJsonDeserializer where T : LinkedInProfile
+#if !SILVERLIGHT
+    [Serializable]
+#endif
+    public class LinkedInDate
     {
-        public object Deserialize(JsonValue value, JsonMapper mapper)
-        {
-            IList<T> linkedInProfiles = new List<T>();
-            JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-            foreach (JsonValue itemValue in usersValue.GetValues())
-            {
-                linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
-            }
-            return linkedInProfiles;
-        }
+        /// <summary>
+        /// Gets or sets the year component of the date, if provided. 
+        /// </summary>
+        public int? Year { get; set; }
+
+        /// <summary>
+        /// Gets or sets the month component of the date, if provided. 
+        /// </summary>
+        public int? Month { get; set; }
+
+        /// <summary>
+        /// Gets or sets the day component of the date, if provided. 
+        /// </summary>
+        public int? Day { get; set; }
     }
 }

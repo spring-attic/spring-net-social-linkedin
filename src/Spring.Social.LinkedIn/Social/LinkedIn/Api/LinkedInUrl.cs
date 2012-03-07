@@ -18,27 +18,27 @@
 
 #endregion
 
-using System.Collections.Generic;
+using System;
 
-using Spring.Json;
-
-namespace Spring.Social.LinkedIn.Api.Impl.Json
+namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// JSON deserializer for list of LinkedIn user's profiles. 
+    /// Represents a LinkedIn URL.
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer<T> : IJsonDeserializer where T : LinkedInProfile
+#if !SILVERLIGHT
+    [Serializable]
+#endif
+    public class LinkedInUrl
     {
-        public object Deserialize(JsonValue value, JsonMapper mapper)
-        {
-            IList<T> linkedInProfiles = new List<T>();
-            JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-            foreach (JsonValue itemValue in usersValue.GetValues())
-            {
-                linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
-            }
-            return linkedInProfiles;
-        }
+        /// <summary>
+        /// Gets or sets the label given to the URL by the member.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the resource URL.
+        /// </summary>
+        public string Url { get; set; }
     }
 }

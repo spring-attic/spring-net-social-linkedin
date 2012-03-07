@@ -49,16 +49,20 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Social\LinkedIn\Api\Company.cs" />
+    <Compile Include="Social\LinkedIn\Api\Education.cs" />
     <Compile Include="Social\LinkedIn\Api\ICommunicationOperations .cs" />
     <Compile Include="Social\LinkedIn\Api\IConnectionOperations.cs" />
     <Compile Include="Social\LinkedIn\Api\ILinkedIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\ImAccount.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperations.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\CommunicationTemplate.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplate.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Invitation.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\InvitationSerializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInFullProfileDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfileDeserializer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,14 +90,22 @@
     <Compile Include="Social\LinkedIn\Api\LinkedInApiException.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\LinkedInDate.cs" />
+    <Compile Include="Social\LinkedIn\Api\LinkedInFullProfile.cs" />
     <Compile Include="Social\LinkedIn\Api\LinkedInProfile.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Social\LinkedIn\Api\LinkedInProfiles.cs" />
+    <Compile Include="Social\LinkedIn\Api\LinkedInUrl.cs" />
     <Compile Include="Social\LinkedIn\Api\NetworkStatistics.cs" />
     <Compile Include="Social\LinkedIn\Api\PaginatedResult.cs" />
+    <Compile Include="Social\LinkedIn\Api\PhoneNumber.cs" />
+    <Compile Include="Social\LinkedIn\Api\Position.cs" />
     <Compile Include="Social\LinkedIn\Api\ProfileSort.cs" />
+    <Compile Include="Social\LinkedIn\Api\Recommendation.cs" />
+    <Compile Include="Social\LinkedIn\Api\RecommendationType.cs" />
     <Compile Include="Social\LinkedIn\Api\SearchParameters.cs" />
+    <Compile Include="Social\LinkedIn\Api\TwitterAccount.cs" />
     <Compile Include="Social\LinkedIn\Connect\LinkedInServiceProvider.cs">
       <SubType>Code</SubType>
     </Compile>

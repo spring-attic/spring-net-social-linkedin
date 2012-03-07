@@ -82,8 +82,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
             Assert.AreEqual(pictureUrl, profile.PictureUrl);
             Assert.AreEqual(summary, profile.Summary);
             Assert.AreEqual(publicProfileUrl, profile.PublicProfileUrl);
-            Assert.AreEqual(authToken, profile.AuthToken);
             Assert.AreEqual(standardProfileUrl, profile.StandardProfileUrl);
+            Assert.AreEqual(authToken, profile.AuthToken);
         }
 
 #if NET_4_0 || SILVERLIGHT_5

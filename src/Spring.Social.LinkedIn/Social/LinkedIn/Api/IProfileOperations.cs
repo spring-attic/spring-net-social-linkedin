@@ -71,6 +71,38 @@ namespace Spring.Social.LinkedIn.Api
         Task<LinkedInProfile> GetUserProfileByPublicUrlAsync(string url);
 
         /// <summary>
+        /// Asynchronously retrieves the authenticated user's LinkedIn full profile details.
+        /// </summary>
+        /// <returns>
+        /// A <code>Task</code> that represents the asynchronous operation that can return 
+        /// a <see cref="LinkedInFullProfile"/> object representing the full user's profile.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        Task<LinkedInFullProfile> GetUserFullProfileAsync();
+
+        /// <summary>
+        /// Asynchronously retrieves a specific user's LinkedIn full profile details by its ID.
+        /// </summary>
+        /// <param name="id">The user ID for the user whose details are to be retrieved.</param>
+        /// <returns>
+        /// A <code>Task</code> that represents the asynchronous operation that can return 
+        /// a <see cref="LinkedInFullProfile"/> object representing the full user's profile.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        Task<LinkedInFullProfile> GetUserFullProfileByIdAsync(string id);
+
+        /// <summary>
+        /// Asynchronously retrieves a specific user's LinkedIn full profile details by its public url.
+        /// </summary>
+        /// <param name="url">The user public url for the user whose details are to be retrieved.</param>
+        /// <returns>
+        /// A <code>Task</code> that represents the asynchronous operation that can return 
+        /// a <see cref="LinkedInFullProfile"/> object representing the full user's profile.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        Task<LinkedInFullProfile> GetUserFullProfileByPublicUrlAsync(string url);
+
+        /// <summary>
         /// Asynchronously searches for LinkedIn profiles based on provided parameters.
         /// </summary>
         /// <param name="parameters">The profile search parameters.</param>
@@ -112,6 +144,35 @@ namespace Spring.Social.LinkedIn.Api
         LinkedInProfile GetUserProfileByPublicUrl(string url);
 
         /// <summary>
+        /// Retrieves the authenticated user's LinkedIn full profile details.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="LinkedInFullProfile"/> object representing the full user's profile.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        LinkedInFullProfile GetUserFullProfile();
+
+        /// <summary>
+        /// Retrieves a specific user's LinkedIn full profile details by its ID.
+        /// </summary>
+        /// <param name="id">The user ID for the user whose details are to be retrieved.</param>
+        /// <returns>
+        /// A <see cref="LinkedInFullProfile"/> object representing the user's full profile.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        LinkedInFullProfile GetUserFullProfileById(string id);
+
+        /// <summary>
+        /// Retrieves a specific user's LinkedIn full profile details by its public url.
+        /// </summary>
+        /// <param name="url">The user public url for the user whose details are to be retrieved.</param>
+        /// <returns>
+        /// A <see cref="LinkedInFullProfile"/> object representing the user's full profile.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        LinkedInFullProfile GetUserFullProfileByPublicUrl(string url);
+
+        /// <summary>
         /// Searches for LinkedIn profiles based on provided parameters.
         /// </summary>
         /// <param name="parameters">The profile search parameters.</param>
@@ -149,6 +210,32 @@ namespace Spring.Social.LinkedIn.Api
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
         RestOperationCanceler GetUserProfileByIdAsync(string id, Action<RestOperationCompletedEventArgs<LinkedInProfile>> operationCompleted);
 
+        /// <summary>
+        /// Asynchronously retrieves the authenticated user's LinkedIn full profile details.
+        /// </summary>
+        /// <param name="operationCompleted">
+        /// The <code>Action&lt;&gt;</code> to perform when the asynchronous request completes. 
+        /// Provides a <see cref="LinkedInFullProfile"/> object representing the user's full profile.
+        /// </param>
+        /// <returns>
+        /// A <see cref="RestOperationCanceler"/> instance that allows to cancel the asynchronous operation.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        RestOperationCanceler GetUserFullProfileAsync(Action<RestOperationCompletedEventArgs<LinkedInFullProfile>> operationCompleted);
+
+        /// <summary>
+        /// Asynchronously retrieves a specific user's LinkedIn full profile details by its ID.
+        /// </summary>
+        /// <param name="id">The user ID for the user whose details are to be retrieved.</param>
+        /// <param name="operationCompleted">
+        /// The <code>Action&lt;&gt;</code> to perform when the asynchronous request completes. 
+        /// Provides a <see cref="LinkedInFullProfile"/> object representing the user's full profile.
+        /// </param>
+        /// <returns>
+        /// A <see cref="RestOperationCanceler"/> instance that allows to cancel the asynchronous operation.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        RestOperationCanceler GetUserFullProfileByIdAsync(string id, Action<RestOperationCompletedEventArgs<LinkedInFullProfile>> operationCompleted);
 #if !WINDOWS_PHONE
         /// <summary>
         /// Asynchronously retrieves a specific user's LinkedIn profile details by its public url.
@@ -163,6 +250,20 @@ namespace Spring.Social.LinkedIn.Api
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
         RestOperationCanceler GetUserProfileByPublicUrlAsync(string url, Action<RestOperationCompletedEventArgs<LinkedInProfile>> operationCompleted);
+
+        /// <summary>
+        /// Asynchronously retrieves a specific user's LinkedIn full profile details by its public url.
+        /// </summary>
+        /// <param name="url">The user public url for the user whose details are to be retrieved.</param>
+        /// <param name="operationCompleted">
+        /// The <code>Action&lt;&gt;</code> to perform when the asynchronous request completes. 
+        /// Provides a <see cref="LinkedInFullProfile"/> object representing the user's full profile.
+        /// </param>
+        /// <returns>
+        /// A <see cref="RestOperationCanceler"/> instance that allows to cancel the asynchronous operation.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        RestOperationCanceler GetUserFullProfileByPublicUrlAsync(string url, Action<RestOperationCompletedEventArgs<LinkedInFullProfile>> operationCompleted);
 #endif
 
         /// <summary>

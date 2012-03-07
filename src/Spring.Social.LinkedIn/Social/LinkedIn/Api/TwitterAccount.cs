@@ -18,27 +18,28 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
-using Spring.Json;
-
-namespace Spring.Social.LinkedIn.Api.Impl.Json
+namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// JSON deserializer for list of LinkedIn user's profiles. 
+    /// Represents an user's Twitter account.
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer<T> : IJsonDeserializer where T : LinkedInProfile
+#if !SILVERLIGHT
+    [Serializable]
+#endif
+    public class TwitterAccount
     {
-        public object Deserialize(JsonValue value, JsonMapper mapper)
-        {
-            IList<T> linkedInProfiles = new List<T>();
-            JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-            foreach (JsonValue itemValue in usersValue.GetValues())
-            {
-                linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
-            }
-            return linkedInProfiles;
-        }
+        /// <summary>
+        /// Gets or sets the Twitter account ID. 
+        /// </summary>
+        public string ID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Twitter account name.
+        /// </summary>
+        public string Name { get; set; }
     }
 }

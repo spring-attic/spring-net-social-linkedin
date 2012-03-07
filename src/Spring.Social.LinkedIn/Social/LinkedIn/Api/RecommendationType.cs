@@ -18,27 +18,40 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
-using Spring.Json;
-
-namespace Spring.Social.LinkedIn.Api.Impl.Json
+namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// JSON deserializer for list of LinkedIn user's profiles. 
+    /// Represents LinkedIn types of recommendation.
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer<T> : IJsonDeserializer where T : LinkedInProfile
+    public enum RecommendationType
     {
-        public object Deserialize(JsonValue value, JsonMapper mapper)
-        {
-            IList<T> linkedInProfiles = new List<T>();
-            JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-            foreach (JsonValue itemValue in usersValue.GetValues())
-            {
-                linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
-            }
-            return linkedInProfiles;
-        }
+        /// <summary>
+        /// Business partner.
+        /// </summary>
+        BusinessPartner,
+
+        /// <summary>
+        /// Colleague.
+        /// </summary>
+        Colleague,
+
+        /// <summary>
+        /// Education.
+        /// </summary>
+        Education,
+
+        /// <summary>
+        /// Service provider.
+        /// </summary>
+        ServiceProvider,
+
+        /// <summary>
+        /// Not defined.
+        /// </summary>
+        Unknown
     }
 }

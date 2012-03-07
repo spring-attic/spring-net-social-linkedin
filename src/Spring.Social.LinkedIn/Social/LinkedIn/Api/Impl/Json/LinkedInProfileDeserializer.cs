@@ -33,21 +33,27 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
     {
         private const string AuthTokenHeaderName = "x-li-auth-token";
 
-        public object Deserialize(JsonValue json, JsonMapper mapper)
+        public virtual object Deserialize(JsonValue json, JsonMapper mapper)
         {
-            return new LinkedInProfile()
-            {
-                ID = json.GetValue<string>("id"),
-                FirstName = json.GetValue<string>("firstName"),
-                LastName = json.GetValue<string>("lastName"),
-                Headline = json.ContainsName("headline") ? json.GetValue<string>("headline") : "",
-                Industry = json.ContainsName("industry") ? json.GetValue<string>("industry") : "",
-                PictureUrl = json.ContainsName("pictureUrl") ? json.GetValue<string>("pictureUrl") : null,
-                Summary = json.ContainsName("summary") ? json.GetValue<string>("summary") : "",
-                PublicProfileUrl = json.ContainsName("publicProfileUrl") ? json.GetValue<string>("publicProfileUrl") : null,
-                StandardProfileUrl = GetSiteStandardProfileUrl(json),
-                AuthToken = GetAuthToken(json)
-            };
+            LinkedInProfile profile = CreateLinkedInProfile();
+
+            profile.ID = json.GetValue<string>("id");
+            profile.FirstName = json.GetValue<string>("firstName");
+            profile.LastName = json.GetValue<string>("lastName");
+            profile.Headline = json.ContainsName("headline") ? json.GetValue<string>("headline") : "";
+            profile.Industry = json.ContainsName("industry") ? json.GetValue<string>("industry") : "";
+            profile.PictureUrl = json.ContainsName("pictureUrl") ? json.GetValue<string>("pictureUrl") : null;
+            profile.Summary = json.ContainsName("summary") ? json.GetValue<string>("summary") : "";
+            profile.PublicProfileUrl = json.ContainsName("publicProfileUrl") ? json.GetValue<string>("publicProfileUrl") : null;
+            profile.StandardProfileUrl = GetSiteStandardProfileUrl(json);
+            profile.AuthToken = GetAuthToken(json);
+
+            return profile;
+        }
+
+        protected virtual LinkedInProfile CreateLinkedInProfile()
+        {
+            return new LinkedInProfile();
         }
 
         private string GetSiteStandardProfileUrl(JsonValue json)

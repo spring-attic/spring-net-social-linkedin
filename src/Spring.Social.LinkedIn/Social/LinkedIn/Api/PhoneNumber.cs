@@ -18,27 +18,29 @@
 
 #endregion
 
-using System.Collections.Generic;
+using System;
 
-using Spring.Json;
-
-namespace Spring.Social.LinkedIn.Api.Impl.Json
+namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// JSON deserializer for list of LinkedIn user's profiles. 
+    /// Represents a LinkedIn phone number.
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer<T> : IJsonDeserializer where T : LinkedInProfile
+#if !SILVERLIGHT
+    [Serializable]
+#endif
+    public class PhoneNumber
     {
-        public object Deserialize(JsonValue value, JsonMapper mapper)
-        {
-            IList<T> linkedInProfiles = new List<T>();
-            JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-            foreach (JsonValue itemValue in usersValue.GetValues())
-            {
-                linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
-            }
-            return linkedInProfiles;
-        }
+        /// <summary>
+        /// Gets or sets the type of phone number. 
+        /// <para/>
+        /// Possible values are: home, work, and mobile.
+        /// </summary>
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the phone number.
+        /// </summary>
+        public string Number { get; set; }
     }
 }

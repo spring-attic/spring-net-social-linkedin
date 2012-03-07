@@ -125,6 +125,7 @@
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Connections.json" />
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Statistics.json" />
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Search.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\FullProfile.json" />
     <None Include="Spring.Social.LinkedIn.Tests.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
