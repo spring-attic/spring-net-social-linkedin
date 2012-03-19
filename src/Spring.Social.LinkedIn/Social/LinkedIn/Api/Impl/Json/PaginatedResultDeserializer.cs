@@ -34,9 +34,9 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
         {
             PaginatedResult paginatedResult = this.CreatePaginatedResult();
 
-            paginatedResult.Start = json.ContainsName("_start") ? json.GetValue<int>("_start") : 0;
-            paginatedResult.Count = json.ContainsName("_count") ? json.GetValue<int>("_count") : 0;
             paginatedResult.Total = json.GetValue<int>("_total");
+            paginatedResult.Start = json.ContainsName("_start") ? json.GetValue<int>("_start") : 0;
+            paginatedResult.Count = json.ContainsName("_count") ? json.GetValue<int>("_count") : paginatedResult.Total;            
 
             return paginatedResult;
         }

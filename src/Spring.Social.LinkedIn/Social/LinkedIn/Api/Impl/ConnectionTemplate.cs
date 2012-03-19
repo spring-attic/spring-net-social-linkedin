@@ -20,9 +20,13 @@
 
 using System;
 using System.Collections.Generic;
-
 #if NET_4_0 || SILVERLIGHT_5
 using System.Threading.Tasks;
+#endif
+#if SILVERLIGHT
+using Spring.Collections.Specialized;
+#else
+using System.Collections.Specialized;
 #endif
 
 using Spring.Http;
@@ -35,8 +39,11 @@ namespace Spring.Social.LinkedIn.Api.Impl
     /// </summary>
     /// <author>Robert Drysdale</author>
     /// <author>Bruno Baia  (.NET)</author>
-    class ConnectionTemplate : IConnectionOperations
+    class ConnectionTemplate : AbstractLinkedInOperations, IConnectionOperations
     {
+        private const string ConnectionsUrl = "people/~/connections:(id,first-name,last-name,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json";
+        private const string NetworkStatsUrl = "people/~/network/network-stats?format=json";
+
         private RestTemplate restTemplate;
 
         public ConnectionTemplate(RestTemplate restTemplate)
@@ -47,36 +54,60 @@ namespace Spring.Social.LinkedIn.Api.Impl
         #region IConnectionOperations Members
 
 #if NET_4_0 || SILVERLIGHT_5
-        public Task<IList<LinkedInProfile>> GetConnectionsAsync()
+        public Task<LinkedInProfiles> GetConnectionsAsync()
         {
-            return this.restTemplate.GetForObjectAsync<IList<LinkedInProfile>>("people/~/connections:(id,first-name,last-name,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json");
+            return this.restTemplate.GetForObjectAsync<LinkedInProfiles>(ConnectionsUrl);
+        }
+
+        public Task<LinkedInProfiles> GetConnectionsAsync(int start, int count)
+        {
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("start", start.ToString());
+            parameters.Add("count", count.ToString());
+            return this.restTemplate.GetForObjectAsync<LinkedInProfiles>(this.BuildUrl(ConnectionsUrl, parameters));
         }
 
         public Task<NetworkStatistics> GetNetworkStatisticsAsync()
         {
-            return this.restTemplate.GetForObjectAsync<NetworkStatistics>("people/~/network/network-stats?format=json");
+            return this.restTemplate.GetForObjectAsync<NetworkStatistics>(NetworkStatsUrl);
         }
 #else
 #if !SILVERLIGHT
-        public IList<LinkedInProfile> GetConnections()
+        public LinkedInProfiles GetConnections()
         {
-            return this.restTemplate.GetForObject<IList<LinkedInProfile>>("people/~/connections:(id,first-name,last-name,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json");
+            return this.restTemplate.GetForObject<LinkedInProfiles>(ConnectionsUrl);
+        }
+
+        public LinkedInProfiles GetConnections(int start, int count)
+        {
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("start", start.ToString());
+            parameters.Add("count", count.ToString());
+            return this.restTemplate.GetForObject<LinkedInProfiles>(this.BuildUrl(ConnectionsUrl, parameters));
         }
 
         public NetworkStatistics GetNetworkStatistics()
         {
-            return this.restTemplate.GetForObject<NetworkStatistics>("people/~/network/network-stats?format=json");
+            return this.restTemplate.GetForObject<NetworkStatistics>(NetworkStatsUrl);
         }
 #endif
 
-        public RestOperationCanceler GetConnectionsAsync(Action<RestOperationCompletedEventArgs<IList<LinkedInProfile>>> operationCompleted)
+        public RestOperationCanceler GetConnectionsAsync(Action<RestOperationCompletedEventArgs<LinkedInProfiles>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<IList<LinkedInProfile>>("people/~/connections:(id,first-name,last-name,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json", operationCompleted);
+            return this.restTemplate.GetForObjectAsync<LinkedInProfiles>(ConnectionsUrl, operationCompleted);
+        }
+
+        public RestOperationCanceler GetConnectionsAsync(int start, int count, Action<RestOperationCompletedEventArgs<LinkedInProfiles>> operationCompleted)
+        {
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("start", start.ToString());
+            parameters.Add("count", count.ToString());
+            return this.restTemplate.GetForObjectAsync<LinkedInProfiles>(this.BuildUrl(ConnectionsUrl, parameters), operationCompleted);
         }
 
         public RestOperationCanceler GetNetworkStatisticsAsync(Action<RestOperationCompletedEventArgs<NetworkStatistics>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<NetworkStatistics>("people/~/network/network-stats?format=json", operationCompleted);
+            return this.restTemplate.GetForObjectAsync<NetworkStatistics>(NetworkStatsUrl, operationCompleted);
         }
 #endif
 

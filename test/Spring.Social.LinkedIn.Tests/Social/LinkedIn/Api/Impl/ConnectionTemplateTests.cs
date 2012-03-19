@@ -63,23 +63,43 @@ namespace Spring.Social.LinkedIn.Api.Impl
 				.AndRespondWith(JsonResource("Connections"), responseHeaders);
 
 #if NET_4_0 || SILVERLIGHT_5
-            IList<LinkedInProfile> connections = linkedIn.ConnectionOperations.GetConnectionsAsync().Result;
+            LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnectionsAsync().Result;
 #else
-            IList<LinkedInProfile> connections = linkedIn.ConnectionOperations.GetConnections();
+            LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnections();
 #endif
 
-            Assert.AreEqual(4, connections.Count);
-		    AssertProfile(connections[0], "kR0lnX1ll8", "SpringSource Cofounder", "Keith", "Donald", "Computer Software",
+            Assert.AreEqual(4, connections.Profiles.Count);
+            AssertProfile(connections.Profiles[0], "kR0lnX1ll8", "SpringSource Cofounder", "Keith", "Donald", "Computer Software",
                     null, "", null, "http://www.linkedin.com/profile?viewProfile=&key=2526541&authToken=61Sm&authType=name&trk=api*a121026*s129482*", "name:61Sm");
-            AssertProfile(connections[1], "VRcwcqPCtP", "GM, SpringSource and SVP, Middleware at VMware", "Rod", "Johnson", "Computer Software",
+            AssertProfile(connections.Profiles[1], "VRcwcqPCtP", "GM, SpringSource and SVP, Middleware at VMware", "Rod", "Johnson", "Computer Software",
                     null, "", null, "http://www.linkedin.com/profile?viewProfile=&key=210059&authToken=3hU1&authType=name&trk=api*a121026*s129482*", "name:3hU1");
-            AssertProfile(connections[2], "Ia7uR1OmDB", "Spring and AOP expert; author AspectJ in Action", "Ramnivas", "Laddad", "Computer Software",
+            AssertProfile(connections.Profiles[2], "Ia7uR1OmDB", "Spring and AOP expert; author AspectJ in Action", "Ramnivas", "Laddad", "Computer Software",
 				    "http://media.linkedin.com/mpr/mprx/0__gnH4Z-585hJSJSu_M6B4RrHCikUf0pu30CB4Rhqg6KwrUI2fUQXnUNVuSXku4j8CYN9cyYH-JuX", "", null,
                     "http://www.linkedin.com/profile?viewProfile=&key=208994&authToken=P5K9&authType=name&trk=api*a121026*s129482*", "name:P5K9");
-            AssertProfile(connections[3], "gKEMq4CMdl", "Head of Groovy Development at SpringSource", "Guillaume", "Laforge", "Information Technology and Services", 
+            AssertProfile(connections.Profiles[3], "gKEMq4CMdl", "Head of Groovy Development at SpringSource", "Guillaume", "Laforge", "Information Technology and Services", 
 				    "http://media.linkedin.com/mpr/mprx/0_CV5yQ4-Er7cqa-ZZhJziQU1WpS3v2qZZhRliQU1Miez51K74apvKHRbB-iTE71MN_JbCWpT7SdWe", "", null,
                     "http://www.linkedin.com/profile?viewProfile=&key=822306&authToken=YmIW&authType=name&trk=api*a121026*s129482*", "name:YmIW");
 	    }
+
+        [Test]
+        public void GetPaginatedConnections()
+        {
+            mockServer.ExpectNewRequest()
+                .AndExpectUri("https://api.linkedin.com/v1/people/~/connections:(id,first-name,last-name,headline,industry,site-standard-profile-request,public-profile-url,picture-url,summary)?format=json&start=0&count=4")
+                .AndExpectMethod(HttpMethod.GET)
+                .AndRespondWith(JsonResource("Connections"), responseHeaders);
+
+#if NET_4_0 || SILVERLIGHT_5
+            LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnectionsAsync(0, 4).Result;
+#else
+            LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnections(0, 4);
+#endif
+
+            Assert.AreEqual(0, connections.Start);
+            Assert.AreEqual(4, connections.Count);
+            Assert.AreEqual(243, connections.Total);
+            Assert.AreEqual(4, connections.Profiles.Count);
+        }
 
         [Test]
 	    public void GetStatistics() 

@@ -52,7 +52,7 @@ namespace Spring.ConsoleQuickStart
 /*
                 LinkedInProfile profileById = linkedIn.ProfileOperations.GetUserProfileByIdAsync("xO3SEJSVZN").Result;
                 LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrlAsync("http://www.linkedin.com/in/bbaia").Result;
-                IList<LinkedInProfile> connections = linkedIn.ConnectionOperations.GetConnectionsAsync().Result;
+                LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnectionsAsync().Result;
                 NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatisticsAsync().Result;
 */ 
                 // Consume LinkedIn endpoints that are not covered by the API binding
@@ -105,7 +105,7 @@ namespace Spring.ConsoleQuickStart
 /*
                 LinkedInProfile profileById = linkedIn.ProfileOperations.GetUserProfileById("xO3SEJSVZN");
                 LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrl("http://www.linkedin.com/in/bbaia");
-                IList<LinkedInProfile> connections = linkedIn.ConnectionOperations.GetConnections();
+                LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnections();
                 NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatistics();
 */
                 // Consume LinkedIn endpoints that are not covered by the API binding

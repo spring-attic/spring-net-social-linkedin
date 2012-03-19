@@ -33,8 +33,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
     {
         public override object Deserialize(JsonValue json, JsonMapper mapper)
         {
-            JsonValue peopleJson = json.GetValue("people");
-
+            JsonValue peopleJson = json.ContainsName("people") ? json.GetValue("people") : json;
             LinkedInProfiles profiles = (LinkedInProfiles)base.Deserialize(peopleJson, mapper);
             profiles.Profiles = mapper.Deserialize<IList<LinkedInProfile>>(peopleJson);
             return profiles;

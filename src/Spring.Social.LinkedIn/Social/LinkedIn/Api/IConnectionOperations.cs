@@ -39,14 +39,26 @@ namespace Spring.Social.LinkedIn.Api
     {
 #if NET_4_0 || SILVERLIGHT_5
         /// <summary>
-        /// Asynchronously retrieves the 1st-degree connections from the authenticated user's network.
+        /// Asynchronously retrieves up to 500 of the 1st-degree connections from the authenticated user's network.
         /// </summary>
         /// <returns>
         /// A <code>Task</code> that represents the asynchronous operation that can return 
-        /// a <see cref="LinkedInProfile"/> object representing the user's connections.
+        /// a <see cref="LinkedInProfiles"/> object representing the user's connections.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
-        Task<IList<LinkedInProfile>> GetConnectionsAsync();
+        Task<LinkedInProfiles> GetConnectionsAsync();
+
+        /// <summary>
+        /// Asynchronously retrieves the 1st-degree connections from the authenticated user's network.
+        /// </summary>
+        /// <param name="start">The starting location in the result set. Used with count for pagination.</param>
+        /// <param name="count">The number of connections to return. The maximum value is 500. Used with start for pagination.</param>
+        /// <returns>
+        /// A <code>Task</code> that represents the asynchronous operation that can return 
+        /// a <see cref="LinkedInProfiles"/> object representing the user's connections.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        Task<LinkedInProfiles> GetConnectionsAsync(int start, int count);
 
         /// <summary>
         /// Asynchronously retrieves network statistics for the authenticated user.
@@ -60,13 +72,24 @@ namespace Spring.Social.LinkedIn.Api
 #else
 #if !SILVERLIGHT
         /// <summary>
-        /// Retrieves the 1st-degree connections from the authenticated user's network.
+        /// Retrieves up to 500 of the 1st-degree connections from the authenticated user's network.
         /// </summary>
         /// <returns>
-        /// A <see cref="LinkedInProfile"/> object representing the user's connections.
+        /// A <see cref="LinkedInProfiles"/> object representing the user's connections.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
-        IList<LinkedInProfile> GetConnections();
+        LinkedInProfiles GetConnections();
+
+        /// <summary>
+        /// Retrieves the 1st-degree connections from the authenticated user's network.
+        /// </summary>
+        /// <param name="start">The starting location in the result set. Used with count for pagination.</param>
+        /// <param name="count">The number of connections to return. The maximum value is 500. Used with start for pagination.</param>
+        /// <returns>
+        /// A <see cref="LinkedInProfiles"/> object representing the user's connections.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        LinkedInProfiles GetConnections(int start, int count);
 
         /// <summary>
         /// Retrieves network statistics for the authenticated user.
@@ -79,17 +102,32 @@ namespace Spring.Social.LinkedIn.Api
 #endif
 
         /// <summary>
-        /// Asynchronously retrieves the 1st-degree connections from the authenticated user's network.
+        /// Asynchronously retrieves up to 500 of the 1st-degree connections from the authenticated user's network.
         /// </summary>
         /// <param name="operationCompleted">
         /// The <code>Action&lt;&gt;</code> to perform when the asynchronous request completes. 
-        /// Provides a <see cref="LinkedInProfile"/> object representing the user's connections.
+        /// Provides a <see cref="LinkedInProfiles"/> object representing the user's connections.
         /// </param>
         /// <returns>
         /// A <see cref="RestOperationCanceler"/> instance that allows to cancel the asynchronous operation.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
-        RestOperationCanceler GetConnectionsAsync(Action<RestOperationCompletedEventArgs<IList<LinkedInProfile>>> operationCompleted);
+        RestOperationCanceler GetConnectionsAsync(Action<RestOperationCompletedEventArgs<LinkedInProfiles>> operationCompleted);
+
+        /// <summary>
+        /// Asynchronously retrieves the 1st-degree connections from the authenticated user's network.
+        /// </summary>
+        /// <param name="start">The starting location in the result set. Used with count for pagination.</param>
+        /// <param name="count">The number of connections to return. The maximum value is 500. Used with start for pagination.</param>
+        /// <param name="operationCompleted">
+        /// The <code>Action&lt;&gt;</code> to perform when the asynchronous request completes. 
+        /// Provides a <see cref="LinkedInProfiles"/> object representing the user's connections.
+        /// </param>
+        /// <returns>
+        /// A <see cref="RestOperationCanceler"/> instance that allows to cancel the asynchronous operation.
+        /// </returns>
+        /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
+        RestOperationCanceler GetConnectionsAsync(int start, int count, Action<RestOperationCompletedEventArgs<LinkedInProfiles>> operationCompleted);
 
         /// <summary>
         /// Asynchronously retrieves network statistics for the authenticated user.
