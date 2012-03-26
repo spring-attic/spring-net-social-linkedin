@@ -1,11 +1,11 @@
-The Spring.NET Social LinkedIn project, Release 1.0.0 (TO BE DEFINED)
----------------------------------------------------------------------
+The Spring.NET Social LinkedIn project, Release 1.0.0 M1 (March 26, 2012)
+-------------------------------------------------------------------------
 http://www.springframework.net/social-linkedin/
 
 
 1. INTRODUCTION
 
-The 1.0.0 release of Spring.NET Social LinkedIn contains
+The 1.0.0 M1 release of Spring.NET Social LinkedIn contains
 	
 	* A Spring.NET Social extension with connection support and an API binding for LinkedIn.
 
