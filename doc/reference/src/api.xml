@@ -43,8 +43,68 @@ ILinkedIn linkedInApi = serviceProvider.GetApi(accessToken.Value, accessToken.Se
 	
 	<para>
 		Once you have a <interfacename>ILinkedIn</interfacename>, you can perform a several operations against LinkedIn.
+    <sbr/><interfacename>ILinkedIn</interfacename> is defined as follows:
   </para>
 
+  <programlisting language="csharp"><![CDATA[public interface ILinkedIn : IApiBinding
+{
+  ICommunicationOperations CommunicationOperations { get; }
+
+  IConnectionOperations ConnectionOperations { get; }
+
+  IProfileOperations ProfileOperations { get; }
+
+  IRestOperations RestOperations { get; }
+}]]></programlisting>
+
+  <para>
+    The first three properties return sub-APIs, partitioning the LinkedIn service API into divisions targeting specific facets of LinkedIn functionality.
+    These sub-APIs are defined by interfaces described in <xref linkend="table-linkedin-sub-apis" />.
+  </para>
+
+  <table xml:id="table-linkedin-sub-apis">
+    <title>LinkedIn's Sub-APIs</title>
+    <tgroup cols="2">
+      <colspec align="left" />
+      <colspec colnum="1" colname="col1" colwidth="2*"/>
+      <colspec colnum="2" colname="col2" colwidth="2*"/>
+      <thead>
+        <row>
+          <entry align="center">Sub-API Interface</entry>
+          <entry align="center">Description</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>CommunicationOperations</entry>
+          <entry>Sending messages and connection requests.</entry>
+        </row>
+        <row>
+          <entry>ConnectionOperations</entry>
+          <entry>Retrieving connections.</entry>
+        </row>
+        <row>
+          <entry>ProfileOperations</entry>
+          <entry>Retrieving and performing operations on profiles.</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <para>
+    The last property <literal>RestOperations</literal> gets the underlying <classname>RestTemplate</classname> object
+    allowing for consumption of LinkedIn endpoints that may not be otherwise covered by the API binding.
+    <sbr/>Until the whole API is covered, extra converters have been added : <classname>XElementHttpMessageConverter</classname>, 
+    <classname>DataContractHttpMessageConverter</classname> and <classname>DataContractJsonHttpMessageConverter</classname>.
+    <sbr/>An example is shown below using Company Search API:
+    <programlisting language="csharp"><![CDATA[string rawResult = linkedIn.RestOperations.GetForObject<string>("company-search?keywords=linkedin");
+XElement xmlResult = linkedIn.RestOperations.GetForObject<XElement>("company-search?keywords=linkedin");
+var result = from x in xmlResult.Descendants("companies").Elements()
+             select x.Element("name");]]></programlisting>
+  </para>
+
+  <para><sbr/></para>
+  
   <para>
     There are 3 ways to call a method depending on the target Framework:
     <itemizedlist>
@@ -62,8 +122,7 @@ Console.WriteLine("Hi " + profile.DisplayName + "!");]]></programlisting>
   r =>
   {
     Console.WriteLine("Hi " + r.Response.DisplayName + "!");
-  });]]>
-        </programlisting>
+  });]]></programlisting>
       </listitem>
 
       <listitem>
@@ -73,15 +132,14 @@ Console.WriteLine("Hi " + profile.DisplayName + "!");]]></programlisting>
   .ContinueWith(task =>
   {
     Console.WriteLine("Hi " + task.Result.DisplayName + "!");
-  });]]>
-        </programlisting>
+  });]]></programlisting>
       </listitem>
     </itemizedlist>
   </para>
 
-  <para/>
+  <para><sbr/></para>
   
-	<para>
+  <para>
     For complete details on the Spring.NET Social's entire LinkedIn API binding,
     refer to the API documentation from the "doc/api" directory of the distribution
     and to the <ulink url="https://developer.linkedin.com/rest">LinkedIn REST API documentation</ulink>.
