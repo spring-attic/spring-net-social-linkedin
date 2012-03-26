@@ -26,6 +26,7 @@ using Spring.Rest.Client;
 using Spring.Social.OAuth1;
 using Spring.Http.Converters;
 using Spring.Http.Converters.Json;
+using Spring.Http.Converters.Xml;
 
 using Spring.Social.LinkedIn.Api.Impl.Json;
 
@@ -126,6 +127,11 @@ namespace Spring.Social.LinkedIn.Api.Impl
             IList<IHttpMessageConverter> converters = base.GetMessageConverters();
             converters.Add(new ByteArrayHttpMessageConverter());
             converters.Add(this.GetJsonMessageConverter());
+#if NET_3_0 || SILVERLIGHT
+            converters.Add(new XElementHttpMessageConverter());
+            converters.Add(new DataContractHttpMessageConverter(true));
+            converters.Add(new DataContractJsonHttpMessageConverter(true));
+#endif
             return converters;
         }
 
