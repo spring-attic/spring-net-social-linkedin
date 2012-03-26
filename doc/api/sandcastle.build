@@ -21,7 +21,7 @@
   <target name="shfb">
     <echo message="Building Sandcastle Help File Builder project..." />
     <property name="sandcastle.helptitle" value="Spring.NET Social LinkedIn - API Documentation" />
-    <property name="sandcastle.helptitle" value="Spring.NET Social LinkedIn ${product.version} - API Documentation" if="${property::exists('product.version')}" />
+    <property name="sandcastle.helptitle" value="Spring.NET Social LinkedIn ${product.informationalversion} - API Documentation" if="${property::exists('product.informationalversion')}" />
     <exec program="${msbuild.exe}">
       <arg value="${project.basedir}\src\Spring.Social.LinkedIn.shfbproj"/>
       <arg value="/property:Configuration=Release" />
