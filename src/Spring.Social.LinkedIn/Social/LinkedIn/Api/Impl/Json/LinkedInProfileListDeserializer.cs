@@ -34,9 +34,12 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
         {
             IList<T> linkedInProfiles = new List<T>();
             JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-            foreach (JsonValue itemValue in usersValue.GetValues())
+            if (usersValue != null)
             {
-                linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
+                foreach (JsonValue itemValue in usersValue.GetValues())
+                {
+                    linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
+                }
             }
             return linkedInProfiles;
         }
