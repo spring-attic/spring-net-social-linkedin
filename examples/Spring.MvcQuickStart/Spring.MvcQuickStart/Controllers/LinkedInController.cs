@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,7 +31,9 @@ namespace Spring.MvcQuickStart.Controllers
         // GET: /LinkedIn/SignIn
         public ActionResult SignIn()
         {
-            OAuthToken requestToken = linkedInProvider.OAuthOperations.FetchRequestTokenAsync("http://localhost/LinkedIn/Callback", null).Result;
+            NameValueCollection parameters = new NameValueCollection();
+            //parameters.Add("scope", "r_basicprofile r_emailaddress");
+            OAuthToken requestToken = linkedInProvider.OAuthOperations.FetchRequestTokenAsync("http://localhost/LinkedIn/Callback", parameters).Result;
             Session["RequestToken"] = requestToken;
 
             return Redirect(linkedInProvider.OAuthOperations.BuildAuthenticateUrl(requestToken.Value, null));

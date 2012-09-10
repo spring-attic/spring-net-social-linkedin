@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 using Spring.Json;
 using Spring.Social.OAuth1;
@@ -27,7 +28,9 @@ namespace Spring.ConsoleQuickStart
 
                 // Authentication using Out-of-band/PIN Code Authentication
                 Console.Write("Getting request token...");
-                OAuthToken oauthToken = linkedInServiceProvider.OAuthOperations.FetchRequestTokenAsync("oob", null).Result;
+                NameValueCollection parameters = new NameValueCollection();
+                //parameters.Add("scope", "r_basicprofile r_emailaddress");
+                OAuthToken oauthToken = linkedInServiceProvider.OAuthOperations.FetchRequestTokenAsync("oob", parameters).Result;
                 Console.WriteLine("Done");
 
                 string authenticateUrl = linkedInServiceProvider.OAuthOperations.BuildAuthorizeUrl(oauthToken.Value, null);

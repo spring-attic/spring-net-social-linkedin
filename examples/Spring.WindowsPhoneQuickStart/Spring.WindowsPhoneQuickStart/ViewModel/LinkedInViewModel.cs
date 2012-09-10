@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
 using System.Collections.Generic;
+using Spring.Collections.Specialized;
 
 using Spring.Social.OAuth1;
 using Spring.Social.LinkedIn.Api;
@@ -68,7 +69,9 @@ namespace Spring.WindowsPhoneQuickStart.ViewModel
 
         public void Authenticate()
         {
-            this.LinkedInServiceProvider.OAuthOperations.FetchRequestTokenAsync(CallbackUrl, null,
+            NameValueCollection parameters = new NameValueCollection();
+            //parameters.Add("scope", "r_basicprofile r_emailaddress");
+            this.LinkedInServiceProvider.OAuthOperations.FetchRequestTokenAsync(CallbackUrl, parameters,
                 r =>
                 {
                     this.requestOAuthToken = r.Response;
