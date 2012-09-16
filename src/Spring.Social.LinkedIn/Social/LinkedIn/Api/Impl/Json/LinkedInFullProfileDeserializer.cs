@@ -30,6 +30,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
     /// JSON deserializer for LinkedIn full user's profile.
     /// </summary>
     /// <author>Bruno Baia</author>
+    /// <remarks>Added additional deserializers for expaned full profile</remarks>
     class LinkedInFullProfileDeserializer : LinkedInProfileDeserializer
     {
         public override object Deserialize(JsonValue json, JsonMapper mapper)
@@ -54,11 +55,25 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             profile.ProposalComments = json.ContainsName("proposalComments") ? json.GetValue<string>("proposalComments") : "";
             profile.Recommendations = DeserializeRecommendations(json.GetValue("recommendationsReceived"), mapper);
             profile.RecommendersCount = json.ContainsName("numRecommenders") ? json.GetValue<int?>("numRecommenders") : null;
-            profile.Skills = DeserializeSkills(json.GetValue("skills"));
+            
             profile.Specialties = json.ContainsName("specialties") ? json.GetValue<string>("specialties") : "";
             profile.TwitterAccounts = DeserializeTwitterAccounts(json.GetValue("twitterAccounts"));
             profile.UrlResources = DeserializeUrlResources(json.GetValue("memberUrlResources"));
+            // ***********
+            // added or updated 9/15/2012 James Fleming
+            // publications,patents,courses,languages,volunteer
+            profile.Certifications = DeserializeCertifications(json.GetValue("certifications"));
+            profile.Skills = DeserializeSkills(json.GetValue("skills"));
+            profile.Publications = DeserializePublications(json.GetValue("publications"));
+           
+            profile.Courses = DeserializeCourses(json.GetValue("courses"));
+            profile.Languages = DeserializeLanguages(json.GetValue("languages"));
+            // todo: add method for deserializing the attributes below.
+            // profile.Patents = DeserializePatents(json.GetValue("patents"));
+            // profile.VolunteerExperiences = DeserializeVolunteerExperiencess(json.GetValue("volunteer"));
 
+
+            // ***********
             return profile;
         }
 
@@ -80,24 +95,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             }
             return null;
         }
-
-        private static IList<string> DeserializeSkills(JsonValue json)
-        {
-            IList<string> skills = new List<string>();
-            if (json != null)
-            {
-                JsonValue valuesJson = json.GetValue("values");
-                if (valuesJson != null)
-                {
-                    foreach (JsonValue itemJson in valuesJson.GetValues())
-                    {
-                        skills.Add(itemJson.GetValue("skill").GetValue<string>("name"));
-                    }
-                }
-            }
-            return skills;
-        }
-
+        
         private static IList<ImAccount> DeserializeImAccounts(JsonValue json)
         {
             IList<ImAccount> imAccounts = new List<ImAccount>();
@@ -211,7 +209,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             }
             return educations;
         }
-
+        
         private static IList<Recommendation> DeserializeRecommendations(JsonValue json, JsonMapper mapper)
         {
             IList<Recommendation> recommendations = new List<Recommendation>();
@@ -288,6 +286,169 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
                 Type = json.ContainsName("type") ? json.GetValue<string>("type") : null,
                 Ticker = json.ContainsName("ticker") ? json.GetValue<string>("ticker") : null
             };
+        }
+
+        /// <summary>
+        /// Modified to return a complex type 9/15/2012
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        private static IList<Skill> DeserializeSkills(JsonValue json)
+        {
+            IList<Skill> skills = new List<Skill>();
+            if (json != null)
+            {
+                JsonValue valuesJson = json.GetValue("values");
+                if (valuesJson != null)
+                {
+                    foreach (JsonValue itemJson in valuesJson.GetValues())
+                    {
+                        skills.Add(new Skill
+                        {
+                            Id = itemJson.GetValue<int>("id"),
+                            Name = itemJson.GetValue("skill").GetValue<string>("name"),
+                            ProficiencyLevel = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("level") : "",
+                            ProficiencyName = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("name") : "",
+                            YearsId = itemJson.ContainsName("year") ? itemJson.GetValue("years").GetValue<string>("id") : "",
+                            YearsName = itemJson.ContainsName("year") ? itemJson.GetValue("years").GetValue<string>("name") : "",
+                            Proficiency = new Proficiency
+                            {
+                                Level = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("level") : "",
+                                Name = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("name") : "",
+                            },
+                            Years = new Years
+                                        {
+                                            Id = itemJson.ContainsName("years") ? itemJson.GetValue("years").GetValue<int>("id") : 0,
+                                            Name = itemJson.ContainsName("years") ? itemJson.GetValue("years").GetValue<string>("name") : "",
+                                        }
+                        });
+                    }
+                }
+            }
+            return skills;
+        }
+
+        /// <summary>
+        /// Added certification deserialization
+        /// </summary>
+        /// <param name="json"></param>
+        /// <contributor>James Fleming</contributor>
+        /// <returns></returns>
+        private static IList<Certification> DeserializeCertifications(JsonValue json)
+        {
+            IList<Certification> educations = new List<Certification>();
+            if (json != null)
+            {
+                JsonValue valuesJson = json.GetValue("values");
+                if (valuesJson != null)
+                {
+                    foreach (JsonValue itemJson in valuesJson.GetValues())
+                    {
+                        educations.Add(new Certification()
+                        {
+                            Id = itemJson.GetValue<int>("id"),
+                            Name = itemJson.GetValue<string>("name"),
+                            AuthorityName = itemJson.ContainsName("authorityName") ? itemJson.GetValue<string>("authorityName") : "",
+                            StartDate = DeserializeLinkedInDate(itemJson.GetValue("startDate")),
+                            EndDate = DeserializeLinkedInDate(itemJson.GetValue("endDate")),
+                            Number = itemJson.ContainsName("number") ? itemJson.GetValue<string>("number") : ""
+                        });
+                    }
+                }
+            }
+            return educations;
+        }
+
+        /// <summary>
+        /// Added certification deserialization
+        /// </summary>
+        /// <param name="json"></param>
+        /// <contributor>James Fleming</contributor>
+        /// <returns></returns>
+        private static IList<Course> DeserializeCourses(JsonValue json)
+        {
+            IList<Course> courses = new List<Course>();
+            if (json != null)
+            {
+                JsonValue valuesJson = json.GetValue("values");
+                if (valuesJson != null)
+                {
+                    foreach (JsonValue itemJson in valuesJson.GetValues())
+                    {
+                        courses.Add(new Course()
+                        {
+                            Name = itemJson.GetValue<string>("name"),
+                            Number = itemJson.ContainsName("number") ? itemJson.GetValue<string>("number") : ""
+                        });
+                    }
+                }
+            }
+            return courses;
+        }
+
+        /// <summary>
+        /// Modified to return a complex type 9/15/2012
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        private static IList<Language> DeserializeLanguages(JsonValue json)
+        {
+            IList<Language> languages = new List<Language>();
+            if (json != null)
+            {
+                JsonValue valuesJson = json.GetValue("values");
+                if (valuesJson != null)
+                {
+                    foreach (JsonValue itemJson in valuesJson.GetValues())
+                    {
+                        languages.Add(new Language
+                        {
+                            Id = itemJson.GetValue<int>("id"),
+                            Name = itemJson.GetValue("language").GetValue<string>("name"),
+                            ProficiencyLevel = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("level") : "",
+                            ProficiencyName = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("name") : "",
+                            Proficiency = new Proficiency
+                                              {
+                                                  Level = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("level") : "",
+                                                  Name = itemJson.ContainsName("proficiency") ? itemJson.GetValue("proficiency").GetValue<string>("name") : "",
+                                              }
+                        });
+                    }
+                }
+            }
+            return languages;
+        }
+
+        /// <summary>
+        /// Added certification deserialization
+        /// </summary>
+        /// <param name="json"></param>
+        /// <contributor>James Fleming</contributor>
+        /// <returns></returns>
+        private static IList<Publication> DeserializePublications(JsonValue json)
+        {
+            IList<Publication> educations = new List<Publication>();
+            if (json != null)
+            {
+                JsonValue valuesJson = json.GetValue("values");
+                if (valuesJson != null)
+                {
+                    foreach (JsonValue itemJson in valuesJson.GetValues())
+                    {
+                        educations.Add(new Publication()
+                        {
+                            Id = itemJson.GetValue<int>("id"),
+                            Title = itemJson.GetValue<string>("title"),
+                            PublisherName = itemJson.ContainsName("publisher") ? itemJson.GetValue("publisher").GetValue<string>("name") : "",
+                            // todo: authors...
+                            Summary = itemJson.ContainsName("summary") ? itemJson.GetValue<string>("summary") : "",
+                            Date = DeserializeLinkedInDate(itemJson.GetValue("date")),
+                            Url = itemJson.ContainsName("url") ? itemJson.GetValue<string>("url") : ""
+                        });
+                    }
+                }
+            }
+            return educations;
         }
     }
 }

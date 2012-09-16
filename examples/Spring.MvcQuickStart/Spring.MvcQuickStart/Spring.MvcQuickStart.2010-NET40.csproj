@@ -114,6 +114,12 @@
       <Name>Spring.Social.LinkedIn.2010-NET40</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\LinkedIn\FullProfile.cshtml" />
+    <Content Include="Views\LinkedIn\_Certifications.cshtml" />
+    <Content Include="Views\LinkedIn\_Education.cshtml" />
+    <Content Include="Views\LinkedIn\_Skills.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

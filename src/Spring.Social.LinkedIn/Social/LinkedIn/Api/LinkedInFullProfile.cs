@@ -28,6 +28,7 @@ namespace Spring.Social.LinkedIn.Api
     /// </summary>
     /// <author>Bruno Baia</author>
     /// <author>Robert Drysdale</author>
+    /// <contributor>James Fleming: contribution: updated object model on 9/15/2012</contributor>
 #if !SILVERLIGHT
     [Serializable]
 #endif
@@ -72,17 +73,12 @@ namespace Spring.Social.LinkedIn.Api
         /// Gets or sets the collection of phone numbers. 
         /// </summary>
         public IList<PhoneNumber> PhoneNumbers { get; set; }
-
-        /// <summary>
-        /// Gets or sets the collection of skills held by this member.
-        /// </summary>
-        public IList<string> Skills { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the collection of education institutions a member has attended.
         /// </summary>
         public IList<Education> Educations { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the short-form text area describing how the member approaches proposals.
         /// </summary>
@@ -165,5 +161,45 @@ namespace Spring.Social.LinkedIn.Api
         /// </summary>
         public CurrentShare CurrentShare { get; set; }
  */
+
+        /// changes to reflect updated object model 
+        /// https://developer.linkedin.com/documents/profile-fields
+        
+        /// <summary>
+        /// Gets or sets the collection of skills held by this member.
+        /// </summary>
+        /// <remarks>Updated to a complext type: 9-15-2012 James Fleming</remarks>
+        public IList<Skill> Skills { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of professional certification a member has attained.
+        /// </summary>
+        public IList<Certification> Certifications { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the collection of professional publications the member has authored
+        /// </summary>
+        public IList<Publication> Publications { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of professional publications the member has authored
+        /// </summary>
+        public IList<Patent> Patents { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of languages the member knows
+        /// </summary>
+        public IList<Language> Languages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of professional publications the member has authored
+        /// </summary>
+        public IList<Course> Courses { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of a members volunteer-experiences
+        /// </summary>
+        public IList<VolunteerExperience> VolunteerExperiences { get; set; }
+
     }
 }

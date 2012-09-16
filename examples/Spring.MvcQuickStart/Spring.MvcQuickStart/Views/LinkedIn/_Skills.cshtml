@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Spring.Social.LinkedIn.Api.Skill>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+       @* <th>
+            ProficiencyLevel
+        </th>
+        <th>
+            ProficiencyName
+        </th>
+        <th>
+            YearsId
+        </th>
+        <th>
+            YearsName
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+       @* <td>
+            @Html.DisplayFor(modelItem => item.ProficiencyLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProficiencyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearsName)
+        </td>*@
+       
+    </tr>
+}
+
+</table>

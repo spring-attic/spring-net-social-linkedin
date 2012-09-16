@@ -1,0 +1,76 @@
+﻿@model Spring.Social.LinkedIn.Api.LinkedInFullProfile
+
+@{
+    ViewBag.Title = "FullProfile";
+}
+
+<h2>FullProfile</h2>
+
+@Html.ActionLink("Sign-in with LinkedIn and return BASIC profile", "SignIn") <br />
+
+<fieldset>
+    <legend>LinkedInFullProfile</legend>
+    <div class="display-label">PictureUrl</div>
+    <div class="display-field">
+        <input type="image" src="@Model.PictureUrl"/>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Headline)
+    </div>
+
+    <div class="display-label">Industry: @Html.DisplayFor(model => model.Industry)
+    </div>
+
+
+    <div class="display-label">Summary</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Summary)
+    </div>
+     <div class="display-label">Recommenders 
+        @Html.DisplayFor(model => model.RecommendersCount)
+    </div>
+     <div class="display-field">
+        <a href="@Model.PublicProfileUrl">@Model.PublicProfileUrl</a>
+    </div>
+     
+    <div class="display-label">Specialties</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Specialties)
+    </div>
+
+    <div class="display-label">Connections</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConnectionsCount)
+    </div>
+
+    <div class="display-label">Location</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Location)
+    </div>
+
+    <div class="display-label">Interests</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Interests)
+    </div>
+
+    <div class="display-label">Honors</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Honors)
+    </div>
+
+   @Html.Partial("_Education", Model.Educations)
+   
+   @if (Model.Certifications != null)
+   {
+       @Html.Partial("_Certifications", Model.Certifications)
+   }
+   
+   @Html.Partial("_Skills", Model.Skills)
+
+
+</fieldset>
+

@@ -6,3 +6,32 @@
 <h2>Welcome @Model.FirstName @Model.LastName!</h2>
 
 
+
+@Html.ActionLink("Sign-in with LinkedIn and return FULL profile", "SignInFullProfile") <br />
+
+<fieldset>
+    <legend>Person</legend>
+
+    <div class="display-label">
+        @Html.DisplayFor(model => model.FirstName)
+    
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Industry)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayFor(model => model.Headline)
+    </div>
+
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PublicProfileUrl)
+    </div>
+
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Summary)
+    </div>
+
+</fieldset>

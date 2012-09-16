@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Spring.Social.LinkedIn.Api.Education>
+
+<table>
+    <tr>
+        <th>
+            Field
+        </th>
+        <th>
+            Degree
+        </th>
+         <th>
+            School
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudyField)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Degree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolName)
+        </td>
+    </tr>
+}
+
+</table>
