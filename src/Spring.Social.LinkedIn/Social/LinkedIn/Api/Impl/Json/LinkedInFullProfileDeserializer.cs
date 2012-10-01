@@ -282,8 +282,8 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             return new Company()
             {
                 ID = json.ContainsName("id") ? json.GetValue<int>("id") : 0,
-                Name = json.GetValue<string>("name"),
-                Industry = json.GetValue<string>("industry"),
+                Name = json.ContainsName("name") ? json.GetValue<string>("name") : null,
+                Industry = json.ContainsName("industry") ? json.GetValue<string>("industry") : null,
                 Size = json.ContainsName("size") ? json.GetValue<string>("size") : null,
                 Type = json.ContainsName("type") ? json.GetValue<string>("type") : null,
                 Ticker = json.ContainsName("ticker") ? json.GetValue<string>("ticker") : null
