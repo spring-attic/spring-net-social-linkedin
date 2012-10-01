@@ -47,7 +47,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             profile.IsConnectionsCountCapped = json.GetValue<bool>("numConnectionsCapped");
             JsonValue locationJson = json.GetValue("location");
             profile.CountryCode = locationJson.GetValue("country").GetValue<string>("code");
-            profile.Location = locationJson.GetValue<string>("name");
+            profile.Location = locationJson.ContainsName("name") ? locationJson.GetValue<string>("name") : "";
             profile.MainAddress = json.ContainsName("mainAddress") ? json.GetValue<string>("mainAddress") : "";
             profile.PhoneNumbers = DeserializePhoneNumbers(json.GetValue("phoneNumbers"));
             profile.Positions = DeserializePositions(json.GetValue("positions"));
