@@ -198,7 +198,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
                         educations.Add(new Education()
                         {
                             ID = itemJson.GetValue<int>("id"),
-                            SchoolName = itemJson.GetValue<string>("schoolName"),
+                            SchoolName = itemJson.ContainsName("schoolName") ? itemJson.GetValue<string>("schoolName") : "",
                             StudyField = itemJson.ContainsName("fieldOfStudy") ? itemJson.GetValue<string>("fieldOfStudy") : "",
                             StartDate = DeserializeLinkedInDate(itemJson.GetValue("startDate")),
                             EndDate = DeserializeLinkedInDate(itemJson.GetValue("endDate")),
