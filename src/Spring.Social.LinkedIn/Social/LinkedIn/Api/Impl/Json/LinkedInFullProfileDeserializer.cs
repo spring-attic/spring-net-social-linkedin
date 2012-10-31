@@ -36,26 +36,26 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
         {
             LinkedInFullProfile profile = (LinkedInFullProfile)base.Deserialize(json, mapper);
 
-            profile.Associations = json.ContainsName("associations") ? json.GetValue<string>("associations") : "";
+            profile.Associations = json.GetValueOrDefault<string>("associations", String.Empty);
             profile.BirthDate = DeserializeLinkedInDate(json.GetValue("dateOfBirth"));
             profile.ConnectionsCount = json.GetValue<int>("numConnections");
             profile.Distance = json.GetValue<int>("distance");
             profile.Educations = DeserializeEducations(json.GetValue("educations"));
-            profile.Honors = json.ContainsName("honors") ? json.GetValue<string>("honors") : "";
+            profile.Honors = json.GetValueOrDefault<string>("honors", String.Empty);
             profile.ImAccounts = DeserializeImAccounts(json.GetValue("imAccounts"));
-            profile.Interests = json.ContainsName("interests") ? json.GetValue<string>("interests") : "";
+            profile.Interests = json.GetValueOrDefault<string>("interests", String.Empty);
             profile.IsConnectionsCountCapped = json.GetValue<bool>("numConnectionsCapped");
             JsonValue locationJson = json.GetValue("location");
             profile.CountryCode = locationJson.GetValue("country").GetValue<string>("code");
-            profile.Location = locationJson.ContainsName("name") ? locationJson.GetValue<string>("name") : "";
-            profile.MainAddress = json.ContainsName("mainAddress") ? json.GetValue<string>("mainAddress") : "";
+            profile.Location = locationJson.GetValueOrDefault<string>("name", String.Empty);
+            profile.MainAddress = json.GetValueOrDefault<string>("mainAddress", String.Empty);
             profile.PhoneNumbers = DeserializePhoneNumbers(json.GetValue("phoneNumbers"));
             profile.Positions = DeserializePositions(json.GetValue("positions"));
-            profile.ProposalComments = json.ContainsName("proposalComments") ? json.GetValue<string>("proposalComments") : "";
+            profile.ProposalComments = json.GetValueOrDefault<string>("proposalComments", String.Empty);
             profile.Recommendations = DeserializeRecommendations(json.GetValue("recommendationsReceived"), mapper);
-            profile.RecommendersCount = json.ContainsName("numRecommenders") ? json.GetValue<int?>("numRecommenders") : null;
+            profile.RecommendersCount = json.GetValueOrDefault<int?>("numRecommenders");
             profile.Skills = DeserializeSkills(json.GetValue("skills"));
-            profile.Specialties = json.ContainsName("specialties") ? json.GetValue<string>("specialties") : "";
+            profile.Specialties = json.GetValueOrDefault<string>("specialties", String.Empty);
             profile.TwitterAccounts = DeserializeTwitterAccounts(json.GetValue("twitterAccounts"));
             profile.UrlResources = DeserializeUrlResources(json.GetValue("memberUrlResources"));
 
@@ -73,9 +73,9 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             {
                 return new LinkedInDate()
                 {
-                    Year = json.ContainsName("year") ? json.GetValue<int?>("year") : null,
-                    Month = json.ContainsName("month") ? json.GetValue<int?>("month") : null,
-                    Day = json.ContainsName("day") ? json.GetValue<int?>("day") : null
+                    Year = json.GetValueOrDefault<int?>("year"),
+                    Month = json.GetValueOrDefault<int?>("month"),
+                    Day = json.GetValueOrDefault<int?>("day")
                 };
             }
             return null;
@@ -197,14 +197,14 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
                     {
                         educations.Add(new Education()
                         {
-                            ID = itemJson.GetValue<int>("id"),
-                            SchoolName = itemJson.ContainsName("schoolName") ? itemJson.GetValue<string>("schoolName") : "",
-                            StudyField = itemJson.ContainsName("fieldOfStudy") ? itemJson.GetValue<string>("fieldOfStudy") : "",
+                            ID = itemJson.GetValueOrDefault<int>("id"),
+                            SchoolName = itemJson.GetValueOrDefault<string>("schoolName", String.Empty),
+                            StudyField = itemJson.GetValueOrDefault<string>("fieldOfStudy", String.Empty),
                             StartDate = DeserializeLinkedInDate(itemJson.GetValue("startDate")),
                             EndDate = DeserializeLinkedInDate(itemJson.GetValue("endDate")),
-                            Degree = itemJson.ContainsName("degree") ? itemJson.GetValue<string>("degree") : "",
-                            Activities = itemJson.ContainsName("activities") ? itemJson.GetValue<string>("activities") : "",
-                            Notes = itemJson.ContainsName("notes") ? itemJson.GetValue<string>("notes") : ""
+                            Degree = itemJson.GetValueOrDefault<string>("degree", String.Empty),
+                            Activities = itemJson.GetValueOrDefault<string>("activities", String.Empty),
+                            Notes = itemJson.GetValueOrDefault<string>("notes", String.Empty)
                         });
                     }
                 }
@@ -224,8 +224,8 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
                     {
                         recommendations.Add(new Recommendation()
                         {
-                            ID = itemJson.GetValue<int>("id"),
-                            Text = itemJson.GetValue<string>("recommendationText"),
+                            ID = itemJson.GetValueOrDefault<int>("id"),
+                            Text = itemJson.GetValueOrDefault<string>("recommendationText", String.Empty),
                             Type = DeserializeRecommendationType(itemJson.GetValue("recommendationType")),
                             Recommender = mapper.Deserialize<LinkedInProfile>(itemJson.GetValue("recommender"))
                         });
@@ -264,9 +264,9 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
                         positions.Add(new Position()
                         {
                             ID = itemJson.GetValue<string>("id"),
-                            Company = itemJson.ContainsName("company") ? DeserializeCompany(itemJson.GetValue("company")) : null,
-                            Title = itemJson.ContainsName("title") ? itemJson.GetValue<string>("title") : "",
-                            Summary = itemJson.ContainsName("summary") ? itemJson.GetValue<string>("summary") : "",
+                            Company = DeserializeCompany(itemJson.GetValue("company")),
+                            Title = itemJson.GetValueOrDefault<string>("title", String.Empty),
+                            Summary = itemJson.GetValueOrDefault<string>("summary", String.Empty),
                             IsCurrent = itemJson.GetValue<bool>("isCurrent"),
                             StartDate = DeserializeLinkedInDate(itemJson.GetValue("startDate")),
                             EndDate = DeserializeLinkedInDate(itemJson.GetValue("endDate"))
@@ -279,15 +279,19 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
 
         private static Company DeserializeCompany(JsonValue json)
         {
-            return new Company()
+            if (json != null)
             {
-                ID = json.ContainsName("id") ? json.GetValue<int>("id") : 0,
-                Name = json.ContainsName("name") ? json.GetValue<string>("name") : null,
-                Industry = json.ContainsName("industry") ? json.GetValue<string>("industry") : null,
-                Size = json.ContainsName("size") ? json.GetValue<string>("size") : null,
-                Type = json.ContainsName("type") ? json.GetValue<string>("type") : null,
-                Ticker = json.ContainsName("ticker") ? json.GetValue<string>("ticker") : null
-            };
+                return new Company()
+                {
+                    ID = json.GetValueOrDefault<int>("id"),
+                    Name = json.GetValueOrDefault<string>("name", String.Empty),
+                    Industry = json.GetValueOrDefault<string>("industry", String.Empty),
+                    Size = json.GetValueOrDefault<string>("size", String.Empty),
+                    Type = json.GetValueOrDefault<string>("type", String.Empty),
+                    Ticker = json.GetValueOrDefault<string>("ticker", String.Empty)
+                };
+            }
+            return null;
         }
     }
 }

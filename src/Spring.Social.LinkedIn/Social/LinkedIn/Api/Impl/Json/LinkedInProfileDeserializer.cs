@@ -38,13 +38,13 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             LinkedInProfile profile = CreateLinkedInProfile();
 
             profile.ID = json.GetValue<string>("id");
-            profile.FirstName = json.GetValue<string>("firstName");
-            profile.LastName = json.GetValue<string>("lastName");
-            profile.Headline = json.ContainsName("headline") ? json.GetValue<string>("headline") : "";
-            profile.Industry = json.ContainsName("industry") ? json.GetValue<string>("industry") : "";
-            profile.PictureUrl = json.ContainsName("pictureUrl") ? json.GetValue<string>("pictureUrl") : null;
-            profile.Summary = json.ContainsName("summary") ? json.GetValue<string>("summary") : "";
-            profile.PublicProfileUrl = json.ContainsName("publicProfileUrl") ? json.GetValue<string>("publicProfileUrl") : null;
+            profile.FirstName = json.GetValueOrDefault<string>("firstName", String.Empty);
+            profile.LastName = json.GetValueOrDefault<string>("lastName", String.Empty);
+            profile.Headline = json.GetValueOrDefault<string>("headline", String.Empty);
+            profile.Industry = json.GetValueOrDefault<string>("industry", String.Empty);
+            profile.PictureUrl = json.GetValueOrDefault<string>("pictureUrl");
+            profile.Summary = json.GetValueOrDefault<string>("summary", String.Empty);
+            profile.PublicProfileUrl = json.GetValueOrDefault<string>("publicProfileUrl");
             profile.StandardProfileUrl = GetSiteStandardProfileUrl(json);
             profile.AuthToken = GetAuthToken(json);
 
