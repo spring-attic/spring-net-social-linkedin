@@ -49,7 +49,9 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Social\LinkedIn\Api\Certification.cs" />
     <Compile Include="Social\LinkedIn\Api\Company.cs" />
+    <Compile Include="Social\LinkedIn\Api\Course.cs" />
     <Compile Include="Social\LinkedIn\Api\Education.cs" />
     <Compile Include="Social\LinkedIn\Api\ICommunicationOperations .cs" />
     <Compile Include="Social\LinkedIn\Api\IConnectionOperations.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Social\LinkedIn\Api\IProfileOperations.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\Language.cs" />
     <Compile Include="Social\LinkedIn\Api\LinkedInApiError.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -101,11 +104,15 @@
     <Compile Include="Social\LinkedIn\Api\PaginatedResult.cs" />
     <Compile Include="Social\LinkedIn\Api\PhoneNumber.cs" />
     <Compile Include="Social\LinkedIn\Api\Position.cs" />
+    <Compile Include="Social\LinkedIn\Api\Proficiency.cs" />
     <Compile Include="Social\LinkedIn\Api\ProfileSort.cs" />
+    <Compile Include="Social\LinkedIn\Api\Publication.cs" />
     <Compile Include="Social\LinkedIn\Api\Recommendation.cs" />
     <Compile Include="Social\LinkedIn\Api\RecommendationType.cs" />
     <Compile Include="Social\LinkedIn\Api\SearchParameters.cs" />
+    <Compile Include="Social\LinkedIn\Api\Skill.cs" />
     <Compile Include="Social\LinkedIn\Api\TwitterAccount.cs" />
+    <Compile Include="Social\LinkedIn\Api\Years.cs" />
     <Compile Include="Social\LinkedIn\Connect\LinkedInServiceProvider.cs">
       <SubType>Code</SubType>
     </Compile>

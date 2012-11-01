@@ -28,6 +28,7 @@ namespace Spring.Social.LinkedIn.Api
     /// </summary>
     /// <author>Bruno Baia</author>
     /// <author>Robert Drysdale</author>
+    /// <author>James Fleming</author>
 #if !SILVERLIGHT
     [Serializable]
 #endif
@@ -72,11 +73,6 @@ namespace Spring.Social.LinkedIn.Api
         /// Gets or sets the collection of phone numbers. 
         /// </summary>
         public IList<PhoneNumber> PhoneNumbers { get; set; }
-
-        /// <summary>
-        /// Gets or sets the collection of skills held by this member.
-        /// </summary>
-        public IList<string> Skills { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of education institutions a member has attended.
@@ -165,5 +161,30 @@ namespace Spring.Social.LinkedIn.Api
         /// </summary>
         public CurrentShare CurrentShare { get; set; }
  */
+       
+        /// <summary>
+        /// Gets or sets the collection of skills held by this member.
+        /// </summary>
+        public IList<Skill> Skills { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of professional certification a member has attained.
+        /// </summary>
+        public IList<Certification> Certifications { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the collection of professional publications the member has authored.
+        /// </summary>
+        public IList<Publication> Publications { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of languages the member knows.
+        /// </summary>
+        public IList<Language> Languages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of courses the member has taken.
+        /// </summary>
+        public IList<Course> Courses { get; set; }
     }
 }

@@ -134,7 +134,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             Assert.AreEqual("Company Website", profile.UrlResources[0].Name);
 		    Assert.AreEqual("http://www.robatron.com", profile.UrlResources[0].Url);
             Assert.AreEqual(3, profile.Skills.Count);
-            Assert.AreEqual("Java", profile.Skills[0]);
+            Assert.AreEqual("Java", profile.Skills[0].Name);
             Assert.AreEqual(1, profile.TwitterAccounts.Count);
             Assert.AreEqual("23438000", profile.TwitterAccounts[0].ID);
             Assert.AreEqual("robdrysdale", profile.TwitterAccounts[0].Name);
