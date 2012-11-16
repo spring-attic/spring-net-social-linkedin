@@ -1921,28 +1921,28 @@
         </member>
         <member name="M:Spring.Http.HttpUtils.FormDecode(System.String)">
             <summary>
-            Decodes 'application/x-www-form-urlencoded' data using 'UTF-8' encoding scheme.
+            Decodes 'application/x-www-form-urlencoded' data.
             </summary>
             <param name="s">The string to decode.</param>
             <returns>The decoded string.</returns>
         </member>
         <member name="M:Spring.Http.HttpUtils.FormEncode(System.String)">
             <summary>
-            Encodes 'application/x-www-form-urlencoded' data using 'UTF-8' encoding scheme.
+            Encodes 'application/x-www-form-urlencoded' data.
             </summary>
             <param name="s">The string to encode.</param>
             <returns>The encoded string.</returns>
         </member>
         <member name="M:Spring.Http.HttpUtils.UrlDecode(System.String)">
             <summary>
-            Decodes URI data using 'UTF-8' encoding scheme.
+            Decodes URI data according to RFC 3986.
             </summary>
             <param name="s">The string to decode.</param>
             <returns>The decoded string.</returns>
         </member>
         <member name="M:Spring.Http.HttpUtils.UrlEncode(System.String)">
             <summary>
-            Encodes URI data using 'UTF-8' encoding scheme.
+            Encodes URI data according to RFC 3986.
             </summary>
             <param name="s">The string to encode.</param>
             <returns>The encoded string.</returns>
@@ -6543,6 +6543,11 @@
             <author>Arjen Poutsma</author>
             <author>Bruno Baia (.NET)</author>
         </member>
+        <member name="F:Spring.Rest.Client.Support.HttpEntityRequestCallback.requestEntity">
+            <summary>
+            The underlying <see cref="T:Spring.Http.HttpEntity"/> used by the request.
+            </summary>
+        </member>
         <member name="M:Spring.Rest.Client.Support.HttpEntityRequestCallback.#ctor(System.Object,System.Collections.Generic.IList{Spring.Http.Converters.IHttpMessageConverter})">
             <summary>
             Creates a new instance of <see cref="T:Spring.Rest.Client.Support.HttpEntityRequestCallback"/>.
@@ -6627,6 +6632,11 @@
             <typeparam name="T">The response body type.</typeparam>
             <author>Arjen Poutsma</author>
             <author>Bruno Baia (.NET)</author>
+        </member>
+        <member name="F:Spring.Rest.Client.Support.MessageConverterResponseExtractor`1.messageConverters">
+            <summary>
+            The underlying list of <see cref="T:Spring.Http.Converters.IHttpMessageConverter"/> used to extract data from the response.
+            </summary>
         </member>
         <member name="M:Spring.Rest.Client.Support.MessageConverterResponseExtractor`1.#ctor(System.Collections.Generic.IList{Spring.Http.Converters.IHttpMessageConverter})">
             <summary>
