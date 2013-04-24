@@ -44,7 +44,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json {
             group.Locale = json.GetValueOrDefault<string>("locale");
             group.Locale = json.GetValueOrDefault<string>("locale");
             group.Name = json.GetValueOrDefault<string>("name");
-            group.Posts = DeserializePosts(json.GetValue("posts"), mapper);
+            group.Posts = mapper.Deserialize<GroupPosts>(json.GetValue("posts"));
             group.ShortDescription = json.GetValueOrDefault<string>("shortDescription");
             group.SiteGroupUrl = json.GetValueOrDefault<string>("siteGroupUrl");
             group.SmallLogoUrl = json.GetValueOrDefault<string>("smallLogoUrl");
@@ -84,36 +84,6 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json {
             return groupCounts;
         }
 
-        public virtual GroupPosts DeserializePosts(JsonValue json, JsonMapper mapper)
-        {
-            var groupPosts = new GroupPosts{
-                Count = json.GetValue<int>("_count"), 
-                Start = json.GetValue<int>("_start"), 
-                Total = json.GetValue<int>("_total"),
-                Posts = new List<Post>()
-            };
-
-            JsonValue valuesJson =  json.GetValue("values");
-            if (valuesJson != null) {
-                foreach (var itemJson in valuesJson.GetValues()) {
-                    groupPosts.Posts.Add(new Post
-                    {
-                        Creator = DeserializeLinkedinProfile(itemJson.GetValue("creator"), mapper),
-                        ID = itemJson.GetValue<string>("id"),
-                        Title = itemJson.GetValue<string>("title"),
-                        Type = DeserializePostType(itemJson.GetValue("type"))
-                    });
-                }
-            }
-            return groupPosts;
-        }
-
-        private static LinkedInProfile DeserializeLinkedinProfile(JsonValue json, JsonMapper mapper)
-        {
-            var linkedInProfileDeserializer = new LinkedInProfileDeserializer();
-            return (LinkedInProfile)linkedInProfileDeserializer.Deserialize(json, mapper);
-        }
-
         private static PostCategory DeserializePostCategory(JsonValue json) {
             if (json != null) {
                 var code = json.GetValue<string>("code");
@@ -123,17 +93,6 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json {
                 }
             }
             return PostCategory.DISCUSSION;
-        }
-
-        private static PostType DeserializePostType(JsonValue json) {
-            if (json != null) {
-                var code = json.GetValue<string>("code");
-                switch (code.ToLowerInvariant()) {
-                    case "standard": return PostType.STANDARD;
-                    case "news": return PostType.NEWS;
-                }
-            }
-            return PostType.STANDARD;
         }
 
         protected virtual Group CreateGroup() {

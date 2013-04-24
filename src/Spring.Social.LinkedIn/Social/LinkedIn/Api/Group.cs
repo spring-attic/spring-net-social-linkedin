@@ -165,32 +165,15 @@ namespace Spring.Social.LinkedIn.Api
     /// <summary>
     /// 
     /// </summary>
-    public class GroupPosts : SearchResult
+    public class GroupPosts : PaginatedResult
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupPosts"/> class.
-        /// </summary>
-        public GroupPosts() : base(0, 0, 0)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupPosts"/> class.
-        /// </summary>
-        /// <param name="count">The count.</param>
-        /// <param name="start">The start.</param>
-        /// <param name="total">The total.</param>
-        public GroupPosts(int count, int start, int total) : base(count, start, total)
-        {
-        }
-
         /// <summary>
         /// Gets or sets the posts.
         /// </summary>
         /// <value>
         /// The posts.
         /// </value>
-        public List<Post> Posts { get; set; }
+        public IList<Post> Posts { get; set; }
     }
 
     /// <summary>

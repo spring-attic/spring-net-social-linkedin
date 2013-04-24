@@ -101,7 +101,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json {
 
 
         protected virtual GroupMemberships CreateGroupMemberships() {
-            return new GroupMemberships(0, 0, 0);
+            return new GroupMemberships();
         }
     }
 }

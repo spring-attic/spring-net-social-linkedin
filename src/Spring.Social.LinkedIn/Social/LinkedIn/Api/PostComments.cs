@@ -30,15 +30,8 @@ namespace Spring.Social.LinkedIn.Api
 #if !SILVERLIGHT
     [Serializable]
 #endif
-    public class PostComments : SearchResult
+    public class PostComments : PaginatedResult
     {
-
-        public PostComments(int count, int start, int total)
-            : base(count, start, total)
-        {
-
-        }
-
         public List<PostComment> Comments { get; set; }
     }
 }

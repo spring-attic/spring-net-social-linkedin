@@ -77,7 +77,7 @@ namespace Spring.Social.LinkedIn.Api
         /// <summary>
         /// Gets or sets the likes.
         /// </summary>
-        public List<LinkedInProfile> Likes { get; set; }
+        public IList<LinkedInProfile> Likes { get; set; }
 
         /// <summary>
         /// Gets or sets the attachment.

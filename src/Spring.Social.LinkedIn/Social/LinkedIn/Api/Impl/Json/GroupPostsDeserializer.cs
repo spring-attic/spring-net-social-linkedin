@@ -1,4 +1,5 @@
-#region
+﻿#region License
+
 /*
  * Copyright 2002-2012 the original author or authors.
  *
@@ -20,25 +21,27 @@
 using System;
 using System.Collections.Generic;
 
-namespace Spring.Social.LinkedIn.Api {
+using Spring.Json;
+
+namespace Spring.Social.LinkedIn.Api.Impl.Json
+{
     /// <summary>
-    /// Model class representing group memberships on LinkedIn
+    /// JSON deserializer for LinkedIn user's profile.
     /// </summary>
     /// <author>Original Java code: Robert Drysdale</author>
     /// <author>Manudea (.Net Porting)</author>
-#if !SILVERLIGHT
-    [Serializable]
-#endif
-    public class GroupMemberships : PaginatedResult {
+    class GroupPostsDeserializer : PaginatedResultDeserializer
+    {
+        public override object Deserialize(JsonValue json, JsonMapper mapper)
+        {
+            var groupPosts = (GroupPosts)base.Deserialize(json, mapper);
+            groupPosts.Posts = mapper.Deserialize<IList<Post>>(json);
+            return groupPosts;
+        }
 
-        /// <summary>
-        /// Gets or sets the memberships.
-        /// </summary>
-        /// <value>
-        /// The memberships.
-        /// </value>
-        public IList<GroupSettings> Memberships { get; set; }
-
+        protected override PaginatedResult CreatePaginatedResult()
+        {
+            return new GroupPosts();
+        }
     }
-
 }

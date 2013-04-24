@@ -163,6 +163,9 @@ namespace Spring.Social.LinkedIn.Api.Impl
             jsonMapper.RegisterDeserializer(typeof(LinkedInProfiles), new LinkedInProfilesDeserializer());
             jsonMapper.RegisterDeserializer(typeof(GroupMemberships), new GroupMembershipsDeserializer());
             jsonMapper.RegisterDeserializer(typeof(Group), new GroupDeserializer());
+            jsonMapper.RegisterDeserializer(typeof(IList<Post>), new PostListDeserializer<Post>());
+            jsonMapper.RegisterDeserializer(typeof(Post), new PostDeserializer());
+            jsonMapper.RegisterDeserializer(typeof(GroupPosts), new GroupPostsDeserializer());
 
             return new SpringJsonHttpMessageConverter(jsonMapper);
         }

@@ -35,7 +35,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
     /// <author>Original Java code: Robert Drysdale</author>
     /// <author>Manudea (.Net Porting)</author>
     [TestFixture]
-    public class GroupTemplateTest : AbstractLinkedInOperationsTests {
+    public class GroupTemplateTests : AbstractLinkedInOperationsTests {
 
         [Test]
         public void GetGroupMemberships()

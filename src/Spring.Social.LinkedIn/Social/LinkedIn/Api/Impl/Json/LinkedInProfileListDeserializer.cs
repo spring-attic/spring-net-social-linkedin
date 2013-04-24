@@ -28,20 +28,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
     /// JSON deserializer for list of LinkedIn user's profiles. 
     /// </summary>
     /// <author>Bruno Baia</author>
-    class LinkedInProfileListDeserializer<T> : IJsonDeserializer where T : LinkedInProfile
+    class LinkedInProfileListDeserializer<T> : BaseListDeserializer<T> where T : LinkedInProfile
     {
-        public object Deserialize(JsonValue value, JsonMapper mapper)
-        {
-            IList<T> linkedInProfiles = new List<T>();
-            JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-            if (usersValue != null)
-            {
-                foreach (JsonValue itemValue in usersValue.GetValues())
-                {
-                    linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
-                }
-            }
-            return linkedInProfiles;
-        }
     }
 }

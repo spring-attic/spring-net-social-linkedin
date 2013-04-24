@@ -114,6 +114,10 @@
     <Compile Include="Social\LinkedIn\Api\Education.cs" />
     <Compile Include="Social\LinkedIn\Api\ImAccount.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperations.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\BaseListDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\PostListDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\PostDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\GroupPostsDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\GroupDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\GroupMembershipsDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInFullProfileDeserializer.cs" />
@@ -170,7 +174,6 @@
     <Compile Include="Social\LinkedIn\Api\GroupMemberships.cs" />
     <Compile Include="Social\LinkedIn\Api\PostComment.cs" />
     <Compile Include="Social\LinkedIn\Api\PostComments.cs" />
-    <Compile Include="Social\LinkedIn\Api\SearchResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Social\LinkedIn\Api\GroupSettings.cs" />
