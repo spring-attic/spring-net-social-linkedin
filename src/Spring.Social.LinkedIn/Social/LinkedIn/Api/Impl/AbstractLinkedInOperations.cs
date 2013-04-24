@@ -34,7 +34,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
     /// Base class for LinkedIn operations.
     /// </summary>
     /// <author>Bruno Baia</author>
-    abstract class AbstractLinkedInOperations
+    public abstract class AbstractLinkedInOperations
     {
         protected string BuildUrl(string path, string parameterName, string parameterValue)
         {

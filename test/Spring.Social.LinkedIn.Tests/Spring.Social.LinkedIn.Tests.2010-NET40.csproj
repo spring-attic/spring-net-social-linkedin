@@ -115,6 +115,9 @@
     <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperationsTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\CommunicationTemplateTests.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\GroupTemplateTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\LinkedInApiExceptionTests.cs" />
@@ -126,6 +129,29 @@
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Statistics.json" />
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Search.json" />
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\FullProfile.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\GroupSuggestions.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Group.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\company.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\company_search.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\connections.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\current.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\following.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\group.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\GroupMemberships.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\group_posts.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\group_post_comments.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\group_suggestions.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\job.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\job_bookmarks.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\job_search.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\job_suggestions.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\products.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\profile.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\profile_full.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\search.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\statistics.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\suggestions_to_follow.json" />
+    <None Include="Social\LinkedIn\Api\Impl\testdata\updates.json" />
     <None Include="Spring.Social.LinkedIn.Tests.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -135,6 +161,11 @@
       <Project>{04F79EC0-1F18-18D3-3F4B-01CFAE04EFBC}</Project>
       <Name>Spring.Social.LinkedIn.2010-NET40</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Social\LinkedIn\Api\Impl\GroupTemplateTest.java" />
+    <Content Include="Social\LinkedIn\Api\Impl\testdata\connections.xml" />
+    <Content Include="Social\LinkedIn\Api\Impl\testdata\profile.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

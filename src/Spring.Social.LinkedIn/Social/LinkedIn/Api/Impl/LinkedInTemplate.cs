@@ -43,6 +43,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
         private ICommunicationOperations communicationOperations;
         private IConnectionOperations connectionOperations;
         private IProfileOperations profileOperations;
+        private IGroupOperations groupOperations;
 
         /// <summary>
         /// Create a new instance of <see cref="LinkedInTemplate"/>.
@@ -81,6 +82,14 @@ namespace Spring.Social.LinkedIn.Api.Impl
         public IProfileOperations ProfileOperations 
         {
             get { return this.profileOperations; }
+        }
+
+        /// <summary>
+        /// Gets the portion of the LinkedIn API retrieving and performing operations on profiles.
+        /// </summary>
+        public IGroupOperations GroupOperations 
+        {
+            get { return this.groupOperations; }
         }
 
         /// <summary>
@@ -152,6 +161,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
             jsonMapper.RegisterSerializer(typeof(Message), new MessageSerializer());
             jsonMapper.RegisterSerializer(typeof(Invitation), new InvitationSerializer());
             jsonMapper.RegisterDeserializer(typeof(LinkedInProfiles), new LinkedInProfilesDeserializer());
+            jsonMapper.RegisterDeserializer(typeof(GroupMemberships), new GroupMembershipsDeserializer());
+            jsonMapper.RegisterDeserializer(typeof(Group), new GroupDeserializer());
 
             return new SpringJsonHttpMessageConverter(jsonMapper);
         }
@@ -161,6 +172,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             this.communicationOperations = new CommunicationTemplate(this.RestTemplate);
             this.connectionOperations = new ConnectionTemplate(this.RestTemplate);
             this.profileOperations = new ProfileTemplate(this.RestTemplate);
+            this.groupOperations = new GroupTemplate(this.RestTemplate);
         }
     }
 }
