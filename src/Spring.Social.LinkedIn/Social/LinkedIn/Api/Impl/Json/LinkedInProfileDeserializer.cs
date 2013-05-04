@@ -37,7 +37,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
         {
             LinkedInProfile profile = CreateLinkedInProfile();
 
-            profile.ID = json.GetValue<string>("id");
+            profile.ID = json.GetValueOrDefault<string>("id"); //sometimes id is null (on posts)
             profile.FirstName = json.GetValueOrDefault<string>("firstName", String.Empty);
             profile.LastName = json.GetValueOrDefault<string>("lastName", String.Empty);
             profile.Headline = json.GetValueOrDefault<string>("headline", String.Empty);

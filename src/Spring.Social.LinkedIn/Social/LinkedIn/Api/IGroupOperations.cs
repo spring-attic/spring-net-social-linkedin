@@ -109,18 +109,18 @@ namespace Spring.Social.LinkedIn.Api
         /// <summary>
         /// Asynchronously retrieves a specific user's LinkedIn List of Posts for a group in time order by its group ID.
         /// </summary>
-        /// <param name="id">The user ID for the user whose details are to be retrieved.</param>
+        /// <param name="groupId">The user ID for the user whose details are to be retrieved.</param>
         /// <returns>
         /// A <code>Task</code> that represents the asynchronous operation that can return 
         /// a <see cref="LinkedInFullProfile"/> object representing the full user's profile.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
-        Task<GroupPosts> GetPostsByGroupIdAsync(string id);
+        Task<GroupPosts> GetPostsByGroupIdAsync(int groupId);
 
         /// <summary>
         /// Asynchronously retrieves a specific user's LinkedIn List of Posts for a group in time order by its group ID.
         /// </summary>
-        /// <param name="id">The user ID for the user whose details are to be retrieved.</param>
+        /// <param name="groupId"></param>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         /// <returns>
@@ -128,7 +128,7 @@ namespace Spring.Social.LinkedIn.Api
         /// a <see cref="LinkedInFullProfile" /> object representing the full user's profile.
         /// </returns>
         /// <exception cref="LinkedInApiException">If there is an error while communicating with LinkedIn.</exception>
-        Task<GroupPosts> GetPostsByGroupIdAsync(string id, int start, int count);
+        Task<GroupPosts> GetPostsByGroupIdAsync(int groupId, int start, int count);
 
 
         /// <summary>

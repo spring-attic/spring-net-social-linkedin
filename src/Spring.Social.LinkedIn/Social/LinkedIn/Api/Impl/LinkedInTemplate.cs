@@ -85,7 +85,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
         }
 
         /// <summary>
-        /// Gets the portion of the LinkedIn API retrieving and performing operations on profiles.
+        /// Gets the portion of the LinkedIn API retrieving and performing operations on groups.
         /// </summary>
         public IGroupOperations GroupOperations 
         {

@@ -167,28 +167,70 @@ namespace Spring.Social.LinkedIn.Api
         public String Title { get; set; }
     }
 
+    /// <summary>
+    /// Post Category
+    /// </summary>
     public enum PostCategory
     {
         DISCUSSION,
         JOB
     }
 
+    /// <summary>
+    /// Post Type
+    /// </summary>
     public enum PostType
     {
-        STANDARD,
-        NEWS
+        /// <summary>
+        /// Standard
+        /// </summary>
+        Standard,
+        /// <summary>
+        /// News
+        /// </summary>
+        News
     }
 
+    /// <summary>
+    /// Post Available Action
+    /// </summary>
     public enum PostAvailableAction
     {
-        ADD_COMMENT,
-        FLAG_AS_INAPPROPRIATE,
-        CATEGORIZE_AS_JOB,
-        CATEGORIZE_AS_PROMOTION,
-        DELETE,
-        FOLLOW,
-        LIKE,
-        REPLY_PRIVATELY,
-        UNFOLLOW
+        /// <summary>
+        /// Add comment
+        /// </summary>
+        AddComment,
+        /// <summary>
+        /// Flag as innappropriate
+        /// </summary>
+        FlagAsInnappropriate,
+        /// <summary>
+        /// Categorize as job
+        /// </summary>
+        CategorizeAsJob,
+        /// <summary>
+        /// Categorize as promotion
+        /// </summary>
+        CategorizeAsPromotion,
+        /// <summary>
+        /// Delete
+        /// </summary>
+        Delete,
+        /// <summary>
+        /// Follow
+        /// </summary>
+        Follow,
+        /// <summary>
+        /// Like
+        /// </summary>
+        Like,
+        /// <summary>
+        /// ReplyPrivately
+        /// </summary>
+        ReplyPrivately,
+        /// <summary>
+        /// Unfollow
+        /// </summary>
+        Unfollow
     }
 }

@@ -115,6 +115,7 @@
     <Compile Include="Social\LinkedIn\Api\ImAccount.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperations.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\BaseListDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\DeserializeTimeStamp.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\PostListDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\PostDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\GroupPostsDeserializer.cs" />

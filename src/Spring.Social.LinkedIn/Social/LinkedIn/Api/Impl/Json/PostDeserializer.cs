@@ -24,42 +24,43 @@ using System.Globalization;
 
 using Spring.Json;
 
-namespace Spring.Social.LinkedIn.Api.Impl.Json
-{
+namespace Spring.Social.LinkedIn.Api.Impl.Json {
     /// <summary>
     /// JSON deserializer for LinkedIn user's profile.
     /// </summary>
     /// <author>Original Java code: Robert Drysdale</author>
     /// <author>Manudea (.Net Porting)</author>
-    class PostDeserializer : IJsonDeserializer
-    {
-        
-        public virtual object Deserialize(JsonValue json, JsonMapper mapper)
-        {
-            var post = new Post{
-                Creator = mapper.Deserialize<LinkedInProfile>(json.GetValue("creator")), 
-                ID = json.GetValue<string>("id"), 
-                Title = json.GetValue<string>("title"), 
-                Type = DeserializePostType(json.GetValue("type")),
-                //TODO Attachment = DeserializeAttachment(json.GetValue("attachment")), 
-                //TODO CreationTimestamp = json.GetValue<DateTime>("creationtimestamp"), 
-                Likes = mapper.Deserialize<IList<LinkedInProfile>>(json.GetValue("likes")),
-                //TODO RelationToViewer = DeserializePostRelation(json.GetValue("relation-to-viewer")),
-                Summary = json.GetValueOrDefault<string>("summary") 
-            };
+    class PostDeserializer : IJsonDeserializer {
+
+        public virtual object Deserialize(JsonValue json, JsonMapper mapper) {
+            var post = CreatePost();
+
+            post.ID = json.GetValue<string>("id");
+            post.Creator = mapper.Deserialize<LinkedInProfile>(json.GetValue("creator"));
+            post.Title = json.GetValueOrDefault<string>("title", String.Empty);
+            post.Type = DeserializePostType(json.GetValue("type"));
+            //TODO post.Attachment = DeserializeAttachment(json.GetValue("attachment")); 
+            post.CreationTimestamp = DeserializeTimeStamp.Deserialize(json.GetValue("creationTimestamp")); 
+            post.Likes = mapper.Deserialize<IList<LinkedInProfile>>(json.GetValue("likes"));
+            //TODO RelationToViewer = DeserializePostRelation(json.GetValue("relation-to-viewer"));
+            post.Summary = json.GetValueOrDefault<string>("summary", String.Empty);
 
             return post;
+        }
+
+        protected virtual Post CreatePost() {
+            return new Post();
         }
 
         private static PostType DeserializePostType(JsonValue json) {
             if (json != null) {
                 var code = json.GetValue<string>("code");
                 switch (code.ToLowerInvariant()) {
-                    case "standard": return PostType.STANDARD;
-                    case "news": return PostType.NEWS;
+                    case "standard": return PostType.Standard;
+                    case "news": return PostType.News;
                 }
             }
-            return PostType.STANDARD;
+            return PostType.Standard;
         }
     }
 }

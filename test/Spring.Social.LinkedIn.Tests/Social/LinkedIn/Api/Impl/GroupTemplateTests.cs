@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.Net;
 using System.Collections.Generic;
 
@@ -106,7 +107,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
 
             Assert.AreEqual("g-46964-S-88566811", group.Posts.Posts[0].ID);
             Assert.AreEqual("Tips on Choosing The Best Web Hosting Services", group.Posts.Posts[0].Title);
-            Assert.AreEqual(PostType.STANDARD, group.Posts.Posts[0].Type);
+            Assert.AreEqual(PostType.Standard, group.Posts.Posts[0].Type);
+            Assert.AreEqual(DateTime.Parse("2013-05-04 02:09:13.000"), group.Posts.Posts[0].CreationTimestamp);
 
             //TODO
             //Assert.AreEqual(3, group.RelationToViewer.AvailableActions.Count);

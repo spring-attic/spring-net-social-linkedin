@@ -55,5 +55,10 @@ namespace Spring.Social.LinkedIn.Api
         /// The <see cref="IRestOperations"/> object returned is configured to include an OAuth "Authorization" header on all requests.
         /// </remarks>
         IRestOperations RestOperations { get; }
+
+        /// <summary>
+        /// Gets the portion of the LinkedIn API retrieving and performing operations on groups.
+        /// </summary>
+        IGroupOperations GroupOperations { get; }
     }
 }
