@@ -40,9 +40,6 @@ namespace Spring.Social.LinkedIn.Api.Impl
     /// <author>Bruno Baia</author>
     class ProfileTemplate : AbstractLinkedInOperations, IProfileOperations
     {
-        private const string ProfileUrl = "people/{id}:(id,first-name,last-name,headline,industry,public-profile-url,picture-url,summary,site-standard-profile-request,api-standard-profile-request)?format=json";
-        private const string FullProfileUrl = "people/{id}:(id,first-name,last-name,headline,industry,public-profile-url,picture-url,summary,site-standard-profile-request,api-standard-profile-request,location,distance,num-connections,num-connections-capped,specialties,proposal-comments,associations,honors,interests,positions,skills,educations,num-recommenders,recommendations-received,phone-numbers,im-accounts,twitter-accounts,date-of-birth,main-address,member-url-resources,certifications,publications,courses,languages)?format=json";
-
         private const string SearchUrl = "https://api.linkedin.com/v1/people-search:(people:(id,first-name,last-name,headline,industry,public-profile-url,picture-url,summary,site-standard-profile-request,api-standard-profile-request))?format=json";
 
         private RestTemplate restTemplate;
@@ -57,32 +54,32 @@ namespace Spring.Social.LinkedIn.Api.Impl
 #if NET_4_0 || SILVERLIGHT_5
         public Task<LinkedInProfile> GetUserProfileAsync()
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl, "~");
+            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl.Basic, "~");
         }
 
         public Task<LinkedInProfile> GetUserProfileByIdAsync(string id)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl, "id=" + id);
+            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl.Basic, "id=" + id);
         }
 
         public Task<LinkedInProfile> GetUserProfileByPublicUrlAsync(string url)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl, "url=" + HttpUtils.UrlEncode(url));
+            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl.Basic, "url=" + HttpUtils.UrlEncode(url));
         }
 
         public Task<LinkedInFullProfile> GetUserFullProfileAsync()
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(FullProfileUrl, "~");
+            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(ProfileUrl.Full, "~");
         }
 
         public Task<LinkedInFullProfile> GetUserFullProfileByIdAsync(string id)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(FullProfileUrl, "id=" + id);
+            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(ProfileUrl.Full, "id=" + id);
         }
 
         public Task<LinkedInFullProfile> GetUserFullProfileByPublicUrlAsync(string url)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(FullProfileUrl, "url=" + HttpUtils.UrlEncode(url));
+            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(ProfileUrl.Full, "url=" + HttpUtils.UrlEncode(url));
         }
 
         public Task<LinkedInProfiles> SearchAsync(SearchParameters searchParams)
@@ -94,32 +91,32 @@ namespace Spring.Social.LinkedIn.Api.Impl
 #if !SILVERLIGHT
         public LinkedInProfile GetUserProfile()
         {
-            return this.restTemplate.GetForObject<LinkedInProfile>(ProfileUrl, "~");
+            return this.restTemplate.GetForObject<LinkedInProfile>(ProfileUrl.Basic, "~");
         }
 
         public LinkedInProfile GetUserProfileById(string id)
         {
-            return this.restTemplate.GetForObject<LinkedInProfile>(ProfileUrl, "id=" + id);
+            return this.restTemplate.GetForObject<LinkedInProfile>(ProfileUrl.Basic, "id=" + id);
         }
 
         public LinkedInProfile GetUserProfileByPublicUrl(string url)
         {
-            return this.restTemplate.GetForObject<LinkedInProfile>(ProfileUrl, "url=" + HttpUtils.UrlEncode(url));
+            return this.restTemplate.GetForObject<LinkedInProfile>(ProfileUrl.Basic, "url=" + HttpUtils.UrlEncode(url));
         }
 
         public LinkedInFullProfile GetUserFullProfile()
         {
-            return this.restTemplate.GetForObject<LinkedInFullProfile>(FullProfileUrl, "~");
+            return this.restTemplate.GetForObject<LinkedInFullProfile>(ProfileUrl.Full, "~");
         }
 
         public LinkedInFullProfile GetUserFullProfileById(string id)
         {
-            return this.restTemplate.GetForObject<LinkedInFullProfile>(FullProfileUrl, "id=" + id);
+            return this.restTemplate.GetForObject<LinkedInFullProfile>(ProfileUrl.Full, "id=" + id);
         }
 
         public LinkedInFullProfile GetUserFullProfileByPublicUrl(string url)
         {
-            return this.restTemplate.GetForObject<LinkedInFullProfile>(FullProfileUrl, "url=" + HttpUtils.UrlEncode(url));
+            return this.restTemplate.GetForObject<LinkedInFullProfile>(ProfileUrl.Full, "url=" + HttpUtils.UrlEncode(url));
         }
 
         public LinkedInProfiles Search(SearchParameters searchParams)
@@ -131,33 +128,33 @@ namespace Spring.Social.LinkedIn.Api.Impl
 
         public RestOperationCanceler GetUserProfileAsync(Action<RestOperationCompletedEventArgs<LinkedInProfile>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl, operationCompleted, "~");
+            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl.Basic, operationCompleted, "~");
         }
 
         public RestOperationCanceler GetUserProfileByIdAsync(string id, Action<RestOperationCompletedEventArgs<LinkedInProfile>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl, operationCompleted, "id=" + id);
+            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl.Basic, operationCompleted, "id=" + id);
         }
 
         public RestOperationCanceler GetUserFullProfileAsync(Action<RestOperationCompletedEventArgs<LinkedInFullProfile>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(FullProfileUrl, operationCompleted, "~");
+            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(ProfileUrl.Full, operationCompleted, "~");
         }
 
         public RestOperationCanceler GetUserFullProfileByIdAsync(string id, Action<RestOperationCompletedEventArgs<LinkedInFullProfile>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(FullProfileUrl, operationCompleted, "id=" + id);
+            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(ProfileUrl.Full, operationCompleted, "id=" + id);
         }
 
 #if !WINDOWS_PHONE
         public RestOperationCanceler GetUserProfileByPublicUrlAsync(string url, Action<RestOperationCompletedEventArgs<LinkedInProfile>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl, operationCompleted, "url=" + HttpUtils.UrlEncode(url));
+            return this.restTemplate.GetForObjectAsync<LinkedInProfile>(ProfileUrl.Basic, operationCompleted, "url=" + HttpUtils.UrlEncode(url));
         }
 
         public RestOperationCanceler GetUserFullProfileByPublicUrlAsync(string url, Action<RestOperationCompletedEventArgs<LinkedInFullProfile>> operationCompleted)
         {
-            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(FullProfileUrl, operationCompleted, "url=" + HttpUtils.UrlEncode(url));
+            return this.restTemplate.GetForObjectAsync<LinkedInFullProfile>(ProfileUrl.Full, operationCompleted, "url=" + HttpUtils.UrlEncode(url));
         }
 #endif
 

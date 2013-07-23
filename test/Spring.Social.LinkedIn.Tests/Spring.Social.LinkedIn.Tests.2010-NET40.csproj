@@ -117,6 +117,7 @@
     <Compile Include="Social\LinkedIn\Api\Impl\CommunicationTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplateTests.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\ProfileUrlTests.cs" />
     <Compile Include="Social\LinkedIn\Api\LinkedInApiExceptionTests.cs" />
     <Compile Include="Util\SerializationTestUtils.cs" />
   </ItemGroup>
