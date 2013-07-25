@@ -83,6 +83,7 @@
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplate.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Social\LinkedIn\Api\Impl\ProfileUrl.cs" />
     <Compile Include="Social\LinkedIn\Api\IProfileOperations.cs">
       <SubType>Code</SubType>
     </Compile>
