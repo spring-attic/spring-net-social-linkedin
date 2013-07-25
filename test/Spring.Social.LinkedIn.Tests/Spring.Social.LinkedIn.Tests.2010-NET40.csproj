@@ -115,6 +115,9 @@
     <Compile Include="Social\LinkedIn\Api\Impl\AbstractLinkedInOperationsTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\CommunicationTemplateTests.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\GroupTemplateTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileTemplateTests.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileUrlTests.cs" />
@@ -127,6 +130,9 @@
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Statistics.json" />
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Search.json" />
     <EmbeddedResource Include="Social\LinkedIn\Api\Impl\FullProfile.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\GroupSuggestions.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\Group.json" />
+    <EmbeddedResource Include="Social\LinkedIn\Api\Impl\GroupMemberships.json" />
     <None Include="Spring.Social.LinkedIn.Tests.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -136,6 +142,9 @@
       <Project>{04F79EC0-1F18-18D3-3F4B-01CFAE04EFBC}</Project>
       <Name>Spring.Social.LinkedIn.2010-NET40</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Social\LinkedIn\Api\Impl\GroupTemplateTest.java" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

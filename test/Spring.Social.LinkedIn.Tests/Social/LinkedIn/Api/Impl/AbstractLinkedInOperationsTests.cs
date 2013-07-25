@@ -28,52 +28,56 @@ using Spring.IO;
 using Spring.Http;
 using Spring.Http.Client;
 
-namespace Spring.Social.LinkedIn.Api.Impl
-{
+namespace Spring.Social.LinkedIn.Api.Impl {
     /// <summary>
     /// Base class for all AbstractLinkedInOperations subclasses unit tests.
     /// </summary>
     /// <author>Bruno Baia</author>
-    public abstract class AbstractLinkedInOperationsTests
-    {
-        protected LinkedInTemplate linkedIn;	
-	    protected MockRestServiceServer mockServer;
-	    protected HttpHeaders responseHeaders;
+    public abstract class AbstractLinkedInOperationsTests {
+        protected LinkedInTemplate linkedIn;
+        protected MockRestServiceServer mockServer;
+        protected HttpHeaders responseHeaders;
 
-	    [SetUp]
-	    public void Setup() 
-        {
-		    linkedIn = new LinkedInTemplate("API_KEY", "API_SECRET", "ACCESS_TOKEN", "ACCESS_TOKEN_SECRET");
+        [SetUp]
+        public void Setup() {
+            linkedIn = new LinkedInTemplate("API_KEY", "API_SECRET", "ACCESS_TOKEN", "ACCESS_TOKEN_SECRET");
             mockServer = MockRestServiceServer.CreateServer(linkedIn.RestTemplate);
-		    responseHeaders = new HttpHeaders();
+            responseHeaders = new HttpHeaders();
             responseHeaders.ContentType = new MediaType("application", "json", Encoding.Default);
-	    }
+        }
 
         [TearDown]
-        public void TearDown()
-        {
+        public void TearDown() {
             mockServer.Verify();
         }
-	
-	    protected IResource JsonResource(string filename) 
-        {
-		    return new AssemblyResource(filename + ".json", typeof(AbstractLinkedInOperationsTests));
-	    }
 
-        protected static RequestMatcher UriStartsWith(string url)
-        {
-            return delegate(IClientHttpRequest request)
-            {
+        protected IResource JsonResource(string filename) {
+            return new AssemblyResource(filename + ".json", typeof(AbstractLinkedInOperationsTests));
+        }
+
+        protected static RequestMatcher UriStartsWith(string url) {
+            return delegate(IClientHttpRequest request) {
                 AssertionUtils.IsTrue(
-                    request.Uri.ToString().StartsWith(url, StringComparison.OrdinalIgnoreCase), 
+                    request.Uri.ToString().StartsWith(url, StringComparison.OrdinalIgnoreCase),
                     String.Format("URI '{0}' didn't start with expected value [expected:<{1}>]", request.Uri, url));
             };
         }
 
+        protected void AssertProfile(LinkedInProfile connection, String id, String headline, String firstName,
+        String lastName, String industry, String standardUrl) {
+            Assert.AreEqual(id, connection.ID);
+            Assert.AreEqual(headline, connection.Headline);
+            Assert.AreEqual(firstName, connection.FirstName);
+            Assert.AreEqual(lastName, connection.LastName);
+            if (!string.IsNullOrEmpty(industry))
+                Assert.AreEqual(industry, connection.Industry);
+            if (!string.IsNullOrEmpty(standardUrl))
+                Assert.AreEqual(standardUrl, connection.StandardProfileUrl);
+        }
+
         protected void AssertProfile(LinkedInProfile profile,
             string id, string headline, string firstName, string lastName, string industry, string pictureUrl,
-            string summary, string publicProfileUrl, string standardProfileUrl, string authToken)
-        {
+            string summary, string publicProfileUrl, string standardProfileUrl, string authToken) {
             Assert.AreEqual(id, profile.ID);
             Assert.AreEqual(headline, profile.Headline);
             Assert.AreEqual(firstName, profile.FirstName);
@@ -87,12 +91,9 @@ namespace Spring.Social.LinkedIn.Api.Impl
         }
 
 #if NET_4_0 || SILVERLIGHT_5
-        protected void AssertLinkedInApiException(AggregateException ae, string expectedMessage, LinkedInApiError error)
-        {
-            ae.Handle(ex =>
-            {
-                if (ex is LinkedInApiException)
-                {
+        protected void AssertLinkedInApiException(AggregateException ae, string expectedMessage, LinkedInApiError error) {
+            ae.Handle(ex => {
+                if (ex is LinkedInApiException) {
                     Assert.AreEqual(expectedMessage, ex.Message);
                     Assert.AreEqual(error, ((LinkedInApiException)ex).Error);
                     return true;
