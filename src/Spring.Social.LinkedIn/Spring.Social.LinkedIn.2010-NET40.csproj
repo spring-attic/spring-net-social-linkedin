@@ -116,6 +116,7 @@
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInFullProfileDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfilesDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\PaginatedResultDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\ProfileUrl.cs" />
     <Compile Include="Social\LinkedIn\Api\Language.cs" />
     <Compile Include="Social\LinkedIn\Api\LinkedInDate.cs" />
     <Compile Include="Social\LinkedIn\Api\LinkedInFullProfile.cs" />

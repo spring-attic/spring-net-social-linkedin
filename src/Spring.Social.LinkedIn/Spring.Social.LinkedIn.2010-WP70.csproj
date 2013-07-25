@@ -82,6 +82,7 @@
     <Compile Include="Social\LinkedIn\Api\Impl\Json\MessageSerializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\NetworkStatisticsDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\PaginatedResultDeserializer.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\ProfileUrl.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInRequestFactoryInterceptor.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\LinkedInTemplate.cs">
       <SubType>Code</SubType>
