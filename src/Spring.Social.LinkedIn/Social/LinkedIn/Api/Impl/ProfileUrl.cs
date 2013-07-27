@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,20 +24,59 @@ using System.Collections.Generic;
 namespace Spring.Social.LinkedIn.Api.Impl
 {
     /// <summary>
-    /// LinkedIn profile permissions.
+    /// Represents LinkedIn profile permissions.
     /// </summary>
     [Flags]
     public enum Permissions : int
     {
+        /// <summary>
+        /// Not specified, same as 'r_basicprofile'
+        /// </summary>
         none = 0,
+
+        /// <summary>
+        /// Your Profile Overview (Name, photo, headline, and current positions)
+        /// </summary>
         r_basicprofile = 1,
+
+        /// <summary>
+        /// Your Full Profile (Full profile including experience, education, skills, and recommendations)
+        /// </summary>
         r_fullprofile = 2,
+
+        /// <summary>
+        /// Your Email Address (The primary email address you use for your LinkedIn account)
+        /// </summary>
         r_emailaddress = 4,
+
+        /// <summary>
+        /// Your Connections (Your 1st and 2nd degree connections)
+        /// </summary>
         r_network = 8,
+
+        /// <summary>
+        /// Your Contact Info (Address, phone number, and bound accounts)
+        /// </summary>
         r_contactinfo = 16,
+
+        /// <summary>
+        /// Network Updates (Retrieve and post updates to LinkedIn as you)
+        /// </summary>
         rw_nus = 32,
+
+        /// <summary>
+        /// Group Discussions (Retrieve and post group discussions as you)
+        /// </summary>
         rw_groups = 64,
+
+        /// <summary>
+        /// Invitations and Messages (Send messages and invitations to connect as you)
+        /// </summary>
         w_messages = 128,
+
+        /// <summary>
+        /// All permissions
+        /// </summary>
         all = r_basicprofile | r_fullprofile | r_emailaddress | r_network | r_contactinfo | rw_nus | rw_groups | w_messages
     }
 
