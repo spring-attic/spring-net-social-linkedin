@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,39 +24,18 @@ using System.Collections.Generic;
 namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// Model class representing a group on LinkedIn
+    /// Represents a LinkedIn group.
     /// </summary>
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
 #if !SILVERLIGHT
     [Serializable]
 #endif
     public class Group
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Group"/> class.
+        /// Gets or sets the group ID.
         /// </summary>
-        /// <param name="id">The id.</param>
-        /// <param name="name">The name.</param>
-        public Group(int id, String name)
-        {
-            ID = id;
-            Name = name;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Group"/> class.
-        /// </summary>
-        public Group()
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the ID.
-        /// </summary>
-        /// <value>
-        /// The ID.
-        /// </value>
         public int ID { get; set; }
 
         /// <summary>
@@ -77,7 +56,7 @@ namespace Spring.Social.LinkedIn.Api
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
-        public String Description { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is open to non members.
@@ -87,17 +66,17 @@ namespace Spring.Social.LinkedIn.Api
         /// <summary>
         /// Gets or sets the large logo URL.
         /// </summary>
-        public String LargeLogoUrl { get; set; }
+        public string LargeLogoUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the locale.
         /// </summary>
-        public String Locale { get; set; }
+        public string Locale { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the posts.
@@ -112,45 +91,29 @@ namespace Spring.Social.LinkedIn.Api
         /// <summary>
         /// Gets or sets the short description.
         /// </summary>
-        public String ShortDescription { get; set; }
+        public string ShortDescription { get; set; }
 
         /// <summary>
         /// Gets or sets the site group URL.
         /// </summary>
-        public String SiteGroupUrl { get; set; }
+        public string SiteGroupUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the small logo URL.
         /// </summary>
-        public String SmallLogoUrl { get; set; }
+        public string SmallLogoUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the website URL.
         /// </summary>
-        public String WebsiteUrl { get; set; }
+        public string WebsiteUrl { get; set; }
     }
 
     /// <summary>
-    /// Group Count
+    /// Represents the number of LinkedIn groups by category.
     /// </summary>
     public class GroupCount
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupCount"/> class.
-        /// </summary>
-        public GroupCount() {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupCount"/> class.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <param name="count">The count.</param>
-        public GroupCount(PostCategory category, int count) {
-            Category = category;
-            Count = count;
-        }
-
         /// <summary>
         /// Gets or sets the category.
         /// </summary>
@@ -163,7 +126,7 @@ namespace Spring.Social.LinkedIn.Api
     }
 
     /// <summary>
-    /// 
+    /// Represents LinkedIn posts for a group.
     /// </summary>
     public class GroupPosts : PaginatedResult
     {
@@ -177,25 +140,14 @@ namespace Spring.Social.LinkedIn.Api
     }
 
     /// <summary>
-    /// 
+    /// Represents a LinkedIn group relation to viewer.
     /// </summary>
     public class GroupRelation
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GroupRelation"/> class.
-        /// </summary>
-        /// <param name="availableActions">The available actions.</param>
-        /// <param name="membershipState">State of the membership.</param>
-        public GroupRelation(List<GroupAvailableAction> availableActions, MembershipState membershipState)
-        {
-            AvailableActions = availableActions;
-            MembershipState = membershipState;
-        }
-
-        /// <summary>
         /// Gets or sets the available actions.
         /// </summary>
-        public List<GroupAvailableAction> AvailableActions { get; set; }
+        public IList<GroupAvailableAction> AvailableActions { get; set; }
 
         /// <summary>
         /// Gets or sets the state of the membership.
@@ -203,83 +155,95 @@ namespace Spring.Social.LinkedIn.Api
         public MembershipState MembershipState { get; set; }
     }
 
-
     /// <summary>
-    /// 
+    /// Represents LinkedIn categories for a group.
     /// </summary>
     public enum GroupCategory
     {
         /// <summary>
-        /// The ALUMNI
+        /// Alumni
         /// </summary>
         Alumni,
+
         /// <summary>
-        /// The CORPORATE
+        /// Corporate
         /// </summary>
         Corporate,
+
         /// <summary>
-        /// The CONFERENCE
+        /// Conference
         /// </summary>
         Conference,
+
         /// <summary>
-        /// The NETWORK
+        /// Network
         /// </summary>
         Network,
+
         /// <summary>
-        /// The PHILANTHROPIC
+        /// Philanthropic
         /// </summary>
         Philanthropic,
+
         /// <summary>
-        /// The PROFESSIONAL
+        /// Professional
         /// </summary>
         Professional,
+
         /// <summary>
-        /// The OTHER
+        /// Other
         /// </summary>
         Other
     }
 
     /// <summary>
-    /// 
+    /// Represents LinkedIn states for a membership.
     /// </summary>
     public enum MembershipState
     {
         /// <summary>
-        /// The blocked
+        /// Blocked
         /// </summary>
         Blocked,
+
         /// <summary>
-        /// The non member
+        /// Non member
         /// </summary>
         NonMember,
+
         /// <summary>
-        /// The awaiting confirmation
+        /// Awaiting confirmation
         /// </summary>
         AwaitingConfirmation,
+
         /// <summary>
-        /// The awaiting parent group confirmation
+        /// Awaiting parent group confirmation
         /// </summary>
         AwaitingParentGroupConfirmation,
+
         /// <summary>
-        /// The member
+        /// Member
         /// </summary>
         Member,
+
         /// <summary>
-        /// The moderator
+        /// Moderator
         /// </summary>
         Moderator,
+
         /// <summary>
-        /// The manager
+        /// Manager
         /// </summary>
         Manager,
+
         /// <summary>
-        /// The owner
+        /// Owner
         /// </summary>
         Owner
     }
 
     /// <summary>
-    /// 
+    /// Represents LinkedIn available actions for a group.
     /// </summary>
     public enum GroupAvailableAction
     {
@@ -287,10 +251,12 @@ namespace Spring.Social.LinkedIn.Api
         /// The AD d_ POST
         /// </summary>
         ADD_POST,
+
         /// <summary>
         /// The LEAVE
         /// </summary>
         LEAVE,
+
         /// <summary>
         /// The VIE w_ POSTS
         /// </summary>

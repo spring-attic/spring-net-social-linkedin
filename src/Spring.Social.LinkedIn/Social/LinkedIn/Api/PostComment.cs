@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,38 +18,20 @@
 
 #endregion
 
-#region
-
 using System;
-
-#endregion
 
 namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// Comment on an object such as a post or update
+    /// Represents a LinkedIn comment on an object such as a post or update.
     /// </summary>    
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
 #if !SILVERLIGHT
     [Serializable]
 #endif
-    public class PostComment {
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PostComment"/> class.
-        /// </summary>
-        /// <param name="creationTimestamp">The creation timestamp.</param>
-        /// <param name="creator">The creator.</param>
-        /// <param name="id">The id.</param>
-        /// <param name="text">The text.</param>
-        public PostComment(DateTime creationTimestamp, LinkedInProfile creator, String id, String text) {
-            CreationTimestamp = creationTimestamp;
-            Creator = creator;
-            ID = id;
-            Text = text;
-        }
-
+    public class PostComment
+    {
         /// <summary>
         /// Gets or sets the creation timestamp.
         /// </summary>
@@ -63,12 +45,11 @@ namespace Spring.Social.LinkedIn.Api
         /// <summary>
         /// Gets or sets the ID.
         /// </summary>
-        public String ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
-        public String Text { get; set; }
+        public string Text { get; set; }
     }
-
 }

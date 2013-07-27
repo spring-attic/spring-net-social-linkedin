@@ -166,7 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Social\LinkedIn\Api\Comment.cs" />
-    <Compile Include="Social\LinkedIn\Api\Comments.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Social\LinkedIn\Api\Group.cs" />

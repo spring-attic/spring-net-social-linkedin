@@ -63,6 +63,7 @@
     <Compile Include="Social\LinkedIn\Api\Impl\CommunicationTemplate.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ConnectionTemplate.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Invitation.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\BaseListDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\InvitationSerializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInFullProfileDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\Json\LinkedInProfileDeserializer.cs">

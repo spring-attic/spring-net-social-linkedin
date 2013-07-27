@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,13 @@ namespace Spring.Social.LinkedIn.Api
         /// </summary>
         IProfileOperations ProfileOperations { get; }
 
+#if NET_4_0 || SILVERLIGHT_5
+        /// <summary>
+        /// Gets the portion of the LinkedIn API retrieving and performing operations on groups.
+        /// </summary>
+        IGroupOperations GroupOperations { get; }
+#endif
+
         /// <summary>
         /// Gets the underlying <see cref="IRestOperations"/> object allowing for consumption of LinkedIn endpoints 
         /// that may not be otherwise covered by the API binding. 
@@ -55,10 +62,5 @@ namespace Spring.Social.LinkedIn.Api
         /// The <see cref="IRestOperations"/> object returned is configured to include an OAuth "Authorization" header on all requests.
         /// </remarks>
         IRestOperations RestOperations { get; }
-
-        /// <summary>
-        /// Gets the portion of the LinkedIn API retrieving and performing operations on groups.
-        /// </summary>
-        IGroupOperations GroupOperations { get; }
     }
 }

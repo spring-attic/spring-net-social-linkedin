@@ -1,6 +1,7 @@
-#region
+#region License
+
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,25 +21,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace Spring.Social.LinkedIn.Api {
+namespace Spring.Social.LinkedIn.Api
+{
     /// <summary>
-    /// Model class representing group memberships on LinkedIn
+    /// Represents LinkedIn group memberships.
     /// </summary>
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
 #if !SILVERLIGHT
     [Serializable]
 #endif
-    public class GroupMemberships : PaginatedResult {
-
+    public class GroupMemberships : PaginatedResult
+    {
         /// <summary>
         /// Gets or sets the memberships.
         /// </summary>
-        /// <value>
-        /// The memberships.
-        /// </value>
         public IList<GroupSettings> Memberships { get; set; }
-
     }
-
 }

@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,62 +18,73 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 
 using Spring.Json;
 
-namespace Spring.Social.LinkedIn.Api.Impl.Json {
+namespace Spring.Social.LinkedIn.Api.Impl.Json
+{
     /// <summary>
     /// JSON deserializer for group.
     /// </summary>
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
-    class GroupDeserializer : IJsonDeserializer {
-        public virtual object Deserialize(JsonValue json, JsonMapper mapper) {
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
+    class GroupDeserializer : IJsonDeserializer
+    {
+        public virtual object Deserialize(JsonValue json, JsonMapper mapper)
+        {
             Group group = CreateGroup();
 
             group.AllowMemberInvites = json.GetValueOrDefault<bool>("allowMemberInvites");
             group.Category = DeserializeGroupCategory(json.GetValue("category"));
             group.CountsByCategory = DeserializeCountsByCategory(json.GetValue("countsByCategory"));
-            group.Description = json.GetValueOrDefault<string>("description"); 
+            group.Description = json.GetValueOrDefault<string>("description");
             group.ID = json.GetValue<int>("id");
             group.IsOpenToNonMembers = json.GetValueOrDefault<bool>("isOpenToNonMembers");
             group.LargeLogoUrl = json.GetValueOrDefault<string>("largeLogoUrl");
-            group.Locale = json.GetValueOrDefault<string>("locale");
             group.Locale = json.GetValueOrDefault<string>("locale");
             group.Name = json.GetValueOrDefault<string>("name");
             group.Posts = mapper.Deserialize<GroupPosts>(json.GetValue("posts"));
             group.ShortDescription = json.GetValueOrDefault<string>("shortDescription");
             group.SiteGroupUrl = json.GetValueOrDefault<string>("siteGroupUrl");
             group.SmallLogoUrl = json.GetValueOrDefault<string>("smallLogoUrl");
-            group.WebsiteUrl = json.GetValueOrDefault<string>("websiteUrl"); 
+            group.WebsiteUrl = json.GetValueOrDefault<string>("websiteUrl");
 
             return group;
         }
 
-        private static GroupCategory DeserializeGroupCategory(JsonValue json) {
-            if (json != null) {
+        protected virtual Group CreateGroup()
+        {
+            return new Group();
+        }
+
+        private static GroupCategory DeserializeGroupCategory(JsonValue json)
+        {
+            if (json != null)
+            {
                 var code = json.GetValue<string>("code");
-                switch (code.ToLowerInvariant()) {
+                switch (code.ToLowerInvariant())
+                {
                     case "alumni": return GroupCategory.Alumni;
                     case "conference": return GroupCategory.Conference;
                     case "corporate": return GroupCategory.Corporate;
                     case "network": return GroupCategory.Network;
                     case "other": return GroupCategory.Other;
-                    case "philantropic": return GroupCategory.Philanthropic;
+                    case "philanthropic": return GroupCategory.Philanthropic;
                     case "professional": return GroupCategory.Professional;
                 }
             }
             return GroupCategory.Other;
         }
 
-        public virtual IList<GroupCount> DeserializeCountsByCategory(JsonValue json) {
+        public virtual IList<GroupCount> DeserializeCountsByCategory(JsonValue json)
+        {
             IList<GroupCount> groupCounts = new List<GroupCount>();
-            JsonValue valuesJson =  json.GetValue("values");
-            if (valuesJson != null) {
-                foreach (var itemJson in valuesJson.GetValues()) {
+            JsonValue valuesJson = json.GetValue("values");
+            if (valuesJson != null)
+            {
+                foreach (var itemJson in valuesJson.GetValues())
+                {
                     groupCounts.Add(new GroupCount()
                     {
                         Category = DeserializePostCategory(itemJson.GetValue("category")),
@@ -84,19 +95,18 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json {
             return groupCounts;
         }
 
-        private static PostCategory DeserializePostCategory(JsonValue json) {
-            if (json != null) {
+        private static PostCategory DeserializePostCategory(JsonValue json)
+        {
+            if (json != null)
+            {
                 var code = json.GetValue<string>("code");
-                switch (code.ToLowerInvariant()) {
-                    case "discussion": return PostCategory.DISCUSSION;
-                    case "job": return PostCategory.JOB;
+                switch (code.ToLowerInvariant())
+                {
+                    case "discussion": return PostCategory.Discussion;
+                    case "job": return PostCategory.Job;
                 }
             }
-            return PostCategory.DISCUSSION;
-        }
-
-        protected virtual Group CreateGroup() {
-            return new Group();
+            return PostCategory.Discussion;
         }
     }
 }

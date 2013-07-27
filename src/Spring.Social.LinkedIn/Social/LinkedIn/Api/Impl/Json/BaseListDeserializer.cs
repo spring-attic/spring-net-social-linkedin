@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,23 +25,26 @@ using Spring.Json;
 namespace Spring.Social.LinkedIn.Api.Impl.Json
 {
     /// <summary>
-    /// JSON deserializer for list used in the api 
+    /// JSON deserializer for list used in the api. 
     /// </summary>
     /// <author>Bruno Baia</author>
     class BaseListDeserializer<T> : IJsonDeserializer
     {
         public object Deserialize(JsonValue value, JsonMapper mapper)
         {
-            IList<T> linkedInProfiles = new List<T>();
-            if (value != null) {
+            IList<T> list = new List<T>();
+            if (value != null)
+            {
                 JsonValue usersValue = value.IsObject ? value.GetValue("values") : value;
-                if (usersValue != null) {
-                    foreach (JsonValue itemValue in usersValue.GetValues()) {
-                        linkedInProfiles.Add(mapper.Deserialize<T>(itemValue));
+                if (usersValue != null)
+                {
+                    foreach (JsonValue itemValue in usersValue.GetValues())
+                    {
+                        list.Add(mapper.Deserialize<T>(itemValue));
                     }
                 }
             }
-            return linkedInProfiles;
+            return list;
         }
     }
 }

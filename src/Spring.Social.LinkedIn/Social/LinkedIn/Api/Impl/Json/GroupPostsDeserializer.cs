@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
 
 using Spring.Json;
@@ -28,8 +27,8 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
     /// <summary>
     /// JSON deserializer for LinkedIn user's profile.
     /// </summary>
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
     class GroupPostsDeserializer : PaginatedResultDeserializer
     {
         public override object Deserialize(JsonValue json, JsonMapper mapper)

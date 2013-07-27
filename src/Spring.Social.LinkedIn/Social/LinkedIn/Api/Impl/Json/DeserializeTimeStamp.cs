@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,19 +19,19 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 
 using Spring.Json;
 
-namespace Spring.Social.LinkedIn.Api.Impl.Json {
+namespace Spring.Social.LinkedIn.Api.Impl.Json
+{
     /// <summary>
     /// JSON deserializer for LinkedIn timestamps.
     /// </summary>
     /// <author>Manudea</author>
-    class DeserializeTimeStamp {
-
-        public static DateTime Deserialize(JsonValue json) {
+    class DeserializeTimeStamp
+    {
+        public static DateTime Deserialize(JsonValue json)
+        {
             var timeStamp = json.GetValue<double>();
             var origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return origin.AddMilliseconds(timeStamp);

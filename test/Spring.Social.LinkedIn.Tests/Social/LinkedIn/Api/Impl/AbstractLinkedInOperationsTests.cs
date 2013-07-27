@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,18 +28,21 @@ using Spring.IO;
 using Spring.Http;
 using Spring.Http.Client;
 
-namespace Spring.Social.LinkedIn.Api.Impl {
+namespace Spring.Social.LinkedIn.Api.Impl
+{
     /// <summary>
     /// Base class for all AbstractLinkedInOperations subclasses unit tests.
     /// </summary>
     /// <author>Bruno Baia</author>
-    public abstract class AbstractLinkedInOperationsTests {
+    public abstract class AbstractLinkedInOperationsTests
+    {
         protected LinkedInTemplate linkedIn;
         protected MockRestServiceServer mockServer;
         protected HttpHeaders responseHeaders;
 
         [SetUp]
-        public void Setup() {
+        public void Setup()
+        {
             linkedIn = new LinkedInTemplate("API_KEY", "API_SECRET", "ACCESS_TOKEN", "ACCESS_TOKEN_SECRET");
             mockServer = MockRestServiceServer.CreateServer(linkedIn.RestTemplate);
             responseHeaders = new HttpHeaders();
@@ -47,16 +50,20 @@ namespace Spring.Social.LinkedIn.Api.Impl {
         }
 
         [TearDown]
-        public void TearDown() {
+        public void TearDown()
+        {
             mockServer.Verify();
         }
 
-        protected IResource JsonResource(string filename) {
+        protected IResource JsonResource(string filename)
+        {
             return new AssemblyResource(filename + ".json", typeof(AbstractLinkedInOperationsTests));
         }
 
-        protected static RequestMatcher UriStartsWith(string url) {
-            return delegate(IClientHttpRequest request) {
+        protected static RequestMatcher UriStartsWith(string url)
+        {
+            return delegate(IClientHttpRequest request)
+            {
                 AssertionUtils.IsTrue(
                     request.Uri.ToString().StartsWith(url, StringComparison.OrdinalIgnoreCase),
                     String.Format("URI '{0}' didn't start with expected value [expected:<{1}>]", request.Uri, url));
@@ -64,7 +71,8 @@ namespace Spring.Social.LinkedIn.Api.Impl {
         }
 
         protected void AssertProfile(LinkedInProfile connection, String id, String headline, String firstName,
-        String lastName, String industry, String standardUrl) {
+        String lastName, String industry, String standardUrl)
+        {
             Assert.AreEqual(id, connection.ID);
             Assert.AreEqual(headline, connection.Headline);
             Assert.AreEqual(firstName, connection.FirstName);
@@ -77,7 +85,8 @@ namespace Spring.Social.LinkedIn.Api.Impl {
 
         protected void AssertProfile(LinkedInProfile profile,
             string id, string headline, string firstName, string lastName, string industry, string pictureUrl,
-            string summary, string publicProfileUrl, string standardProfileUrl, string authToken) {
+            string summary, string publicProfileUrl, string standardProfileUrl, string authToken)
+        {
             Assert.AreEqual(id, profile.ID);
             Assert.AreEqual(headline, profile.Headline);
             Assert.AreEqual(firstName, profile.FirstName);
@@ -91,9 +100,12 @@ namespace Spring.Social.LinkedIn.Api.Impl {
         }
 
 #if NET_4_0 || SILVERLIGHT_5
-        protected void AssertLinkedInApiException(AggregateException ae, string expectedMessage, LinkedInApiError error) {
-            ae.Handle(ex => {
-                if (ex is LinkedInApiException) {
+        protected void AssertLinkedInApiException(AggregateException ae, string expectedMessage, LinkedInApiError error)
+        {
+            ae.Handle(ex =>
+            {
+                if (ex is LinkedInApiException)
+                {
                     Assert.AreEqual(expectedMessage, ex.Message);
                     Assert.AreEqual(error, ((LinkedInApiException)ex).Error);
                     return true;

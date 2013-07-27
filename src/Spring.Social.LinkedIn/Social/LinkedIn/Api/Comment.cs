@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,32 +20,18 @@
 
 using System;
 
-namespace Spring.Social.LinkedIn.Api {
+namespace Spring.Social.LinkedIn.Api
+{
     /// <summary>
     /// Model class representing a comment on an object such as a post or update
     /// </summary>
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
 #if !SILVERLIGHT
     [Serializable]
 #endif
-    public class Comment {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Comment"/> class.
-        /// </summary>
-        /// <param name="comment">The comment.</param>
-        /// <param name="id">The id.</param>
-        /// <param name="person">The person.</param>
-        /// <param name="sequenceNumber">The sequence number.</param>
-        /// <param name="timestamp">The timestamp.</param>
-        public Comment(String comment, String id, LinkedInProfile person, int sequenceNumber, DateTime timestamp) {
-            CommentText = comment;
-            ID = id;
-            Person = person;
-            SequenceNumber = sequenceNumber;
-            Timestamp = timestamp;
-        }
-
+    public class Comment
+    {
         /// <summary>
         /// Gets or sets the unique identifier for the comment entry.
         /// </summary>
@@ -70,6 +56,5 @@ namespace Spring.Social.LinkedIn.Api {
         /// Gets or sets the timestamp.
         /// </summary>
         public DateTime Timestamp { get; set; }
-
     }
 }

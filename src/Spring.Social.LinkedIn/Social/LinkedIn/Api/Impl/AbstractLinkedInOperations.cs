@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,15 +34,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
     /// Base class for LinkedIn operations.
     /// </summary>
     /// <author>Bruno Baia</author>
-    public abstract class AbstractLinkedInOperations
+    abstract class AbstractLinkedInOperations
     {
-        /// <summary>
-        /// Builds the URL.
-        /// </summary>
-        /// <param name="path">The path.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        /// <param name="parameterValue">The parameter value.</param>
-        /// <returns></returns>
         protected string BuildUrl(string path, string parameterName, string parameterValue)
         {
             NameValueCollection parameters = new NameValueCollection();
@@ -50,12 +43,6 @@ namespace Spring.Social.LinkedIn.Api.Impl
             return this.BuildUrl(path, parameters);
         }
 
-        /// <summary>
-        /// Builds the URL.
-        /// </summary>
-        /// <param name="path">The path.</param>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
         protected string BuildUrl(string path, NameValueCollection parameters)
         {
             StringBuilder qsBuilder = new StringBuilder();

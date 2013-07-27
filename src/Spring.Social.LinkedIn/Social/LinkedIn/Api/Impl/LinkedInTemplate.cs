@@ -43,7 +43,9 @@ namespace Spring.Social.LinkedIn.Api.Impl
         private ICommunicationOperations communicationOperations;
         private IConnectionOperations connectionOperations;
         private IProfileOperations profileOperations;
+#if NET_4_0 || SILVERLIGHT_5
         private IGroupOperations groupOperations;
+#endif
 
         /// <summary>
         /// Create a new instance of <see cref="LinkedInTemplate"/>.
@@ -84,6 +86,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             get { return this.profileOperations; }
         }
 
+#if NET_4_0 || SILVERLIGHT_5
         /// <summary>
         /// Gets the portion of the LinkedIn API retrieving and performing operations on groups.
         /// </summary>
@@ -91,6 +94,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
         {
             get { return this.groupOperations; }
         }
+#endif
 
         /// <summary>
         /// Gets the underlying <see cref="IRestOperations"/> object allowing for consumption of LinkedIn endpoints 
@@ -161,11 +165,13 @@ namespace Spring.Social.LinkedIn.Api.Impl
             jsonMapper.RegisterSerializer(typeof(Message), new MessageSerializer());
             jsonMapper.RegisterSerializer(typeof(Invitation), new InvitationSerializer());
             jsonMapper.RegisterDeserializer(typeof(LinkedInProfiles), new LinkedInProfilesDeserializer());
+#if NET_4_0 || SILVERLIGHT_5
             jsonMapper.RegisterDeserializer(typeof(GroupMemberships), new GroupMembershipsDeserializer());
             jsonMapper.RegisterDeserializer(typeof(Group), new GroupDeserializer());
             jsonMapper.RegisterDeserializer(typeof(IList<Post>), new PostListDeserializer<Post>());
             jsonMapper.RegisterDeserializer(typeof(Post), new PostDeserializer());
             jsonMapper.RegisterDeserializer(typeof(GroupPosts), new GroupPostsDeserializer());
+#endif
 
             return new SpringJsonHttpMessageConverter(jsonMapper);
         }
@@ -175,7 +181,9 @@ namespace Spring.Social.LinkedIn.Api.Impl
             this.communicationOperations = new CommunicationTemplate(this.RestTemplate);
             this.connectionOperations = new ConnectionTemplate(this.RestTemplate);
             this.profileOperations = new ProfileTemplate(this.RestTemplate);
+#if NET_4_0 || SILVERLIGHT_5
             this.groupOperations = new GroupTemplate(this.RestTemplate);
+#endif
         }
     }
 }

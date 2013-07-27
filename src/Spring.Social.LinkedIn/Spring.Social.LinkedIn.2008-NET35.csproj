@@ -52,6 +52,7 @@
     <Compile Include="Social\LinkedIn\Api\Certification.cs" />
     <Compile Include="Social\LinkedIn\Api\Company.cs" />
     <Compile Include="Social\LinkedIn\Api\Course.cs" />
+    <Compile Include="Social\LinkedIn\Api\Impl\Json\BaseListDeserializer.cs" />
     <Compile Include="Social\LinkedIn\Api\Impl\ProfileUrl.cs" />
     <Compile Include="Social\LinkedIn\Api\Language.cs" />
     <Compile Include="Social\LinkedIn\Api\LinkedInUrl.cs" />

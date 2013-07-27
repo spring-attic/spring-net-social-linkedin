@@ -1,6 +1,7 @@
-#region
+#region License
+
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,15 +24,15 @@ using System.Collections.Generic;
 namespace Spring.Social.LinkedIn.Api
 {
     /// <summary>
-    /// Comment on an object such as a post or update
+    /// Represents Linkedin comments on an object such as a post or update.
     /// </summary>    
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
 #if !SILVERLIGHT
     [Serializable]
 #endif
     public class PostComments : PaginatedResult
     {
-        public List<PostComment> Comments { get; set; }
+        public IList<PostComment> Comments { get; set; }
     }
 }

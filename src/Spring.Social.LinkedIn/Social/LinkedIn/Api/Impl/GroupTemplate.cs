@@ -1,110 +1,53 @@
-#region
+#region License
+
+/*
+ * Copyright 2002-2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#endregion
 
 using System;
-using System.Threading.Tasks;
-using Spring.Rest.Client;
+using System.Collections.Generic;
 #if NET_4_0 || SILVERLIGHT_5
+using System.Threading.Tasks;
 #endif
 #if SILVERLIGHT
 using Spring.Collections.Specialized;
 #else
+using System.Collections.Specialized;
 #endif
 
-#endregion
+using Spring.Http;
+using Spring.Rest.Client;
 
 namespace Spring.Social.LinkedIn.Api.Impl
 {
     /// <summary>
-    /// Group Template
+    /// Implementation of <see cref="IGroupOperations"/>, providing a binding to LinkedIn's groups-oriented REST resources.
     /// </summary>
-    /// <author>Original Java code: Robert Drysdale</author>
-    /// <author>Manudea (.Net Porting)</author>
-    public class GroupTemplate : AbstractLinkedInOperations, IGroupOperations
+    /// <author>Robert Drysdale</author>
+    /// <author>Manudea (.NET)</author>
+    class GroupTemplate : AbstractLinkedInOperations, IGroupOperations
     {
-        /// <summary>
-        /// The base URL
-        /// </summary>
-        public static String BaseUrl = "https://api.linkedin.com/v1/";
-        /// <summary>
-        /// The format
-        /// </summary>
-        public static String Format = "?format=json";
-        /// <summary>
-        /// The base people URL
-        /// </summary>
-        public static String PeopleBaseUrl = BaseUrl + "people/";
-        /// <summary>
-        /// The group base URL
-        /// </summary>
-        public static String GroupBaseUrl = BaseUrl + "groups/";
-        /// <summary>
-        /// The group posts base URL
-        /// </summary>
-        public static String GroupPostsBaseUrl = BaseUrl + "posts/";
-
-        /// <summary>
-        /// The group details URL
-        /// </summary>
-        public static String GroupDetailsUrl = GroupBaseUrl + "{groupId}:(id,name,short-description,description,relation-to-viewer:(membership-state,available-actions),posts,counts-by-category,is-open-to-non-members,category,website-url,locale,location:(country,postal-code),allow-member-invites,site-group-url,small-logo-url,large-logo-url)" + Format;
-        /// <summary>
-        /// The group join leave URL
-        /// </summary>
-        public static String GroupJoinLeaveUrl = PeopleBaseUrl + "~/group-memberships/{groupId}" + Format;
-        /// <summary>
-        /// The group memberships URL
-        /// </summary>
-        public static String GroupMembershipsUrl = PeopleBaseUrl + "~/group-memberships:(group:(id,name),membership-state,show-group-logo-in-profile,allow-messages-from-members,email-digest-frequency,email-announcements-from-managers,email-for-every-new-post)" + Format;
-        /// <summary>
-        /// The group suggestions URL
-        /// </summary>
-        public static String GroupSuggestionsUrl = PeopleBaseUrl + "~/suggestions/groups:(id,name,is-open-to-non-members)" + Format;
-        /// <summary>
-        /// The group suggestion delete URL
-        /// </summary>
-        public static String GroupSuggestionDeleteUrl = PeopleBaseUrl + "~/suggestions/groups/{id}" + Format;
-        /// <summary>
-        /// The group posts URL
-        /// </summary>
-        public static String GroupPostsUrl = GroupBaseUrl + "{groupId}/posts:(id,creation-timestamp,title,summary,creator:(id,first-name,last-name,picture-url,headline),likes,attachment:(image-url,content-domain,content-url,title,summary),relation-to-viewer)?order=recency" + Format.Replace("?", "&");
-        /// <summary>
-        /// The group post comments URL
-        /// </summary>
-        public static String GroupPostCommentsUrl = GroupPostsBaseUrl + "{post-id}/comments:(creator:(first-name,last-name,picture-url),creation-timestamp,id,text)" + Format;
-        /// <summary>
-        /// The group create post URL
-        /// </summary>
-        public static String GroupCreatePostUrl = GroupBaseUrl + "{groupId}/posts" + Format;
-        /// <summary>
-        /// The group post like URL
-        /// </summary>
-        public static String GroupPostLikeUrl = GroupPostsBaseUrl + "{post-id}/relation-to-viewer/is-liked" + Format;
-        /// <summary>
-        /// The group post follow URL
-        /// </summary>
-        public static String GroupPostFollowUrl = GroupPostsBaseUrl + "{post-id}/relation-to-viewer/is-following" + Format;
-        /// <summary>
-        /// The group post flag URL
-        /// </summary>
-        public static String GroupPostFlagUrl = GroupPostsBaseUrl + "{post-id}/category/code" + Format;
-        /// <summary>
-        /// The group post delete URL
-        /// </summary>
-        public static String GroupPostDeleteUrl = GroupPostsBaseUrl + "{post-id}" + Format;
-        /// <summary>
-        /// The group post add comment URL
-        /// </summary>
-        public static String GroupPostAddCommentUrl = GroupPostsBaseUrl + "{post-id}/comments" + Format;
-        /// <summary>
-        /// The group post delete comment URL
-        /// </summary>
-        public static String GroupPostDeleteCommentUrl = BaseUrl + "comments/{comment-id}" + Format;
+        private const string GroupDetailsUrl = "groups/{groupId}:(id,name,short-description,description,relation-to-viewer:(membership-state,available-actions),posts,counts-by-category,is-open-to-non-members,category,website-url,locale,location:(country,postal-code),allow-member-invites,site-group-url,small-logo-url,large-logo-url)?format=json";
+        private const string GroupMembershipsUrl = "people/~/group-memberships:(group:(id,name),membership-state,show-group-logo-in-profile,allow-messages-from-members,email-digest-frequency,email-announcements-from-managers,email-for-every-new-post)?format=json";
+        private const string GroupPostsUrl = "groups/{groupId}/posts:(id,creation-timestamp,title,summary,creator:(id,first-name,last-name,picture-url,headline),likes,attachment:(image-url,content-domain,content-url,title,summary),relation-to-viewer)?order=recency&format=json";
+        private const string GroupPostCommentsUrl = "posts/{post-id}/comments:(creator:(first-name,last-name,picture-url),creation-timestamp,id,text)?format=json";
 
         private readonly RestTemplate restTemplate;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupTemplate"/> class.
-        /// </summary>
-        /// <param name="restTemplate">The rest template.</param>
         public GroupTemplate(RestTemplate restTemplate)
         {
             this.restTemplate = restTemplate;
@@ -112,6 +55,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
 
         #region IGroupOperations Members
 
+#if NET_4_0 || SILVERLIGHT_5
         public Task<Group> GetGroupDetailsAsync(int groupId)
         {
             return restTemplate.GetForObjectAsync<Group>(GroupDetailsUrl, groupId);
@@ -124,7 +68,10 @@ namespace Spring.Social.LinkedIn.Api.Impl
 
         public Task<GroupMemberships> GetGroupMembershipsAsync(int start, int count)
         {
-            return restTemplate.GetForObjectAsync<GroupMemberships>(GroupMembershipsUrl + "?start=" + start + "&count=" + count);
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("start", start.ToString());
+            parameters.Add("count", count.ToString());
+            return restTemplate.GetForObjectAsync<GroupMemberships>(this.BuildUrl(GroupMembershipsUrl, parameters));
         }
 
         public Task<GroupPosts> GetPostsByGroupIdAsync(int groupId)
@@ -134,7 +81,10 @@ namespace Spring.Social.LinkedIn.Api.Impl
 
         public Task<GroupPosts> GetPostsByGroupIdAsync(int groupId, int start, int count)
         {
-            return restTemplate.GetForObjectAsync<GroupPosts>(GroupPostsUrl + "&start=" + start + "&count=" + count, groupId);
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("start", start.ToString());
+            parameters.Add("count", count.ToString());
+            return restTemplate.GetForObjectAsync<GroupPosts>(this.BuildUrl(GroupPostsUrl, parameters), groupId);
         }
 
         public Task<PostComments> GetPostCommentsByGroupIdAsync(string postId)
@@ -144,8 +94,14 @@ namespace Spring.Social.LinkedIn.Api.Impl
 
         public Task<PostComments> GetPostCommentsByGroupIdAsync(string postId, int start, int count)
         {
-            return restTemplate.GetForObjectAsync<PostComments>(GroupPostCommentsUrl + "&start=" + start + "&count=" + count, postId);
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("start", start.ToString());
+            parameters.Add("count", count.ToString());
+            return restTemplate.GetForObjectAsync<PostComments>(this.BuildUrl(GroupPostCommentsUrl, parameters), postId);
         }
+#else
+
+#endif
 
         #endregion
     }
