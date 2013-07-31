@@ -119,6 +119,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             Assert.AreEqual(189, profile.ConnectionsCount);
             Assert.AreEqual(false, profile.IsConnectionsCountCapped);
             Assert.AreEqual("Dublin, Ireland", profile.MainAddress);
+            Assert.IsNull(profile.Email);
             Assert.AreEqual(0, profile.Distance);
             Assert.AreEqual("", profile.ProposalComments);
             Assert.AreEqual(1900, profile.BirthDate.Year);

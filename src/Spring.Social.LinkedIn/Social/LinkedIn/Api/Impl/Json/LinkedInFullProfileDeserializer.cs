@@ -42,6 +42,7 @@ namespace Spring.Social.LinkedIn.Api.Impl.Json
             profile.ConnectionsCount = json.GetValue<int>("numConnections");
             profile.Distance = json.GetValue<int>("distance");
             profile.Educations = DeserializeEducations(json.GetValue("educations"));
+            profile.Email = json.GetValueOrDefault<string>("emailAddress");
             profile.Honors = json.GetValueOrDefault<string>("honors", String.Empty);
             profile.ImAccounts = DeserializeImAccounts(json.GetValue("imAccounts"));
             profile.Interests = json.GetValueOrDefault<string>("interests", String.Empty);

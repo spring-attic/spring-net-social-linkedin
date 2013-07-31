@@ -51,18 +51,19 @@ namespace Spring.ConsoleQuickStart
                 LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileAsync().Result;
                 Console.WriteLine("Authenticated user is " + profile.FirstName + " " + profile.LastName);
 
-                // Use step by step debugging             
+                // Use step by step debugging
 /*
-                LinkedInProfile profileById = linkedIn.ProfileOperations.GetUserProfileByIdAsync("xO3SEJSVZN").Result;
+                LinkedInProfile profileById = linkedIn.ProfileOperations.GetUserProfileByIdAsync("x9HPDDi8DL").Result;
                 LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrlAsync("http://www.linkedin.com/in/bbaia").Result;
-                LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnectionsAsync().Result;
-                NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatisticsAsync().Result;
-*/ 
+                LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnectionsAsync().Result; // Requires 'r_network' permission
+                NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatisticsAsync().Result; // Requires 'rw_nus' permission
+                GroupMemberships groups = linkedIn.GroupOperations.GetGroupMembershipsAsync().Result; // Requires 'rw_groups' permission
+*/
                 // Consume LinkedIn endpoints that are not covered by the API binding
-/*
+
                 string stringResult = linkedIn.RestOperations.GetForObjectAsync<string>("company-search?keywords=SpringSource&format=json").Result;
                 JsonValue jsonResult = linkedIn.RestOperations.GetForObjectAsync<JsonValue>("job-search?job-title=LinkedIn&country-code=FR&format=json").Result;
-*/
+
             }
             catch (AggregateException ae)
             {
@@ -108,8 +109,8 @@ namespace Spring.ConsoleQuickStart
 /*
                 LinkedInProfile profileById = linkedIn.ProfileOperations.GetUserProfileById("xO3SEJSVZN");
                 LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrl("http://www.linkedin.com/in/bbaia");
-                LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnections();
-                NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatistics();
+                LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnections(); // Requires 'r_network' permission
+                NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatistics(); // Requires 'rw_nus' permission
 */
                 // Consume LinkedIn endpoints that are not covered by the API binding
 /*

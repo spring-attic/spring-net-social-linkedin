@@ -135,6 +135,13 @@ namespace Spring.Social.LinkedIn.Api
         public string Honors { get; set; }
 
         /// <summary>
+        /// Gets or sets the user's primary email address. May be null.
+        /// <para/>
+        /// Requires the 'r_emailaddress' member permission.
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
         /// Gets or sets the degree distance of the fetched profile from the member who fetched the profile.
         /// </summary>
         /// <remarks>
