@@ -20,13 +20,13 @@
 
   <property name="product.version" value="1.0.0" />
   <!-- M# / RC# -->
-  <property name="product.releasetype" value="M1" />
+  <property name="product.releasetype" value="M2" />
   <property name="product.informationalversion" value="${product.version}" if="${(product.releasetype == '')}" />
   <property name="product.informationalversion" value="${product.version}-${product.releasetype}" if="${(product.releasetype != '')}" />
   <property name="product.fullname" value="${product.name} ${product.version}" if="${(product.releasetype == '')}" />
   <property name="product.fullname" value="${product.name} ${product.version} (${product.releasetype})" if="${(product.releasetype != '')}" />
   
-  <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('03/01/2012'))))}" />
+  <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2013'))))}" />
   <property name="project.version" value="${product.version}.${project.buildnumber}" />
   <property name="project.buildtype" value="dev" />
   <property name="project.sign" value="false" overwrite="false" />
