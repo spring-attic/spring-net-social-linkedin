@@ -32,7 +32,7 @@ ILinkedIn linkedIn = new LinkedInTemplate(consumerKey, consumerSecret, accessTok
     <programlisting language="csharp"><![CDATA[
 LinkedInServiceProvider serviceProvider = new LinkedInServiceProvider("consumerKey", "consumerSecret");
 OAuth1Operations oauthOperations = serviceProvider.AuthOperations;
-OAuthToken requestToken = oauthOperations.FetchRequestToken("http://my-callback-url/", null);
+OAuthToken requestToken = oauthOperations.FetchRequestToken("https://my-callback-url/", null);
 string authorizeUrl = oauthOperations.BuildAuthorizeUrl(requestToken, null);
 Response.Redirect(authorizeUrl);
 
