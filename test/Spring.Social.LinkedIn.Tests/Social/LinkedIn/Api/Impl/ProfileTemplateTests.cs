@@ -50,8 +50,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
             LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfile();
 #endif
             AssertProfile(profile, "xO3SEJSVZN", "Architecte en informatique spécialisé sur les technologies Microsoft .NET",
-                "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl",
-                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia", "http://www.linkedin.com/profile", null);
+                "Bruno", "Baia", "Information Technology and Services", "https://media.linkedin.com/pictureUrl",
+                "Consultant .NET indépendant", "https://www.linkedin.com/in/bbaia", "https://www.linkedin.com/profile", null);
 	    }
 
         [Test]
@@ -68,26 +68,26 @@ namespace Spring.Social.LinkedIn.Api.Impl
             LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileById("xO3SEJSVZN");
 #endif
             AssertProfile(profile, "xO3SEJSVZN", "Architecte en informatique spécialisé sur les technologies Microsoft .NET",
-                "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl",
-                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia", "http://www.linkedin.com/profile", null);
+                "Bruno", "Baia", "Information Technology and Services", "https://media.linkedin.com/pictureUrl",
+                "Consultant .NET indépendant", "https://www.linkedin.com/in/bbaia", "https://www.linkedin.com/profile", null);
         }
 
         [Test]
         public void GetUserProfileByPublicUrl()
         {
             mockServer.ExpectNewRequest()
-                .AndExpect(UriStartsWith("https://api.linkedin.com/v1/people/url=http://www.linkedin.com/in/bbaia:("))
+                .AndExpect(UriStartsWith("https://api.linkedin.com/v1/people/url=https://www.linkedin.com/in/bbaia:("))
                 .AndExpectMethod(HttpMethod.GET)
                 .AndRespondWith(JsonResource("Profile"), responseHeaders);
 
 #if NET_4_0 || SILVERLIGHT_5
-            LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileByPublicUrlAsync("http://www.linkedin.com/in/bbaia").Result;
+            LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileByPublicUrlAsync("https://www.linkedin.com/in/bbaia").Result;
 #else
-            LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileByPublicUrl("http://www.linkedin.com/in/bbaia");
+            LinkedInProfile profile = linkedIn.ProfileOperations.GetUserProfileByPublicUrl("https://www.linkedin.com/in/bbaia");
 #endif
             AssertProfile(profile, "xO3SEJSVZN", "Architecte en informatique spécialisé sur les technologies Microsoft .NET",
-                "Bruno", "Baia", "Information Technology and Services", "http://media.linkedin.com/pictureUrl",
-                "Consultant .NET indépendant", "http://www.linkedin.com/in/bbaia", "http://www.linkedin.com/profile", null);
+                "Bruno", "Baia", "Information Technology and Services", "https://media.linkedin.com/pictureUrl",
+                "Consultant .NET indépendant", "https://www.linkedin.com/in/bbaia", "https://www.linkedin.com/profile", null);
         }
 
         [Test] 
@@ -105,8 +105,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
 #endif
 
             AssertProfile(profile, "UB2kruYmAL", "Software Architect", "Robert", "Drysdale", "Telecommunications",
-                "http://media.linkedin.com/pictureUrl", "J2EE Application Architect with over 10 years industry experience.",
-                "http://www.linkedin.com/in/robdrysdale", "http://www.linkedin.com/profile?viewProfile=&key=15567709&authToken=O91G&authType=name&trk=api*a151944*s160233*", "name:O91G");
+                "https://media.linkedin.com/pictureUrl", "J2EE Application Architect with over 10 years industry experience.",
+                "https://www.linkedin.com/in/robdrysdale", "https://www.linkedin.com/profile?viewProfile=&key=15567709&authToken=O91G&authType=name&trk=api*a151944*s160233*", "name:O91G");
 		
 		    Assert.AreEqual("Canoeing Ireland", profile.Associations);
 		    Assert.AreEqual("None", profile.Honors);
@@ -133,7 +133,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             Assert.AreEqual("+353 87 9580000", profile.PhoneNumbers[0].Number);
 		    Assert.AreEqual(1, profile.UrlResources.Count);
             Assert.AreEqual("Company Website", profile.UrlResources[0].Name);
-		    Assert.AreEqual("http://www.robatron.com", profile.UrlResources[0].Url);
+		    Assert.AreEqual("https://www.robatron.com", profile.UrlResources[0].Url);
             Assert.AreEqual(3, profile.Skills.Count);
             Assert.AreEqual("Java", profile.Skills[0].Name);
             Assert.AreEqual(1, profile.TwitterAccounts.Count);
@@ -183,8 +183,8 @@ namespace Spring.Social.LinkedIn.Api.Impl
 
             AssertProfile(result.Profiles[0],
                    "lNJuCn-ejG", "Principal Software Engineer at SpringSource", "Mark", "Pollack", "Computer Software",
-                   null, "", "http://www.linkedin.com/pub/mark-pollack/7/17a/b77", 
-                   "http://www.linkedin.com/profile?viewProfile=&key=21314827&authToken=Vl4x&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*", "OUT_OF_NETWORK:Vl4x");
+                   null, "", "https://www.linkedin.com/pub/mark-pollack/7/17a/b77", 
+                   "https://www.linkedin.com/profile?viewProfile=&key=21314827&authToken=Vl4x&authType=OUT_OF_NETWORK&trk=api*a159628*s167852*", "OUT_OF_NETWORK:Vl4x");
 
             Assert.AreEqual(0, result.Start);
             Assert.AreEqual(10, result.Count);

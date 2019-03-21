@@ -1,11 +1,11 @@
 {
   "firstName": "Bruno",
-  "headline": "Architecte en informatique spécialisé sur les technologies Microsoft .NET",
+  "headline": "Architecte en informatique spï¿½cialisï¿½ sur les technologies Microsoft .NET",
   "id": "xO3SEJSVZN",
   "industry": "Information Technology and Services",
   "lastName": "Baia",
-  "pictureUrl": "http://media.linkedin.com/pictureUrl",
-  "publicProfileUrl": "http://www.linkedin.com/in/bbaia",
-  "siteStandardProfileRequest": {"url": "http://www.linkedin.com/profile"},
-  "summary": "Consultant .NET indépendant"
+  "pictureUrl": "https://media.linkedin.com/pictureUrl",
+  "publicProfileUrl": "https://www.linkedin.com/in/bbaia",
+  "siteStandardProfileRequest": {"url": "https://www.linkedin.com/profile"},
+  "summary": "Consultant .NET indï¿½pendant"
 }

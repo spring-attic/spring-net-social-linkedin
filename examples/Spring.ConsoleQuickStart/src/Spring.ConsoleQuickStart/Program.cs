@@ -54,7 +54,7 @@ namespace Spring.ConsoleQuickStart
                 // Use step by step debugging
 /*
                 LinkedInProfile profileById = linkedIn.ProfileOperations.GetUserProfileByIdAsync("x9HPDDi8DL").Result;
-                LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrlAsync("http://www.linkedin.com/in/bbaia").Result;
+                LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrlAsync("https://www.linkedin.com/in/bbaia").Result;
                 LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnectionsAsync().Result; // Requires 'r_network' permission
                 NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatisticsAsync().Result; // Requires 'rw_nus' permission
                 GroupMemberships groups = linkedIn.GroupOperations.GetGroupMembershipsAsync().Result; // Requires 'rw_groups' permission
@@ -108,7 +108,7 @@ namespace Spring.ConsoleQuickStart
                 // Use step by step debugging             
 /*
                 LinkedInProfile profileById = linkedIn.ProfileOperations.GetUserProfileById("xO3SEJSVZN");
-                LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrl("http://www.linkedin.com/in/bbaia");
+                LinkedInProfile profileByPublicUrl = linkedIn.ProfileOperations.GetUserProfileByPublicUrl("https://www.linkedin.com/in/bbaia");
                 LinkedInProfiles connections = linkedIn.ConnectionOperations.GetConnections(); // Requires 'r_network' permission
                 NetworkStatistics statistics = linkedIn.ConnectionOperations.GetNetworkStatistics(); // Requires 'rw_nus' permission
 */

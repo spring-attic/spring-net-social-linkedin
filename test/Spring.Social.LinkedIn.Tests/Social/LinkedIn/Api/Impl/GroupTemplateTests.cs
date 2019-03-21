@@ -88,7 +88,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             Assert.AreEqual("This is a group for users of the Spring Framework and related projects (Roo, Batch, Integration, BlazeDS, Security, Web Flow etc) to meet and discuss things of common interest.", group.Description);
             Assert.AreEqual(46964, group.ID);
             Assert.AreEqual(true, group.IsOpenToNonMembers);
-            Assert.AreEqual("http://media.linkedin.com/mpr/mpr/p/3/000/05d/2b8/0c75024.png", group.LargeLogoUrl);
+            Assert.AreEqual("https://media.linkedin.com/mpr/mpr/p/3/000/05d/2b8/0c75024.png", group.LargeLogoUrl);
             Assert.AreEqual("en_US", group.Locale);
             Assert.AreEqual("Spring Users", group.Name);
             Assert.AreEqual(10, group.Posts.Posts.Count);
@@ -117,9 +117,9 @@ namespace Spring.Social.LinkedIn.Api.Impl
             //Assert.AreEqual(MembershipState.Member, group.RelationToViewer.MembershipState);
 
             Assert.AreEqual("This is a group that welcomes all users of the Spring platform, including Spring Framework, Roo, Batch, Integration, BlazeDS, Security, Web Flow etc.", group.ShortDescription);
-            Assert.AreEqual("http://www.linkedin.com/groups?gid=46964&trk=api*a151944*s160233*", group.SiteGroupUrl);
-            Assert.AreEqual("http://media.linkedin.com/mpr/mpr/p/2/000/05d/2b8/0cc68d3.png", group.SmallLogoUrl);
-            Assert.AreEqual("http://www.springsource.org", group.WebsiteUrl);
+            Assert.AreEqual("https://www.linkedin.com/groups?gid=46964&trk=api*a151944*s160233*", group.SiteGroupUrl);
+            Assert.AreEqual("https://media.linkedin.com/mpr/mpr/p/2/000/05d/2b8/0cc68d3.png", group.SmallLogoUrl);
+            Assert.AreEqual("https://www.springsource.org", group.WebsiteUrl);
         }
     }
 }
