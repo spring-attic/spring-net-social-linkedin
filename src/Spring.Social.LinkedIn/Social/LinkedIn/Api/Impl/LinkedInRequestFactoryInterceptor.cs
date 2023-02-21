@@ -27,7 +27,7 @@ using Spring.Http.Client.Interceptor;
 
 namespace Spring.Social.LinkedIn.Api.Impl
 {
-    // http://connect.microsoft.com/VisualStudio/feedback/details/94109/
+    // https://connect.microsoft.com/VisualStudio/feedback/details/94109/
 
     /// <summary>
     /// Intercepts HTTP requests creation to leave URI dots and slashes escaped.
@@ -45,7 +45,7 @@ namespace Spring.Social.LinkedIn.Api.Impl
             return creation.Create();
         }
 
-        // from http://grootveld.com/archives/21/url-encoded-slashes-in-systemuri
+        // from https://grootveld.com/archives/21/url-encoded-slashes-in-systemuri
 
         static readonly FieldInfo SyntaxField = typeof(Uri).GetField("m_Syntax", BindingFlags.Instance | BindingFlags.NonPublic);
         static readonly FieldInfo FlagsField = typeof(UriParser).GetField("m_Flags", BindingFlags.Instance | BindingFlags.NonPublic);

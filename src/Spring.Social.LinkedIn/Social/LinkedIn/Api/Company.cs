@@ -45,7 +45,7 @@ namespace Spring.Social.LinkedIn.Api
         /// <summary>
         /// Gets or sets the industry in which the company operates.
         /// <para/>
-        /// Industry codes: http://developer.linkedin.com/node/1011
+        /// Industry codes: https://developer.linkedin.com/node/1011
         /// </summary>
         public string Industry { get; set; }
 
